@@ -2,11 +2,13 @@ class Hero {
     string name;
     int heroLevel;
     int health;
-    Race [1]race;
-    Role [1]role;
+    contains Race race;
+    contains Role role;
     contains Attribute[1..*] attributes;
-    Item[] inventory;
-    Skill[] skills;
+    contains Armor armor;
+    contains Weapon weapon;
+    contains Potion[] inventory;
+    contains Skill[] skills;w
 }
 
 abstract class Race {
@@ -88,9 +90,21 @@ type(Poison::new): "Poison".
 
 % CONSTRAINTS
 
+scope Wand = 1.
+
 scope Hero = 1.
 scope Race = 1.
 scope Role = 1.
+
+scope Armor = 1.
+scope Weapon = 1.
+
+scope Strength = 0..1.
+scope Intelligence = 0..1.
+scope Agility = 0..1.
+scope Perception = 0..1.
+
+scope Fireball = 0..1.
 
 error invalidHeroLevel(Hero h) <->
     heroLevel(h) < 0 || heroLevel(h) > 100.
@@ -105,3 +119,7 @@ error invalidInventory(Hero h) <->
     count {inventory(h, _i)} > 10.
 error invalidAttribute(Attribute a) <->
     attributeLevel(a) > 0.
+% error invalidWeapon1(Hero h) <->
+%     weapon(h, w), type(h) == "Wizard", type(w) != "Wand".
+error invalidWeapon2(Hero h) <->
+    weapon(h, w), type(h) != "Wizard", type(w) == "Wand".
