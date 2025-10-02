@@ -119,11 +119,9 @@ error invalidInventory(Hero h) <->
     count {inventory(h, _i)} > 10.
 error invalidAttribute(Attribute a) <->
     attributeLevel(a) > 0.
-
-scope HeavyArmor =1.
-error invalidArmor(Hero h) <->
-    armor(h,a),
-    role(h,r),
-    type(r) == "Thief",
-    type(a) == "HeavyArmor".
-
+error onlyWizardWand1() <->
+    Wand(_w), !Wizard(_w).
+error onlyWizardWand2() <->
+    !Wand(_w), Wizard(_w).
+error thiefNoHeavyArmor() <->
+    Thief(_t), HeavyArmor(_hh).
