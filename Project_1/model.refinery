@@ -4,7 +4,7 @@ class Hero {
     int health;
     Race [1]race;
     Role [1]role;
-    contains Attribute[] attributes;
+    contains Attribute[1..4] attributes;
     Item[] inventory;
     Skill[] skills;
 }
@@ -99,8 +99,6 @@ error invalidAttributeLevel(Attribute a) <->
 error invalidRequiredHeroLevel(Skill s) <->
     requiredHeroLevel(s) < 0 || requiredHeroLevel(s) > 100.
 error invalidRequiredAttribute(Hero h) <->
-    skills(h, s), heroLevel(h) >= requiredHeroLevel(s).
-error test(Hero h, Skill s) <->
     skills(h, s),
-    requiredAttribute(s, a1),
-    attributes(h, a2).
+    heroLevel(h) >= requiredHeroLevel(s).
+
