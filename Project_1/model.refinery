@@ -1,0 +1,106 @@
+class Hero {
+    string name;
+    int heroLevel;
+    int health;
+    Race [1]race;
+    Role [1]role;
+    contains Attribute[] attributes;
+    Item[] inventory;
+    Skill[] skills;
+}
+
+abstract class Race {
+    string raceName;
+}
+class Human extends Race.
+class Elf extends Race.
+class Orc extends Race.
+class Dwarf extends Race.
+raceName(Human::new): "Human".
+raceName(Elf::new): "Elf".
+raceName(Orc::new): "Orc".
+raceName(Dwarf::new): "Dwarf".
+
+abstract class Role {
+    string roleName;
+}
+class Wizard extends Role.
+class Archer extends Role.
+class Thief extends Role.
+class Knight extends Role.
+roleName(Wizard::new): "Wizard".
+roleName(Archer::new): "Archer".
+roleName(Thief::new): "Thief".
+roleName(Knight::new): "Knight".
+
+abstract class Attribute {
+    string attributeName;
+    int attributeLevel;
+}
+class Strength extends Attribute.
+class Intelligence extends Attribute.
+class Agility extends Attribute.
+class Perception extends Attribute.
+attributeName(Strength::new): "Strength".
+attributeName(Intelligence::new): "Intelligence".
+attributeName(Agility::new): "Agility".
+attributeName(Perception::new): "Perception".
+
+abstract class Skill {
+    string skillName;
+    int requiredHeroLevel;
+    Attribute requiredAttribute;
+    int requiredAttributeLevel;
+}
+class Fireball extends Skill.
+skillName(Fireball::new): "Fireball".
+
+abstract class Item {
+    string type;
+}
+abstract class Armor extends Item {
+    int defense;
+}
+class LightArmor extends Armor.
+class HeavyArmor extends Armor.
+type(LightArmor::new): "LightArmor".
+type(HeavyArmor::new): "HeavyArmor".
+
+abstract class Weapon extends Item {
+    int damage;
+}
+class Sword extends Weapon.
+class Bow extends Weapon.
+class Dagger extends Weapon.
+class Wand extends Weapon.
+type(Sword::new): "Sword".
+type(Bow::new): "Bow".
+type(Dagger::new): "Dagger".
+type(Wand::new): "Wand".
+
+abstract class Potion extends Item {
+    int amount;
+}
+class HealthRegen extends Potion.
+class Poison extends Potion.
+type(HealthRegen::new): "HealthRegen".
+type(Poison::new): "Poison".
+
+% CONSTRAINTS
+
+scope Hero = 1.
+scope Race = 1.
+scope Role = 1.
+
+error invalidHeroLevel(Hero h) <->
+    heroLevel(h) < 0 || heroLevel(h) > 100.
+error invalidAttributeLevel(Attribute a) <->
+    attributeLevel(a) < 0 || attributeLevel(a) > 100.
+error invalidRequiredHeroLevel(Skill s) <->
+    requiredHeroLevel(s) < 0 || requiredHeroLevel(s) > 100.
+error invalidRequiredAttribute(Hero h) <->
+    skills(h, s), heroLevel(h) >= requiredHeroLevel(s).
+error test(Hero h, Skill s) <->
+    skills(h, s),
+    requiredAttribute(s, a1),
+    attributes(h, a2).
