@@ -8,7 +8,7 @@ class Hero {
     contains Armor armor;
     contains Weapon weapon;
     contains Potion[] inventory;
-    contains Skill[] skills;w
+    contains Skill[] skills;
 }
 
 abstract class Race {
@@ -90,8 +90,6 @@ type(Poison::new): "Poison".
 
 % CONSTRAINTS
 
-scope Wand = 1.
-
 scope Hero = 1.
 scope Race = 1.
 scope Role = 1.
@@ -108,6 +106,8 @@ scope Fireball = 0..1.
 
 error invalidHeroLevel(Hero h) <->
     heroLevel(h) < 0 || heroLevel(h) > 100.
+error invalidHealth(Hero h) <-> 
+    health(h) < 0 || health(h) > 100.
 error invalidAttributeLevel(Attribute a) <->
     attributeLevel(a) < 0 || attributeLevel(a) > 100.
 error invalidRequiredHeroLevel(Skill s) <->
@@ -119,7 +119,11 @@ error invalidInventory(Hero h) <->
     count {inventory(h, _i)} > 10.
 error invalidAttribute(Attribute a) <->
     attributeLevel(a) > 0.
-% error invalidWeapon1(Hero h) <->
-%     weapon(h, w), type(h) == "Wizard", type(w) != "Wand".
-error invalidWeapon2(Hero h) <->
-    weapon(h, w), type(h) != "Wizard", type(w) == "Wand".
+
+scope HeavyArmor =1.
+error invalidArmor(Hero h) <->
+    armor(h,a),
+    role(h,r),
+    type(r) == "Thief",
+    type(a) == "HeavyArmor".
+
