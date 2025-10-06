@@ -117,12 +117,12 @@ type(StaminaBoost::new): "StaminaBoost".
 
 % CONSTRAINTS
 
+% There should be exactly one hero. It should have exactly 1 Race, Role and Armor
 scope Hero = 1.
 scope Race = 1.
 scope Role = 1.
 
 scope Armor = 1.
-scope Weapon = 1.
 
 % Level of hero must be larger than or equal to 0 and smaller than or equal to 100.
 % TEST CASE:
@@ -130,49 +130,59 @@ scope Weapon = 1.
 % ----------
 % concretization rule setLevel(Hero h) ==> heroLevel(h): 105. % FAILS
 error HeroLevelOOB(Hero h) <->
-    heroLevel(h) < 0 || heroLevel(h) > 100.
+    heroLevel(h) <= 0 || heroLevel(h) > 100.
 
-% Health of hero must be larger than or equal to 0 and smaller than or equal to 100.
+% Health of hero must be larger than 0 and smaller than or equal to 100.
 % TEST CASE:
 % concretization rule setHealth(Hero h) ==> health(h): 100. % SUCCEEDS
 % ----------
 % concretization rule setHealth(Hero h) ==> health(h): -5. % FAILS
 error HealthOOB(Hero h) <-> 
-    health(h) < 0 || health(h) > 100.
+    health(h) <= 0 || health(h) > 100.
 
-% Attribute level must be larger than or equal to 0 and smaller than or equal to 100.
+% Attribute level must be larger than 0 and smaller than or equal to 100.
 % TEST CASE:
 % concretization rule setAttributeLevel(Attribute a) ==> attributeLevel(a): 10. % SUCCEEDS
 % ----------
 % concretization rule setAttributeLevel(Attribute a) ==> attributeLevel(a): 1000. % FAILS
 error AttributeLevelOOB(Attribute a) <->
-    attributeLevel(a) < 0 || attributeLevel(a) > 100.
+    attributeLevel(a) <= 0 || attributeLevel(a) > 100.
 
-% Required attribute level must be larger than or equal to 0 and smaller than or equal to 100.
+% Required attribute level must be larger than 0 and smaller than or equal to 100.
 % TEST CASE:
 % concretization rule setRequiredAttributeLevel(Skill s) ==> requiredAttributeLevel(s): 99. % SUCCEEDS
 % ----------
 % concretization rule setRequiredAttributeLevel(Skill s) ==> requiredAttributeLevel(s): 101. % FAILS
 error RequiredAttributeLevelOOB(Skill s) <->
-    requiredAttributeLevel(s) < 0 || requiredAttributeLevel(s) > 100.
+    requiredAttributeLevel(s) <= 0 || requiredAttributeLevel(s) > 100.
 
-% Required Hero level must be larger than or equal to 0 and smaller than or equal to 100.
+% Required Hero level must be larger than 0 and smaller than or equal to 100.
 % TEST CASE:
 % concretization rule setRequiredHeroLevel(Skill s) ==> requiredHeroLevel(s): 99. % SUCCEEDS
 % ----------
 % concretization rule setRequiredHeroLevel(Skill s) ==> requiredHeroLevel(s): -1. % FAILS
 error RequiredHeroLevelOOB(Skill s) <->
-    requiredHeroLevel(s) < 0 || requiredHeroLevel(s) > 100.
+    requiredHeroLevel(s) <= 0 || requiredHeroLevel(s) > 100.
 
-% The Hero level can not be smaller than the required hero level for a given skill.
+% The Hero's level can not be smaller than the required hero level for a given skill.
 % TEST CASE: (SHOULD FAIL)
 % concretization rule setLevel(Hero h) ==> heroLevel(h): 9.
 % concretization rule setRequiredHeroLevel(Skill s) ==> requiredHeroLevel(s): 20.
 % scope GamblerStrike = 1.
 error invalidRequiredHeroLevel(Hero h) <->
     skills(h, s),
-    heroLevel(h) <= requiredHeroLevel(s).
+    heroLevel(h) < requiredHeroLevel(s).
 
+
+% The hero's attribute has to be high enough level to have the skill.
+% TEST CASE: (SHOULD FAIL)
+% concretization rule setRequiredAttributeLevel(Skill s) ==> requiredAttributeLevel(s): 10.
+% concretization rule setAttributeLevel(Attribute a) ==> attributeLevel(a): 9.
+error skillRequiresAttributeLevel(Hero h, Skill s, Attribute a) <->
+    skills(h, s),
+    attributes(h, a),
+    requiredAttribute(s, a),
+    attributeLevel(a) < requiredAttributeLevel(s).
 
 % A maximum of 15 items can be placed in the inventory
 % TEST CASE: (SHOULD FAIL)
@@ -220,22 +230,50 @@ error duplicateSkills(Hero h, Skill s1, Skill s2) <->
     s1 != s2,
     skillName(s1) == skillName(s2).
 
-% The hero's attribute has to be high enough level to have the skill.
-% TEST CASE: (SHOULD FAIL)
-% concretization rule setRequiredAttributeLevel(Skill s) ==> requiredAttributeLevel(s): 10.
-% concretization rule setAttributeLevel(Attribute a) ==> attributeLevel(a): 9.
-error skillRequiresAttributeLevel(Hero h, Skill s, Attribute a) <->
-    skills(h, s),
-    attributes(h, a),
-    requiredAttribute(s, a),
-    attributeLevel(a) < requiredAttributeLevel(s).
 
+% The skill Powerstrike requires the hero to have the attribute Strength
+% TEST CASE: (SHOWS POZERSTRIKE WITH STRENGTH)
+% scope Powerstrike = 1.
+% error PowerstrikeStrength(PowerStrike s) <->
+%     requiredAttribute(s,a), 
+%     attributeName(a) != "Strength".
 
-% The skill Fireball requires the hero to have the attribute Wisdom
-% TEST CASE: (SHOWS FIREBALL WITH WISDOM)
-% scope Fireball = 1.
+% Some other similar constraints are listed below:
+scope Fireball = 1.
+scope Wisdom = 1.
+scope Agility = 1.
+concretization rule setRequiredAttributeLevel(Fireball s) ==> requiredAttributeLevel(s): 5.
+concretization rule setAttributeLevel(Wisdom a) ==> attributeLevel(a): 9.
+
 error FireballWisdom(Fireball s) <->
     requiredAttribute(s,a), 
-    attributeName(a) != "Wisdom".
+    !Wisdom(a).
+% error EvasiveRollAgility(EvasiveRoll s) <->
+%     requiredAttribute(s,a), 
+%     attributeName(a) != "Agility".
+% error GamblerStrikeLuck(GamblerStrike s) <->
+%     requiredAttribute(s,a), 
+%     attributeName(a) != "Luck".
 
+
+
+% The hero can wield only 1 weapon, except for the Assassin, who can wield 2 daggers.
+% This is split up in 2 constraints, one that prevents other roles to wield 2 weapons,
+% and one that ensures the assassin can only wield 2 daggers
+% TEST CASE: 
+% scope Healer = 1.
+% scope Sword = 2.      % FAILS
+% ----------
+% scope Assassin = 1.
+% scope Dagger = 2.     % SUCCEEDS
+scope Weapon = 1..2.
+
+error WeaponLimit(Role r) <->
+    roleName(r) != "Assassin",
+    count {Weapon(_i)} > 1.
+
+error AssassinDaggers(Role r, Weapon w) <->
+    roleName(r) =="Assassin",
+    type(w) != "Dagger",
+    count {Weapon(_i)} > 1.
 
