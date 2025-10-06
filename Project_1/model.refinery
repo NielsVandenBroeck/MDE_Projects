@@ -1,3 +1,4 @@
+% Hero 
 class Hero {
     string name;
     int heroLevel;
@@ -5,57 +6,77 @@ class Hero {
     contains Race race;
     contains Role role;
     contains Attribute[1..*] attributes;
-    contains Armor armor;
-    contains Weapon weapon;
-    contains Potion[] inventory;
     contains Skill[] skills;
+    contains Inventory inventory;
 }
 
+% Race
 abstract class Race {
     string raceName;
 }
 class Human extends Race.
 class Elf extends Race.
 class Orc extends Race.
-class Dwarf extends Race.
+class Vampire extends Race.
+class Aetherial extends Race.
 raceName(Human::new): "Human".
 raceName(Elf::new): "Elf".
 raceName(Orc::new): "Orc".
-raceName(Dwarf::new): "Dwarf".
+raceName(Vampire::new): "Vampire".
+raceName(Aetherial::new): "Aetherial".
 
+% Role
 abstract class Role {
     string roleName;
 }
 class Wizard extends Role.
-class Archer extends Role.
-class Thief extends Role.
-class Knight extends Role.
+class Warior extends Role.
+class Assassin extends Role.
+class Healer extends Role.
 roleName(Wizard::new): "Wizard".
-roleName(Archer::new): "Archer".
-roleName(Thief::new): "Thief".
-roleName(Knight::new): "Knight".
+roleName(Warior::new): "Warior".
+roleName(Assassin::new): "Assassin".
+roleName(Healer::new): "Healer".
 
+% Attribute
 abstract class Attribute {
     string attributeName;
     int attributeLevel;
 }
 class Strength extends Attribute.
-class Intelligence extends Attribute.
+class Wisdom extends Attribute.
 class Agility extends Attribute.
-class Perception extends Attribute.
+class Luck extends Attribute.
+class Charisma extends Attribute.
 attributeName(Strength::new): "Strength".
-attributeName(Intelligence::new): "Intelligence".
+attributeName(Wisdom::new): "Wisdom".
 attributeName(Agility::new): "Agility".
-attributeName(Perception::new): "Perception".
+attributeName(Luck::new): "Luck".
+attributeName(Charisma::new): "Charisma".
 
+% Skill
 abstract class Skill {
     string skillName;
     int requiredHeroLevel;
-    Attribute requiredAttribute;
+    Attribute [1..*]requiredAttribute;
     int requiredAttributeLevel;
 }
+
+class PowerStrike extends Skill.
 class Fireball extends Skill.
+class EvasiveRoll extends Skill.
+class GamblerStrike extends Skill.
+class Seduce extends Skill.
+skillName(PowerStrike::new): "PowerStrike".
 skillName(Fireball::new): "Fireball".
+skillName(EvasiveRoll::new): "EvasiveRoll".
+skillName(GamblerStrike::new): "GamblerStrike".
+skillName(Seduce::new): "Seduce".
+
+% Inventory
+class Inventory{
+    contains Item[] equipment 
+}
 
 abstract class Item {
     string type;
@@ -75,18 +96,24 @@ class Sword extends Weapon.
 class Bow extends Weapon.
 class Dagger extends Weapon.
 class Wand extends Weapon.
+class Gauntlets extends Weapon.
 type(Sword::new): "Sword".
 type(Bow::new): "Bow".
 type(Dagger::new): "Dagger".
 type(Wand::new): "Wand".
+type(Gauntlets::new): "Gauntlets".
 
 abstract class Potion extends Item {
     int amount;
 }
 class HealthRegen extends Potion.
 class Poison extends Potion.
+class NightVision extends Potion.
+class StaminaBoost extends Potion.
 type(HealthRegen::new): "HealthRegen".
 type(Poison::new): "Poison".
+type(NightVision::new): "NightVision".
+type(StaminaBoost::new): "StaminaBoost".
 
 % CONSTRAINTS
 
@@ -97,31 +124,118 @@ scope Role = 1.
 scope Armor = 1.
 scope Weapon = 1.
 
-scope Strength = 0..1.
-scope Intelligence = 0..1.
-scope Agility = 0..1.
-scope Perception = 0..1.
-
-scope Fireball = 0..1.
-
-error invalidHeroLevel(Hero h) <->
+% Level of hero must be larger than or equal to 0 and smaller than or equal to 100.
+% TEST CASE:
+% concretization rule setLevel(Hero h) ==> heroLevel(h): 99. % SUCCEEDS
+% ----------
+% concretization rule setLevel(Hero h) ==> heroLevel(h): 105. % FAILS
+error HeroLevelOOB(Hero h) <->
     heroLevel(h) < 0 || heroLevel(h) > 100.
-error invalidHealth(Hero h) <-> 
+
+% Health of hero must be larger than or equal to 0 and smaller than or equal to 100.
+% TEST CASE:
+% concretization rule setHealth(Hero h) ==> health(h): 100. % SUCCEEDS
+% ----------
+% concretization rule setHealth(Hero h) ==> health(h): -5. % FAILS
+error HealthOOB(Hero h) <-> 
     health(h) < 0 || health(h) > 100.
-error invalidAttributeLevel(Attribute a) <->
+
+% Attribute level must be larger than or equal to 0 and smaller than or equal to 100.
+% TEST CASE:
+% concretization rule setAttributeLevel(Attribute a) ==> attributeLevel(a): 10. % SUCCEEDS
+% ----------
+% concretization rule setAttributeLevel(Attribute a) ==> attributeLevel(a): 1000. % FAILS
+error AttributeLevelOOB(Attribute a) <->
     attributeLevel(a) < 0 || attributeLevel(a) > 100.
-error invalidRequiredHeroLevel(Skill s) <->
+
+% Required attribute level must be larger than or equal to 0 and smaller than or equal to 100.
+% TEST CASE:
+% concretization rule setRequiredAttributeLevel(Skill s) ==> requiredAttributeLevel(s): 99. % SUCCEEDS
+% ----------
+% concretization rule setRequiredAttributeLevel(Skill s) ==> requiredAttributeLevel(s): 101. % FAILS
+error RequiredAttributeLevelOOB(Skill s) <->
+    requiredAttributeLevel(s) < 0 || requiredAttributeLevel(s) > 100.
+
+% Required Hero level must be larger than or equal to 0 and smaller than or equal to 100.
+% TEST CASE:
+% concretization rule setRequiredHeroLevel(Skill s) ==> requiredHeroLevel(s): 99. % SUCCEEDS
+% ----------
+% concretization rule setRequiredHeroLevel(Skill s) ==> requiredHeroLevel(s): -1. % FAILS
+error RequiredHeroLevelOOB(Skill s) <->
     requiredHeroLevel(s) < 0 || requiredHeroLevel(s) > 100.
-error invalidRequiredAttribute(Hero h) <->
+
+% The Hero level can not be smaller than the required hero level for a given skill.
+% TEST CASE: (SHOULD FAIL)
+% concretization rule setLevel(Hero h) ==> heroLevel(h): 9.
+% concretization rule setRequiredHeroLevel(Skill s) ==> requiredHeroLevel(s): 20.
+% scope GamblerStrike = 1.
+error invalidRequiredHeroLevel(Hero h) <->
     skills(h, s),
-    heroLevel(h) >= requiredHeroLevel(s).
-error invalidInventory(Hero h) <->
-    count {inventory(h, _i)} > 10.
-error invalidAttribute(Attribute a) <->
-    attributeLevel(a) > 0.
+    heroLevel(h) <= requiredHeroLevel(s).
+
+
+% A maximum of 15 items can be placed in the inventory
+% TEST CASE: (SHOULD FAIL)
+% scope Item = 20.
+error invalidInventory() <->
+    count {Item(_i)} > 15.
+
+
+% The wand is a special weapon that only a wizard can wield.
+% TEST CASE: (SHOULD FAIL)
+% scope Wand = 1.
+% scope Healer = 1.
 error onlyWizardWand1() <->
     Wand(_w), !Wizard(_w).
+
+% On the other hand, the wizard is only able to wield a wand and no other weapons.
+% TEST CASE: (SHOULD FAIL)
+% scope Gauntlets = 1.
+% scope Wizard = 1.
 error onlyWizardWand2() <->
     !Wand(_w), Wizard(_w).
-error thiefNoHeavyArmor() <->
-    Thief(_t), HeavyArmor(_hh).
+
+% An assassin will never choose to pick heavy armor.
+% TEST CASE: (SHOULD FAIL)
+% scope HeavyArmor = 1.
+% scope Assassin = 1.
+error AssassinNoHeavyArmor() <->
+    Assassin(_t), HeavyArmor(_h).
+
+% The hero cannot have 2 of the same attributes.
+% TEST CASE: (SHOULD FAIL)
+% scope Wisdom = 2.
+error duplicateAttributes(Hero h, Attribute a1, Attribute a2) <->
+    attributes(h, a1),
+    attributes(h, a2),
+    a1 != a2,
+    attributeName(a1) == attributeName(a2).
+
+% The hero cannot have 2 of the same skills.
+% TEST CASE: (SHOULD FAIL)
+% scope Fireball = 2.
+error duplicateSkills(Hero h, Skill s1, Skill s2) <->
+    skills(h, s1),
+    skills(h, s2),
+    s1 != s2,
+    skillName(s1) == skillName(s2).
+
+% The hero's attribute has to be high enough level to have the skill.
+% TEST CASE: (SHOULD FAIL)
+% concretization rule setRequiredAttributeLevel(Skill s) ==> requiredAttributeLevel(s): 10.
+% concretization rule setAttributeLevel(Attribute a) ==> attributeLevel(a): 9.
+error skillRequiresAttributeLevel(Hero h, Skill s, Attribute a) <->
+    skills(h, s),
+    attributes(h, a),
+    requiredAttribute(s, a),
+    attributeLevel(a) < requiredAttributeLevel(s).
+
+
+% The skill Fireball requires the hero to have the attribute Wisdom
+% TEST CASE: (SHOWS FIREBALL WITH WISDOM)
+% scope Fireball = 1.
+error FireballWisdom(Fireball s) <->
+    requiredAttribute(s,a), 
+    attributeName(a) != "Wisdom".
+
+
