@@ -178,11 +178,35 @@ error invalidRequiredHeroLevel(Hero h) <->
 % TEST CASE: (SHOULD FAIL)
 % concretization rule setRequiredAttributeLevel(Skill s) ==> requiredAttributeLevel(s): 10.
 % concretization rule setAttributeLevel(Attribute a) ==> attributeLevel(a): 9.
-error skillRequiresAttributeLevel(Hero h, Skill s, Attribute a) <->
-    skills(h, s),
-    attributes(h, a),
+error skillRequiresAttributeLevel(Skill s, Attribute a) <->
     requiredAttribute(s, a),
     attributeLevel(a) < requiredAttributeLevel(s).
+
+
+% The skill Powerstrike requires the hero to have the attribute Strength
+% TEST CASE: (SHOWS POZERSTRIKE WITH STRENGTH)
+% scope PowerStrike = 1.
+% scope Strength = 1.
+% scope Agility = 1.
+error PowerstrikeStrength(PowerStrike s) <->
+    requiredAttribute(s,a), 
+    attributeName(a) != "Strength".
+
+% Some other similar constraints are listed below:
+% concretization rule setRequiredAttributeLevel(Fireball s) ==> requiredAttributeLevel(s): 5.
+% concretization rule setAttributeLevel(Wisdom a) ==> attributeLevel(a): 9.
+% scope Fireball = 1.
+error FireballWisdom(Fireball s) <->
+    requiredAttribute(s,a), 
+    attributeName(a) != "Wisdom".
+error EvasiveRollAgility(EvasiveRoll s) <->
+    requiredAttribute(s,a), 
+    attributeName(a) != "Agility".
+error GamblerStrikeLuck(GamblerStrike s) <->
+    requiredAttribute(s,a), 
+    attributeName(a) != "Luck".
+
+
 
 % A maximum of 15 items can be placed in the inventory
 % TEST CASE: (SHOULD FAIL)
@@ -215,45 +239,16 @@ error AssassinNoHeavyArmor() <->
 % The hero cannot have 2 of the same attributes.
 % TEST CASE: (SHOULD FAIL)
 % scope Wisdom = 2.
-error duplicateAttributes(Hero h, Attribute a1, Attribute a2) <->
-    attributes(h, a1),
-    attributes(h, a2),
+error duplicateAttributes(Attribute a1, Attribute a2) <->
     a1 != a2,
     attributeName(a1) == attributeName(a2).
 
 % The hero cannot have 2 of the same skills.
 % TEST CASE: (SHOULD FAIL)
 % scope Fireball = 2.
-error duplicateSkills(Hero h, Skill s1, Skill s2) <->
-    skills(h, s1),
-    skills(h, s2),
+error duplicateSkills(Skill s1, Skill s2) <->
     s1 != s2,
     skillName(s1) == skillName(s2).
-
-
-% The skill Powerstrike requires the hero to have the attribute Strength
-% TEST CASE: (SHOWS POZERSTRIKE WITH STRENGTH)
-% scope Powerstrike = 1.
-% error PowerstrikeStrength(PowerStrike s) <->
-%     requiredAttribute(s,a), 
-%     attributeName(a) != "Strength".
-
-% Some other similar constraints are listed below:
-scope Fireball = 1.
-scope Wisdom = 1.
-scope Agility = 1.
-concretization rule setRequiredAttributeLevel(Fireball s) ==> requiredAttributeLevel(s): 5.
-concretization rule setAttributeLevel(Wisdom a) ==> attributeLevel(a): 9.
-
-error FireballWisdom(Fireball s) <->
-    requiredAttribute(s,a), 
-    !Wisdom(a).
-% error EvasiveRollAgility(EvasiveRoll s) <->
-%     requiredAttribute(s,a), 
-%     attributeName(a) != "Agility".
-% error GamblerStrikeLuck(GamblerStrike s) <->
-%     requiredAttribute(s,a), 
-%     attributeName(a) != "Luck".
 
 
 
