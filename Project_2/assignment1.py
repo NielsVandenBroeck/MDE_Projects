@@ -162,13 +162,9 @@ mm = """
             conform = True;
 
             # connecting door must be in another level
-            target_level = get_value(get_incoming(get_target(this), "Level_tiles")[0])
-            source_level = get_value(get_incoming(get_source(this), "Level_tiles")[0])
-            print("UHH")
-            print(get_name(target_level[0]))
-            print(target_level[0])
-            print(source_level[0])
-            if target_level[0] == source_level[0]: conform = False;
+            target_level = get_incoming(get_target(this), "Level_tiles")[0]
+            source_level = get_incoming(get_source(this), "Level_tiles")[0]
+            if get_source(target_level) == get_source(source_level): conform = False;
             conform
         ```;
     }
@@ -205,7 +201,7 @@ m_c = """
     :Level_tiles (level2 -> tile4)
     
     :Level_tiles (level1 -> door1)
-    :Level_tiles (level1 -> door2)
+    :Level_tiles (level2 -> door2)
     
     :Connecting_door (door1 -> door2)
     :Connecting_door (door2 -> door1)
