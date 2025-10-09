@@ -5,7 +5,7 @@ mm = """
         constraint = ```
             # Lives cannot be negative
             get_value(get_slot(this, "lives")) >= 0
-        ```
+        ```;
     }
 
     # Hero has attribute lives
@@ -23,7 +23,8 @@ m_c = """
 
 m_ic = """
     myHero:Hero {
-        lives = -5;
+        # lives = -5;
+        lives = 10;
     }
 """
 
@@ -46,8 +47,11 @@ mm = parser.parse_od(
     )
 print("OK")
 
+
+### COMFORMNIG MODEL HOPEFULLY ###
+
 print()
-print("Parsing model")
+print("Parsing comforming model")
 m = parser.parse_od(
         state,
         m_text=m_c,
@@ -59,3 +63,20 @@ print()
 print("Is our model valid instance of meta model?")
 conf = Conformance(state, m, mm)
 print(render_conformance_check_result(conf.check_nominal()))
+
+### NON COMFORMING MODEL HOPEFULLY ###
+
+print()
+print("Parsing non-comforming model")
+m = parser.parse_od(
+        state,
+        m_text=m_ic,
+        mm=mm,
+    )
+print("OK")
+
+print()
+print("Is our model valid instance of meta model? (hopefully not)")
+conf = Conformance(state, m, mm)
+print(render_conformance_check_result(conf.check_nominal()))
+
