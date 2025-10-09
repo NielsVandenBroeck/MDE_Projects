@@ -1,26 +1,37 @@
 mm = """
     ## Classes ##
 
+    World:Class{
+        # Exactly one world 
+        lower_cardinality = 1;
+        upper_cardinality = 1;
+    }
+    
+    Level:Class{
+        constraint = ```
+            conform = True
+            
+            # Name cannot be empty
+            if len(get_value(get_slot(this, "name"))) == 0: conform = False
+            conform
+        ```;
+    }
+    
+    
     Hero:Class {
+        # Exactly one hero
+        lower_cardinality = 1;
+        upper_cardinality = 1;
+        
         constraint = ```
             conform = True
             
             # Lives cannot be negative
-            if get_value(get_slot(this, "lives")) >= 0: conform = False
-            
-            # Hero cannot stand on obstacle tile
-            # if todo : conform = False
+            if get_value(get_slot(this, "lives")) < 0: conform = False
             
             conform
         ```;
     }
-
-    # Hero has attribute lives
-    Hero_lives:AttributeLink (Hero -> Integer) {
-        name = "lives";
-        optional = False;
-    }
-    
 
     
     # Tiles    
@@ -28,72 +39,202 @@ mm = """
         abstract = True;
     }
     
-    Tiles:AttributeLink (Tile -> Tile) {
-        name = "northTile";
-        optional = True;
-    }
-        
-    Tiles:AttributeLink (Tile -> Tile) {
-        name = "southTile";
-        optional = True;
-    }
-        
-    Tiles:AttributeLink (Tile -> Tile) {
-        name = "eastTile";
-        optional = True;
-    }
     
-    Tiles:AttributeLink (Tile -> Tile) {
-        name = "westTile";
-        optional = True;
+    Standard_tile:Class {
+        #todo item
     }
+    :Inheritance (Standard_tile -> Tile)
     
-    StandardTile:Class {
-        
-    }
-    :Inheritance (StandardTile -> Tile)
-    
-    Trap:Class {
-    }
+    Trap:Class
     :Inheritance (Trap -> Tile)
     
-    Door:Class {
-    }
+    Door:Class
     :Inheritance (Door -> Tile)
     
-    Obstacle:Class {
-    }
+    Obstacle:Class
     :Inheritance (Obstacle -> Tile)
     
+    Item:Class
     
-    # Hero must stand on a Tile
-    Hero_tile:AttributeLink (Hero -> Tile) {
-        name = "standingTile";
+    Key:Class
+    :Inheritance (Key -> Item)
+    
+    Objective:Class
+    :Inheritance (Objective -> Item)
+    
+    
+    ## ATTRIBUTES ##
+    
+    # Level has attribute name
+    Level_name:AttributeLink (Level -> String) {
+        name = "name";
         optional = False;
     }
+    
+    # Hero has attribute lives
+    Hero_lives:AttributeLink (Hero -> Integer) {
+        name = "lives";
+        optional = False;
+    }
+    
+    
+    ## ASSOCIATIONS ##
+    
+    # World contains Levels 
+    World_levels:Association (World -> Level) {
+        # At least one level
+        target_lower_cardinality = 1;
+    }
+    
+    # Level contains Tiles
+    Level_tiles:Association (Level -> Tile) {
+        # At least one tile
+        target_lower_cardinality = 1;
+    }
+
+    
+    # Hero stands on a Tile
+    Standing_tile:Association (Hero -> Tile) {
+        # Hero stands on exactly one tile
+        target_lower_cardinality = 1;
+        target_upper_cardinality = 1;
+        constraint = ```
+            conform = True;
+            # Hero cannot stand on obstacle tile
+            target = get_target(this)
+            if get_type_name(target) == "Obstacle": conform = False;
+            conform
+        ```;
+    }
+    
+    Tile_north:Association (Tile -> Tile) {
+        target_lower_cardinality = 0;
+        target_upper_cardinality = 1;
+        
+        constraint = ```
+            conform = True;
+            # Neighboring tile cannot be itself
+            if get_source(this) == get_target(this): conform = False;
+            conform
+        ```;
+    }
+        
+    Tile_south:Association (Tile -> Tile) {
+        target_lower_cardinality = 0;
+        target_upper_cardinality = 1;
+        
+        constraint = ```
+            conform = True;
+            # Neighboring tile cannot be itself
+            if get_source(this) == get_target(this): conform = False;
+            conform
+        ```;
+    }
+        
+    Tile_east:Association (Tile -> Tile) {
+        target_lower_cardinality = 0;
+        target_upper_cardinality = 1;
+        
+        constraint = ```
+            conform = True;
+            # Neighboring tile cannot be itself
+            if get_source(this) == get_target(this): conform = False;
+            conform
+        ```;
+    }
+    
+    Tile_west:Association (Tile -> Tile) {
+        target_lower_cardinality = 0;
+        target_upper_cardinality = 1;
+        
+        constraint = ```
+            conform = True;
+            # Neighboring tile cannot be itself
+            if get_source(this) == get_target(this): conform = False;
+            conform
+        ```;
+    }
+    
+    Connecting_door:Association (Door -> Door) {
+        target_lower_cardinality = 1;
+        target_upper_cardinality = 1;
+        constraint = ```
+            conform = True;
+
+            # connecting door must be in another level
+            target_level = get_value(get_incoming(get_target(this), "Level_tiles")[0])
+            source_level = get_value(get_incoming(get_source(this), "Level_tiles")[0])
+            print("UHH")
+            print(get_name(target_level[0]))
+            print(target_level[0])
+            print(source_level[0])
+            if target_level[0] == source_level[0]: conform = False;
+            conform
+        ```;
+    }
+    
 """
 
 m_c = """
-    tile1:StandardTile{
-    
+    world:World 
+
+    level1:Level{
+        name = "level1";
     }
+    
+    level2:Level{
+        name = "level2";
+    }
+
+    tile1:Standard_tile
+    tile2:Standard_tile
+    tile3:Standard_tile
+    tile4:Standard_tile
+
+
+    door1:Door
+    door2:Door
+    
+        
+    :World_levels (world -> level1)
+    :World_levels (world -> level2)
+    
+    :Level_tiles (level1 -> tile1)
+    :Level_tiles (level1 -> tile2)
+    :Level_tiles (level2 -> tile3)
+    :Level_tiles (level2 -> tile4)
+    
+    :Level_tiles (level1 -> door1)
+    :Level_tiles (level1 -> door2)
+    
+    :Connecting_door (door1 -> door2)
+    :Connecting_door (door2 -> door1)
 
     myHero:Hero {
         lives = 10;
-        standingTile = tile1
     }
+    
+    :Standing_tile (myHero -> tile1)
 """
 
 m_ic = """
-    tile1:Obstacle{
-    
+    world:World 
+    level1:Level{
+        name = "level1";
     }
+
+    # Should give error -> hero cannot stand on obstacle tile
+    tile:Obstacle
 
     myHero:Hero {
         # lives = -5;
         lives = 10;
-        standingTile = tile1
     }
+    
+    :World_levels (world -> level1)
+    :Level_tiles (level1 -> tile)
+    :Standing_tile (myHero -> tile)
+    
 """
 
 from state.devstate import DevState
