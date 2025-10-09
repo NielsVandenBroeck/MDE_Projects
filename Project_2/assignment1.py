@@ -77,6 +77,21 @@ mm = """
         optional = False;
     }
     
+    # Objective has points
+    Objective_points:AttributeLink (Objective -> Integer) {
+        name = "points";
+        optional = False;
+        
+        constraint = ```
+            conform = True;
+            objectives = get_all_instances("Objective")
+            sum = 0
+            for objective in objectives:
+                sum += get_value(get_slot(objective[1], "points"))
+            if sum > 100: conform = False
+            conform
+        ```;
+    }
     
     ## ASSOCIATIONS ##
     
@@ -162,13 +177,18 @@ mm = """
             conform = True;
 
             # connecting door must be in another level
-            target_level = get_incoming(get_target(this), "Level_tiles")[0]
-            source_level = get_incoming(get_source(this), "Level_tiles")[0]
-            if get_source(target_level) == get_source(source_level): conform = False;
+            target_level_ass = get_incoming(get_target(this), "Level_tiles")[0]
+            source_level_ass = get_incoming(get_source(this), "Level_tiles")[0]
+            if get_source(target_level_ass) == get_source(source_level_ass): conform = False;
             conform
         ```;
     }
     
+    Door_key:Association (Door -> Key) {
+        target_lower_cardinality = 1;
+        target_upper_cardinality = 1;
+
+    }
 """
 
 m_c = """
@@ -187,10 +207,17 @@ m_c = """
     tile3:Standard_tile
     tile4:Standard_tile
 
+    obj1:Objective{
+        points = 80;
+    }
+    obj2:Objective{
+        points = 10;
+    }
 
     door1:Door
+    key1:Key
     door2:Door
-    
+    key2:Key
         
     :World_levels (world -> level1)
     :World_levels (world -> level2)
@@ -205,6 +232,10 @@ m_c = """
     
     :Connecting_door (door1 -> door2)
     :Connecting_door (door2 -> door1)
+    
+    :Door_key (door1 -> key1)
+    :Door_key (door2 -> key2)
+
 
     myHero:Hero {
         lives = 10;
