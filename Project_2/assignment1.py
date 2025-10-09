@@ -161,10 +161,11 @@ mm = """
         constraint = ```
             conform = True;
 
-            # connecting door must be in another level
+            # Connecting door must be in another level.
             target_level = get_incoming(get_target(this), "Level_tiles")[0]
             source_level = get_incoming(get_source(this), "Level_tiles")[0]
             if get_source(target_level) == get_source(source_level): conform = False;
+
             conform
         ```;
     }
@@ -219,8 +220,12 @@ m_ic = """
         name = "level1";
     }
 
-    # Should give error -> hero cannot stand on obstacle tile
-    tile:Obstacle
+    obstacle:Obstacle
+    door1:Door
+    door2:Door
+    
+    # Should fail here, door goes to door of same level.
+    :Connecting_door (door1 -> door2)
 
     myHero:Hero {
         # lives = -5;
@@ -228,8 +233,12 @@ m_ic = """
     }
     
     :World_levels (world -> level1)
-    :Level_tiles (level1 -> tile)
-    :Standing_tile (myHero -> tile)
+    :Level_tiles (level1 -> obstacle)
+    :Level_tiles (level1 -> door1)
+    :Level_tiles (level1 -> door2)
+
+    # Should error here, cannot stand on obstacle.
+    :Standing_tile (myHero -> obstacle)
     
 """
 
