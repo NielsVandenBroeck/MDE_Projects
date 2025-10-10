@@ -394,3 +394,16 @@ print("Is our model valid instance of meta model? (hopefully not)")
 conf = Conformance(state, m, mm)
 print(render_conformance_check_result(conf.check_nominal()))
 
+from concrete_syntax.plantuml import renderer as plantuml
+from concrete_syntax.plantuml.make_url import make_url
+
+uml = (""
+ + plantuml.render_package("Meta-model", plantuml.render_class_diagram(state, mm))
+ + plantuml.render_package("Model", plantuml.render_object_diagram(state, m, mm))
+ + plantuml.render_trace_conformance(state, m, mm)
+ # + plantuml.render_package("Meta-meta-model", plantuml.render_class_diagram(state, mmm))
+ # + plantuml.render_trace_conformance(state, mm, mmm)
+)
+
+print()
+print("PlantUML output:", make_url(uml))
