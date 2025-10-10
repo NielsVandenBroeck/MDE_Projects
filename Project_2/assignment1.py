@@ -40,9 +40,7 @@ mm = """
     }
     
     
-    Standard_tile:Class {
-        #todo item
-    }
+    Standard_tile:Class
     :Inheritance (Standard_tile -> Tile)
     
     Trap:Class
@@ -107,7 +105,6 @@ mm = """
         target_lower_cardinality = 1;
     }
 
-    
     # Hero stands on a Tile
     Standing_tile:Association (Hero -> Tile) {
         # Hero stands on exactly one tile
@@ -170,6 +167,13 @@ mm = """
         ```;
     }
     
+    # StandardTile can have an item
+    StandardTile_item:Association (Standard_tile -> Item) {
+        target_lower_cardinality = 0;
+        target_upper_cardinality = 1;
+    }
+    
+    # Doors must be connected from one level to another
     Connecting_door:Association (Door -> Door) {
         target_lower_cardinality = 1;
         target_upper_cardinality = 1;
@@ -187,7 +191,6 @@ mm = """
     Door_key:Association (Door -> Key) {
         target_lower_cardinality = 1;
         target_upper_cardinality = 1;
-
     }
 """
 
@@ -202,40 +205,55 @@ m_c = """
         name = "level2";
     }
 
+    #Tiles
     tile1:Standard_tile
     tile2:Standard_tile
-    tile3:Standard_tile
-    tile4:Standard_tile
+    tile3:Trap
+    tile4:Obstacle
+    door1:Door
+    door2:Door
 
-    obj1:Objective{
+
+    #Items
+    obj:Objective{
         points = 80;
     }
-    obj2:Objective{
-        points = 10;
-    }
 
-    door1:Door
     key1:Key
-    door2:Door
     key2:Key
         
+    #Links
     :World_levels (world -> level1)
     :World_levels (world -> level2)
     
     :Level_tiles (level1 -> tile1)
     :Level_tiles (level1 -> tile2)
+    :Level_tiles (level1 -> door1)
+
     :Level_tiles (level2 -> tile3)
     :Level_tiles (level2 -> tile4)
-    
-    :Level_tiles (level1 -> door1)
     :Level_tiles (level2 -> door2)
+
+    #Connecting tiles
+    :Tile_south (tile1 -> tile2)
+    :Tile_north (tile2 -> tile1)
+    :Tile_west (tile1 -> door1)
+    :Tile_east (door1 -> tile1)
     
+    :Tile_south (tile3 -> tile4)
+    :Tile_north (tile4 -> tile3)
+    :Tile_west (tile3 -> door2)
+    :Tile_east (door2 -> tile3)
+    
+
     :Connecting_door (door1 -> door2)
     :Connecting_door (door2 -> door1)
     
+    :StandardTile_item (tile2 -> key1)
+    :StandardTile_item (tile1 -> obj)
+    
     :Door_key (door1 -> key1)
     :Door_key (door2 -> key2)
-
 
     myHero:Hero {
         lives = 10;
@@ -246,30 +264,82 @@ m_c = """
 
 m_ic = """
     world:World 
+
+    # Constraint level name cannot be empty
     level1:Level{
-        name = "level1";
+        name = "";
+    }
+    
+    level2:Level{
+        name = "level2";
     }
 
-    obstacle:Obstacle
+    #Tiles
+    tile1:Standard_tile
+    tile2:Standard_tile
+    tile3:Trap
+    tile4:Obstacle
     door1:Door
     door2:Door
+
+
+    #Items
+    obj1:Objective{
+        points = 80;
+    }
     
+    # Constraint total objective points cannot be larger than 100
+    obj2:Objective{
+        points = 60;
+    }
+
+    key1:Key
+    key2:Key
+        
+    #Links
+    :World_levels (world -> level1)
+    :World_levels (world -> level2)
+    
+    :Level_tiles (level1 -> tile1)
+    :Level_tiles (level1 -> tile2)
+    :Level_tiles (level1 -> door1)
+
+    :Level_tiles (level2 -> tile3)
+    :Level_tiles (level2 -> tile4)
+    
+    # Constraint, lets put door2 in the same level as door1
+    :Level_tiles (level1 -> door2)
+
+    #Connecting tiles
+    :Tile_south (tile1 -> tile2)
+    :Tile_north (tile2 -> tile1)
+    :Tile_west (tile1 -> door1)
+    :Tile_east (door1 -> tile1)
+    
+    # Constraint tile cannot point to itself
+    :Tile_south (tile3 -> tile3)
+    :Tile_north (tile4 -> tile3)
+    :Tile_west (tile3 -> door2)
+    :Tile_east (door2 -> tile3)
+    
+
     # Should fail here, door goes to door of same level.
     :Connecting_door (door1 -> door2)
+    :Connecting_door (door2 -> door1)
+    
+    :StandardTile_item (tile2 -> key1)
+    :StandardTile_item (tile1 -> obj1)
+    
+    :Door_key (door1 -> key1)
+    :Door_key (door2 -> key2)
 
     myHero:Hero {
         # lives = -5;
         lives = 10;
     }
     
-    :World_levels (world -> level1)
-    :Level_tiles (level1 -> obstacle)
-    :Level_tiles (level1 -> door1)
-    :Level_tiles (level1 -> door2)
-
     # Should error here, cannot stand on obstacle.
-    :Standing_tile (myHero -> obstacle)
-    
+    :Standing_tile (myHero -> tile4)
 """
 
 from state.devstate import DevState
