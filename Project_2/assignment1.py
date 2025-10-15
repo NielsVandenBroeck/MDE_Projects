@@ -127,6 +127,12 @@ mm = """
             conform = True;
             # Neighboring tile cannot be itself
             if get_source(this) == get_target(this): conform = False;
+            # Tiles must be connected both ways
+            tiles = get_all_instances("Tile")
+            for tile in tiles:
+                if tile == get_target(this):
+                    if get_source(this) != get_outgoing(tile, "Tile_south"):
+                        conform = False
             conform
         ```;
     }
@@ -163,6 +169,11 @@ mm = """
             conform = True;
             # Neighboring tile cannot be itself
             if get_source(this) == get_target(this): conform = False;
+            # Tiles must be on the same level
+            a = get_incoming(get_source(this), "Level_tiles")[0]
+            print(get_name(a))
+            if get_outgoing(get_source(this), "Level_tiles") != get_outgoing(get_target(this), "Level_tiles"):
+                conform = False
             conform
         ```;
     }
