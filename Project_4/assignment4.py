@@ -69,6 +69,29 @@ def get_actions(od: ODAPI):
     actions = {}
 
     # TODO: Determine the currently possible actions and add them to the actions dictionary
+    # Get the Hero's current tile
+    heroTile = None
+    allCreaturePositions = od.get_all_instances("StandingTile")
+    for pos in allCreaturePositions:
+        assert len(pos) == 2, "Invalid amount of StandingTiles"
+        if od.get_type_name(od.get_source(pos[1])) == "Hero":
+            heroTile = od.get_target(pos[1])
+    assert heroTile, "Hero not found"
+    # Get the surrounding tiles
+    tiles = {}
+    for dir in ["North", "East", "South", "West"]:
+        tiles[dir] = od.get_outgoing(heroTile, f"Tile{dir}")
+        if tiles[dir]:
+            tiles[dir] = od.get_target(tiles[dir][0])
+        else:
+            tiles[dir] = None
+    for k, v in tiles.items():
+        if not v:
+            continue
+        print(od.get_name(v))
+        print(v)
+        if od.get_type_name(v) != "Obstacle":
+            actions[f"Move to the {k}"] = action_move_hero
 
     # If no other action is possible, add the (one and only) choice to advance time
     if len(actions) == 0:
