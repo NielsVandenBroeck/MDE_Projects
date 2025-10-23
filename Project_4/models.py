@@ -366,56 +366,83 @@ m_rpg_def = """
     #Tiles
     tile1:StandardTile
     tile2:StandardTile
-    tile3:Trap
-    tile4:Obstacle
+    tile3:StandardTile
+    tile4:Trap
     door1:Door
+
+    tile5:StandardTile
+    tile6:Obstacle
+    tile7:StandardTile
     door2:Door
 
 
     #Items
-    obj:Objective{
-        points = 80;
+    obj1:Objective{
+        points = 10;
+    }
+    
+    obj2:Objective{
+        points = 90;
     }
 
     key1:Key
-    key2:Key
         
     #Links
-
     :WorldLevels (world -> level1)
     :WorldLevels (world -> level2)
     
     :LevelTiles (level1 -> tile1)
     :LevelTiles (level1 -> tile2)
+    :LevelTiles (level1 -> tile3)
+    :LevelTiles (level1 -> tile4)
     :LevelTiles (level1 -> door1)
 
-    :LevelTiles (level2 -> tile3)
-    :LevelTiles (level2 -> tile4)
+    :LevelTiles (level2 -> tile5)
+    :LevelTiles (level2 -> tile6)
+    :LevelTiles (level2 -> tile7)
     :LevelTiles (level2 -> door2)
 
     #Connecting tiles
-    :TileSouth (tile1 -> tile2)
-    :TileNorth (tile2 -> tile1)
-    :TileWest (tile1 -> door1)
-    :TileEast (door1 -> tile1)
-
-    :TileSouth (tile3 -> tile4)
-    :TileNorth (tile4 -> tile3)
-    :TileWest (tile3 -> door2)
-    :TileEast (door2 -> tile3)
+    :TileEast (tile1 -> tile2)
+    :TileWest (tile2 -> tile1)
+    
+    :TileEast (tile2 -> tile3)
+    :TileWest (tile3 -> tile2)
+    
+    :TileSouth (tile2 -> tile4)
+    :TileNorth (tile4 -> tile2)
+    
+    :TileSouth (tile3 -> door1)
+    :TileNorth (door1 -> tile3)
+    
+    :TileEast (tile4 -> door1)
+    :TileWest (door1 -> tile4)
+    
+    
+    :TileNorth (door2 -> tile5)
+    :TileSouth (tile5 -> door2)
+    
+    :TileEast (tile5 -> tile6)
+    :TileWest (tile6 -> tile5)
+    
+    :TileNorth (tile5 -> tile7)
+    :TileSouth (tile7 -> tile5)
 
 
     :ConnectingDoor (door1 -> door2)
     :ConnectingDoor (door2 -> door1)
     
-    :StandardTileItem (tile2 -> key1)
-    :StandardTileItem (tile1 -> obj)
+    
+    :StandardTileItem (tile3 -> key1)
+    :StandardTileItem (tile1 -> obj1)
+    :StandardTileItem (tile7 -> obj2)
+    
     
     :DoorKey (door1 -> key1)
-    :DoorKey (door2 -> key2)
+    :DoorKey (door2 -> key1)
     
-    :StandingTile (myHero -> tile1)
-    :StandingTile (monster -> tile1)
+    :StandingTile (myHero -> tile2)
+    :StandingTile (monster -> tile5)
 """
 
 # TODO: add a valid instance of the additional runtime-information
@@ -444,7 +471,7 @@ rt_m_rpg_def = m_rpg_def + """
 """
 
 
-#
+
 # from state.devstate import DevState
 # from bootstrap.scd import bootstrap_scd
 # from concrete_syntax.textual_od import parser
