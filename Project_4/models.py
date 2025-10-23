@@ -149,6 +149,7 @@ mm_rpg_def = """
             # Neighboring tile cannot be itself
             if get_source(this) == get_target(this): conform = False;
             
+            # Neighbors must be linked both ways
             other_assoc = get_outgoing(get_target(this), "Tile_south")
             if not other_assoc:
                 conform = False
@@ -157,11 +158,18 @@ mm_rpg_def = """
             elif get_target(other_assoc[0]) != get_source(this):
                 conform = False        
             
+            # Neighbors must be in the same level
+            source_assoc = get_incoming(get_source(this), "Level_tiles")
+            target_assoc = get_incoming(get_target(this), "Level_tiles")
+            if not source_assoc or not target_assoc:
+                # Tile must belong to a level
+                conform = False
+            elif len(source_assoc) != 1 or len(target_assoc) != 1:
+                conform = False
+            elif get_source(source_assoc[0]) != get_source(target_assoc[0]):
+                conform = False
             conform
         ```;
-
-        # TODO CHECK IF NEIGHBOR SAME LINK
-        # TODO CHECK IF NEIGHBOR SAME LEVEL
     }
 
     Tile_south:Association (Tile -> Tile) {
@@ -173,6 +181,7 @@ mm_rpg_def = """
             # Neighboring tile cannot be itself
             if get_source(this) == get_target(this): conform = False;
             
+            # Neighbors must be linked both ways
             other_assoc = get_outgoing(get_target(this), "Tile_north")
             if not other_assoc:
                 conform = False
@@ -181,6 +190,16 @@ mm_rpg_def = """
             elif get_target(other_assoc[0]) != get_source(this):
                 conform = False        
             
+            # Neighbors must be in the same level
+            source_assoc = get_incoming(get_source(this), "Level_tiles")
+            target_assoc = get_incoming(get_target(this), "Level_tiles")
+            if not source_assoc or not target_assoc:
+                # Tile must belong to a level
+                conform = False
+            elif len(source_assoc) != 1 or len(target_assoc) != 1:
+                conform = False
+            elif get_source(source_assoc[0]) != get_source(target_assoc[0]):
+                conform = False
             conform
         ```;
     }
@@ -194,6 +213,7 @@ mm_rpg_def = """
             # Neighboring tile cannot be itself
             if get_source(this) == get_target(this): conform = False;
             
+            # Neighbors must be linked both ways
             other_assoc = get_outgoing(get_target(this), "Tile_west")
             if not other_assoc:
                 conform = False
@@ -201,7 +221,17 @@ mm_rpg_def = """
                 conform = False
             elif get_target(other_assoc[0]) != get_source(this):
                 conform = False        
-            
+                        
+            # Neighbors must be in the same level
+            source_assoc = get_incoming(get_source(this), "Level_tiles")
+            target_assoc = get_incoming(get_target(this), "Level_tiles")
+            if not source_assoc or not target_assoc:
+                # Tile must belong to a level
+                conform = False
+            elif len(source_assoc) != 1 or len(target_assoc) != 1:
+                conform = False
+            elif get_source(source_assoc[0]) != get_source(target_assoc[0]):
+                conform = False
             conform
         ```;
     }
@@ -215,6 +245,7 @@ mm_rpg_def = """
             # Neighboring tile cannot be itself
             if get_source(this) == get_target(this): conform = False;
             
+            # Neighbors must be linked both ways
             other_assoc = get_outgoing(get_target(this), "Tile_east")
             if not other_assoc:
                 conform = False
@@ -223,6 +254,16 @@ mm_rpg_def = """
             elif get_target(other_assoc[0]) != get_source(this):
                 conform = False        
             
+            # Neighbors must be in the same level
+            source_assoc = get_incoming(get_source(this), "Level_tiles")
+            target_assoc = get_incoming(get_target(this), "Level_tiles")
+            if not source_assoc or not target_assoc:
+                # Tile must belong to a level
+                conform = False
+            elif len(source_assoc) != 1 or len(target_assoc) != 1:
+                conform = False
+            elif get_source(source_assoc[0]) != get_source(target_assoc[0]):
+                conform = False
             conform
         ```;
     }
@@ -254,7 +295,6 @@ mm_rpg_def = """
     }
 """
 
-# TODO: add your runtime-meta-model
 rt_mm_rpg_def = mm_rpg_def + """
     Clock:Class {
         
@@ -289,21 +329,26 @@ rt_mm_rpg_def = mm_rpg_def + """
     }
     
     ### ASSOCIATES
-    World_state_Ass:Association (World -> World_state) {
+    World_state_ass:Association (World -> World_state) {
         target_lower_cardinality = 1;
         target_upper_cardinality = 1;
     }
     
-    Hero_inventory:Association (Hero -> Item) {
-        
+    Creature_state_ass:Association (Creature -> Creature_state) {
+        target_lower_cardinality = 1;
+        target_upper_cardinality = 1;
     }
+    
+    Hero_inventory:Association (Hero -> Item)
     
 
 """
 
-# TODO: add a valid instance of your meta-model
 m_rpg_def = """
     world:World 
+    myWorldState:World_state {
+        collected_points = 0;
+    }
 
     level1:Level{
         name = "level1";
@@ -311,6 +356,20 @@ m_rpg_def = """
     
     level2:Level{
         name = "level2";
+    }
+    
+    myHero:Hero {
+        lives = 10;
+    }
+    myHeroState:Creature_state {
+        moved = False;
+    }
+    
+    monster:Monster {
+        lives = 20;
+    }
+    monsterState:Creature_state {
+        moved = False;
     }
 
     #Tiles
@@ -331,6 +390,11 @@ m_rpg_def = """
     key2:Key
         
     #Links
+    :World_state_ass (world -> myWorldState)
+    :Creature_state_ass (myHero -> myHeroState)
+    :Creature_state_ass (monster -> monsterState)
+
+    
     :World_levels (world -> level1)
     :World_levels (world -> level2)
     
@@ -362,12 +426,9 @@ m_rpg_def = """
     
     :Door_key (door1 -> key1)
     :Door_key (door2 -> key2)
-
-    myHero:Hero {
-        lives = 10;
-    }
     
     :Standing_tile (myHero -> tile1)
+    :Standing_tile (monster -> tile1)
 """
 
 # TODO: add a valid instance of the additional runtime-information
@@ -391,7 +452,7 @@ print()
 print("Parsing mm")
 mm = parser.parse_od(
         state,
-        m_text=mm_rpg_def,
+        m_text=rt_mm_rpg_def,
         mm=mmm,
     )
 print("OK")
