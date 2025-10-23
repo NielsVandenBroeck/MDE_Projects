@@ -345,6 +345,11 @@ rt_mm_rpg_def = mm_rpg_def + """
 """
 
 m_rpg_def = """
+    c:Clock{
+        time = 0;
+    }
+    
+    
     world:World 
     myWorldState:World_state {
         collected_points = 0;
