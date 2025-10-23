@@ -47,6 +47,7 @@ def action_move_hero(od: ODAPI, target_tile_name: str):
         assert len(pos) == 2, "Invalid amount of StandingTiles"
         if od.get_type_name(od.get_source(pos[1])) == "Hero":
             print(pos[1])
+    # Add hero to new tile
     # raise NotImplementedError
 
 
