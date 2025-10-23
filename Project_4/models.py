@@ -126,14 +126,15 @@ mm_rpg_def = """
 
     # Creatures stand on a Tile
     Standing_tile:Association (Creature -> Tile) {
+        # a creature can stand on maximum 1 tile
+        target_upper_cardinality = 1
+
         constraint = ```
             conform = True;
             # Creatures cannot stand on obstacle tile
             target = get_target(this)
             if get_type_name(target) == "Obstacle": conform = False;
             
-            # Creatures stand on exactly one tile
-            # TODO
             conform
         ```;
     }
@@ -147,24 +148,19 @@ mm_rpg_def = """
             conform = True;
             # Neighboring tile cannot be itself
             if get_source(this) == get_target(this): conform = False;
+            
+            source = get_source(this)
+            target = get_target(this)
+            other_assoc = get_outgoing(target, "Tile_south")
+            print("testing link",len(other_assoc))
+            
+            
             conform
         ```;
 
         # TODO CHECK IF NEIGHBOR SAME LINK
         # TODO CHECK IF NEIGHBOR SAME LEVEL
-        
-        # constraint = ```
-        #     conform = True;
-        #     # Neighboring tile cannot be itself
-        #     if get_source(this) == get_target(this): conform = False;
-        #     # Tiles must be connected both ways
-        #     tiles = get_all_instances("Tile")
-        #     for tile in tiles:
-        #         if tile == get_target(this):
-        #             if get_source(this) != get_outgoing(tile, "Tile_south"):
-        #                 conform = False
-        #     conform
-        # ```;
+
     }
 
     Tile_south:Association (Tile -> Tile) {
@@ -355,3 +351,41 @@ m_rpg_def = """
 rt_m_rpg_def = m_rpg_def + """
 
 """
+
+
+
+from state.devstate import DevState
+from bootstrap.scd import bootstrap_scd
+from concrete_syntax.textual_od import parser
+from framework.conformance import Conformance, render_conformance_check_result
+
+state = DevState()
+print("Loading mmm")
+mmm = bootstrap_scd(state)
+print("OK")
+
+print()
+print("Parsing mm")
+mm = parser.parse_od(
+        state,
+        m_text=mm_rpg_def,
+        mm=mmm,
+    )
+print("OK")
+
+
+### COMFORMNIG MODEL HOPEFULLY ###
+
+print()
+print("Parsing comforming model")
+m = parser.parse_od(
+        state,
+        m_text=m_rpg_def,
+        mm=mm,
+    )
+print("OK")
+
+print()
+print("Is our model valid instance of meta model?")
+conf = Conformance(state, m, mm)
+print(render_conformance_check_result(conf.check_nominal()))
