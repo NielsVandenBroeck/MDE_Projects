@@ -360,7 +360,7 @@ m_rpg_def = """
     }
     
     monster:Monster {
-        lives = 20;
+        lives = 5;
     }
     
     #Tiles

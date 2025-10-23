@@ -25,30 +25,62 @@ def precondition_fight_possible(od: ODAPI):
 
 
 def mark_as_moved(od: ODAPI, creature_name: str):
-    # TODO: Implement the Helper function to mark the creature as moved
-    raise NotImplementedError
-
+    # DONE: Implement the Helper function to mark the creature as moved
+    creatureState = od.get_target(od.get_outgoing(od.get(creature_name), "CreatureState_ass")[0])
+    od.set_slot_value(creatureState, "moved", True)
 
 def action_use_door(od: ODAPI, door: str):
-    # TODO: Move the Hero to the connected Door
-    raise NotImplementedError
+    # DONE: Move the Hero to the connected Door
+    # Remove hero from door
+    original_tile = od.get(door)
+    assoc = od.get_incoming(original_tile, "StandingTile")[0]
+    hero = od.get_source(assoc)
+    od.delete(assoc)
 
+    # Add hero to connected door
+    target_tile = od.get_target(od.get_outgoing(original_tile, "ConnectingDoor")[0])
+    od.create_link(link_name="test",assoc_name="StandingTile", src=hero, tgt=target_tile)
+
+    mark_as_moved(od,od.get_name(hero))
+    return [f"Hero used {door} and went to level ..."]
 
 def action_move_monster(od: ODAPI, monster: str, target_tile: str):
     # TODO: Move the monster to the target_tile
     raise NotImplementedError
 
 
-def action_move_hero(od: ODAPI, target_tile_name: str):
+def action_move_hero(od: ODAPI, original_tile_name: str, target_tile_name: str):
     # TODO: Handle a move of the Hero, incl. all side effects when stepping on special Tiles
+    descriptions = []
+
     # Remove hero from original tile
-    allCreaturePositions = od.get_all_instances("StandingTile")
-    for pos in allCreaturePositions:
-        assert len(pos) == 2, "Invalid amount of StandingTiles"
-        if od.get_type_name(od.get_source(pos[1])) == "Hero":
-            print(pos[1])
+    original_tile = od.get(original_tile_name)
+    assoc = od.get_incoming(original_tile, "StandingTile")[0]
+    hero = od.get_source(assoc)
+    od.delete(assoc)
+
     # Add hero to new tile
-    # raise NotImplementedError
+    target_tile = od.get(target_tile_name)
+    od.create_link(link_name="test",assoc_name="StandingTile", src=hero, tgt=target_tile)
+    descriptions.append(f"Hero moved to tile: {target_tile_name}.")
+
+    mark_as_moved(od,od.get_name(hero))
+
+    # Check new tile for effects
+    # Trap
+    if od.get_type_name(target_tile) == "Trap":
+        lives = od.get_slot_value(hero, "lives")
+        od.set_slot_value(hero, "lives", lives-1)
+        descriptions.append(f"Hero moved into a trap and lost a life. Lives left: {lives-1}.")
+
+    # Key
+
+    # Objective
+
+    # Monster (fight function)
+
+
+    return descriptions
 
 
 def action_fight(od: ODAPI, hero_name: str, monster_name: str):
@@ -84,6 +116,8 @@ def get_actions(od: ODAPI):
         if od.get_type_name(od.get_source(pos[1])) == "Hero":
             heroTile = od.get_target(pos[1])
     assert heroTile, "Hero not found"
+
+    heroTile_name = od.get_name(heroTile)
     # Get the surrounding tiles
     tiles = {}
     for dir in ["North", "East", "South", "West"]:
@@ -95,9 +129,24 @@ def get_actions(od: ODAPI):
     for k, v in tiles.items():
         if not v:
             continue
-        print(od.get_name(v))
+        tile_name = od.get_name(v)
         if od.get_type_name(v) != "Obstacle":
-            actions[f"Move to the {k}"] = partial(action_move_hero, target_tile_name=v)
+            actions[f"Move to the {k}"] = partial(action_move_hero, original_tile_name=heroTile_name, target_tile_name=tile_name)
+
+    # Check if hero is located on door tile, make action in this case
+    if od.get_type_name(heroTile) == "Door":
+        # TODO precondition_can_use_door
+        door_name = od.get_name(heroTile)
+        actions["Use Door"] = partial(action_use_door, door=door_name)
+
+    # Check if at least one monster is present in this level. if so, add action to listen to monster
+    heroLevel = od.get_incoming(heroTile,"LevelTiles")[0]
+    for pos in allCreaturePositions:
+        if od.get_type_name(od.get_source(pos[1])) == "Monster":
+            monsterTile = od.get_target(pos[1])
+            monsterLevel = od.get_incoming(monsterTile, "LevelTiles")[0]
+            if monsterLevel == heroLevel:
+                actions["Listen to Monsters"] = action_advance_time
 
     # If no other action is possible, add the (one and only) choice to advance time
     if len(actions) == 0:
@@ -122,6 +171,23 @@ def make_actions_pure(actions, od):
 
 
 def termination_condition(od: ODAPI):
-    # TODO: implement the termination conditions, returning None means no termination condition is satisfied
+    # DONE: implement the termination conditions, returning None means no termination condition is satisfied
     # Otherwise, return a string with the reason for termination
+
+    # Check if hero has lives left
+    hero = od.get_all_instances("Hero")[0][1]
+    if not precondition_creature_alive(od, od.get_name(hero)):
+        return "Hero died"
+
+    # Check if all collectables are found
+    objectives = od.get_all_instances("Objective")
+    points = 0
+    for obj in objectives:
+        points += od.get_slot_value(obj[1], "points")
+
+    worldState = od.get_all_instances("WorldState")[0][1]
+    collected = od.get_slot_value(worldState,"collectedPoints")
+    if collected == points:
+        return "Game complete! All collectables are found"
+
     return None
