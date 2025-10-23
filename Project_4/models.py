@@ -60,8 +60,8 @@ mm_rpg_def = """
     }
 
 
-    Standard_tile:Class
-    :Inheritance (Standard_tile -> Tile)
+    StandardTile:Class
+    :Inheritance (StandardTile -> Tile)
 
     Trap:Class
     :Inheritance (Trap -> Tile)
@@ -113,19 +113,19 @@ mm_rpg_def = """
     ## ASSOCIATIONS ##
 
     # World contains Levels 
-    World_levels:Association (World -> Level) {
+    WorldLevels:Association (World -> Level) {
         # At least one level
         target_lower_cardinality = 1;
     }
 
     # Level contains Tiles
-    Level_tiles:Association (Level -> Tile) {
+    LevelTiles:Association (Level -> Tile) {
         # At least one tile
         target_lower_cardinality = 1;
     }
 
     # Creatures stand on a Tile
-    Standing_tile:Association (Creature -> Tile) {
+    StandingTile:Association (Creature -> Tile) {
         # a creature can stand on maximum 1 tile
         target_upper_cardinality = 1;
 
@@ -139,7 +139,7 @@ mm_rpg_def = """
         ```;
     }
 
-    Tile_north:Association (Tile -> Tile) {
+    TileNorth:Association (Tile -> Tile) {
         target_lower_cardinality = 0;
         target_upper_cardinality = 1;
 
@@ -150,7 +150,7 @@ mm_rpg_def = """
             if get_source(this) == get_target(this): conform = False;
             
             # Neighbors must be linked both ways
-            other_assoc = get_outgoing(get_target(this), "Tile_south")
+            other_assoc = get_outgoing(get_target(this), "TileSouth")
             if not other_assoc:
                 conform = False
             elif len(other_assoc) != 1:
@@ -159,8 +159,8 @@ mm_rpg_def = """
                 conform = False        
             
             # Neighbors must be in the same level
-            source_assoc = get_incoming(get_source(this), "Level_tiles")
-            target_assoc = get_incoming(get_target(this), "Level_tiles")
+            source_assoc = get_incoming(get_source(this), "LevelTiles")
+            target_assoc = get_incoming(get_target(this), "LevelTiles")
             if not source_assoc or not target_assoc:
                 # Tile must belong to a level
                 conform = False
@@ -172,7 +172,7 @@ mm_rpg_def = """
         ```;
     }
 
-    Tile_south:Association (Tile -> Tile) {
+    TileSouth:Association (Tile -> Tile) {
         target_lower_cardinality = 0;
         target_upper_cardinality = 1;
 
@@ -182,7 +182,7 @@ mm_rpg_def = """
             if get_source(this) == get_target(this): conform = False;
             
             # Neighbors must be linked both ways
-            other_assoc = get_outgoing(get_target(this), "Tile_north")
+            other_assoc = get_outgoing(get_target(this), "TileNorth")
             if not other_assoc:
                 conform = False
             elif len(other_assoc) != 1:
@@ -191,8 +191,8 @@ mm_rpg_def = """
                 conform = False        
             
             # Neighbors must be in the same level
-            source_assoc = get_incoming(get_source(this), "Level_tiles")
-            target_assoc = get_incoming(get_target(this), "Level_tiles")
+            source_assoc = get_incoming(get_source(this), "LevelTiles")
+            target_assoc = get_incoming(get_target(this), "LevelTiles")
             if not source_assoc or not target_assoc:
                 # Tile must belong to a level
                 conform = False
@@ -204,7 +204,7 @@ mm_rpg_def = """
         ```;
     }
 
-    Tile_east:Association (Tile -> Tile) {
+    TileEast:Association (Tile -> Tile) {
         target_lower_cardinality = 0;
         target_upper_cardinality = 1;
 
@@ -214,7 +214,7 @@ mm_rpg_def = """
             if get_source(this) == get_target(this): conform = False;
             
             # Neighbors must be linked both ways
-            other_assoc = get_outgoing(get_target(this), "Tile_west")
+            other_assoc = get_outgoing(get_target(this), "TileWest")
             if not other_assoc:
                 conform = False
             elif len(other_assoc) != 1:
@@ -223,8 +223,8 @@ mm_rpg_def = """
                 conform = False        
                         
             # Neighbors must be in the same level
-            source_assoc = get_incoming(get_source(this), "Level_tiles")
-            target_assoc = get_incoming(get_target(this), "Level_tiles")
+            source_assoc = get_incoming(get_source(this), "LevelTiles")
+            target_assoc = get_incoming(get_target(this), "LevelTiles")
             if not source_assoc or not target_assoc:
                 # Tile must belong to a level
                 conform = False
@@ -236,7 +236,7 @@ mm_rpg_def = """
         ```;
     }
 
-    Tile_west:Association (Tile -> Tile) {
+    TileWest:Association (Tile -> Tile) {
         target_lower_cardinality = 0;
         target_upper_cardinality = 1;
 
@@ -246,7 +246,7 @@ mm_rpg_def = """
             if get_source(this) == get_target(this): conform = False;
             
             # Neighbors must be linked both ways
-            other_assoc = get_outgoing(get_target(this), "Tile_east")
+            other_assoc = get_outgoing(get_target(this), "TileEast")
             if not other_assoc:
                 conform = False
             elif len(other_assoc) != 1:
@@ -255,8 +255,8 @@ mm_rpg_def = """
                 conform = False        
             
             # Neighbors must be in the same level
-            source_assoc = get_incoming(get_source(this), "Level_tiles")
-            target_assoc = get_incoming(get_target(this), "Level_tiles")
+            source_assoc = get_incoming(get_source(this), "LevelTiles")
+            target_assoc = get_incoming(get_target(this), "LevelTiles")
             if not source_assoc or not target_assoc:
                 # Tile must belong to a level
                 conform = False
@@ -269,27 +269,27 @@ mm_rpg_def = """
     }
 
     # StandardTile can have an item
-    StandardTile_item:Association (Standard_tile -> Item) {
+    StandardTileItem:Association (StandardTile -> Item) {
         target_lower_cardinality = 0;
         target_upper_cardinality = 1;
     }
 
     # Doors must be connected from one level to another
-    Connecting_door:Association (Door -> Door) {
+    ConnectingDoor:Association (Door -> Door) {
         target_lower_cardinality = 1;
         target_upper_cardinality = 1;
         constraint = ```
             conform = True;
 
             # Connecting door must be in another level
-            target_level_ass = get_incoming(get_target(this), "Level_tiles")[0]
-            source_level_ass = get_incoming(get_source(this), "Level_tiles")[0]
+            target_level_ass = get_incoming(get_target(this), "LevelTiles")[0]
+            source_level_ass = get_incoming(get_source(this), "LevelTiles")[0]
             if get_source(target_level_ass) == get_source(source_level_ass): conform = False;
             conform
         ```;
     }
 
-    Door_key:Association (Door -> Key) {
+    DoorKey:Association (Door -> Key) {
         target_lower_cardinality = 1;
         target_upper_cardinality = 1;
     }
@@ -304,11 +304,11 @@ rt_mm_rpg_def = mm_rpg_def + """
         abstract = True;
     }
     
-    World_state:Class
-    :Inheritance (World_state -> State)
+    WorldState:Class
+    :Inheritance (WorldState -> State)
     
-    Creature_state:Class
-    :Inheritance (Creature_state -> State)
+    CreatureState:Class
+    :Inheritance (CreatureState -> State)
 
     ### ATTRIBUTES
     
@@ -318,42 +318,34 @@ rt_mm_rpg_def = mm_rpg_def + """
         optional = False;
     }
     
-    Collected_points:AttributeLink (World_state -> Integer) {
-        name = "collected_points";
+    WorldState_collectedPoints:AttributeLink (WorldState -> Integer) {
+        name = "collectedPoints";
         optional = False;
     }
     
-    Creature_moved:AttributeLink (Creature_state -> Boolean) {
+    CreatureState_moved:AttributeLink (CreatureState -> Boolean) {
         name = "moved";
         optional = False;
     }
     
     ### ASSOCIATES
-    World_state_ass:Association (World -> World_state) {
+    WorldState_ass:Association (World -> WorldState) {
         target_lower_cardinality = 1;
         target_upper_cardinality = 1;
     }
     
-    Creature_state_ass:Association (Creature -> Creature_state) {
+    CreatureState_ass:Association (Creature -> CreatureState) {
         target_lower_cardinality = 1;
         target_upper_cardinality = 1;
     }
     
-    Hero_inventory:Association (Hero -> Item)
+    HeroInventory:Association (Hero -> Item)
     
 
 """
 
 m_rpg_def = """
-    c:Clock{
-        time = 0;
-    }
-    
-    
     world:World 
-    myWorldState:World_state {
-        collected_points = 0;
-    }
 
     level1:Level{
         name = "level1";
@@ -366,20 +358,14 @@ m_rpg_def = """
     myHero:Hero {
         lives = 10;
     }
-    myHeroState:Creature_state {
-        moved = False;
-    }
     
     monster:Monster {
         lives = 20;
     }
-    monsterState:Creature_state {
-        moved = False;
-    }
-
+    
     #Tiles
-    tile1:Standard_tile
-    tile2:Standard_tile
+    tile1:StandardTile
+    tile2:StandardTile
     tile3:Trap
     tile4:Obstacle
     door1:Door
@@ -395,86 +381,102 @@ m_rpg_def = """
     key2:Key
         
     #Links
-    :World_state_ass (world -> myWorldState)
-    :Creature_state_ass (myHero -> myHeroState)
-    :Creature_state_ass (monster -> monsterState)
 
+    :WorldLevels (world -> level1)
+    :WorldLevels (world -> level2)
     
-    :World_levels (world -> level1)
-    :World_levels (world -> level2)
-    
-    :Level_tiles (level1 -> tile1)
-    :Level_tiles (level1 -> tile2)
-    :Level_tiles (level1 -> door1)
+    :LevelTiles (level1 -> tile1)
+    :LevelTiles (level1 -> tile2)
+    :LevelTiles (level1 -> door1)
 
-    :Level_tiles (level2 -> tile3)
-    :Level_tiles (level2 -> tile4)
-    :Level_tiles (level2 -> door2)
+    :LevelTiles (level2 -> tile3)
+    :LevelTiles (level2 -> tile4)
+    :LevelTiles (level2 -> door2)
 
     #Connecting tiles
-    :Tile_south (tile1 -> tile2)
-    :Tile_north (tile2 -> tile1)
-    :Tile_west (tile1 -> door1)
-    :Tile_east (door1 -> tile1)
+    :TileSouth (tile1 -> tile2)
+    :TileNorth (tile2 -> tile1)
+    :TileWest (tile1 -> door1)
+    :TileEast (door1 -> tile1)
 
-    :Tile_south (tile3 -> tile4)
-    :Tile_north (tile4 -> tile3)
-    :Tile_west (tile3 -> door2)
-    :Tile_east (door2 -> tile3)
+    :TileSouth (tile3 -> tile4)
+    :TileNorth (tile4 -> tile3)
+    :TileWest (tile3 -> door2)
+    :TileEast (door2 -> tile3)
 
 
-    :Connecting_door (door1 -> door2)
-    :Connecting_door (door2 -> door1)
+    :ConnectingDoor (door1 -> door2)
+    :ConnectingDoor (door2 -> door1)
     
-    :StandardTile_item (tile2 -> key1)
-    :StandardTile_item (tile1 -> obj)
+    :StandardTileItem (tile2 -> key1)
+    :StandardTileItem (tile1 -> obj)
     
-    :Door_key (door1 -> key1)
-    :Door_key (door2 -> key2)
+    :DoorKey (door1 -> key1)
+    :DoorKey (door2 -> key2)
     
-    :Standing_tile (myHero -> tile1)
-    :Standing_tile (monster -> tile1)
+    :StandingTile (myHero -> tile1)
+    :StandingTile (monster -> tile1)
 """
 
 # TODO: add a valid instance of the additional runtime-information
 rt_m_rpg_def = m_rpg_def + """
+    c:Clock{
+        time = 0;
+    }
+
+    myWorldState:WorldState {
+        collectedPoints = 0;
+    }
+    
+    myHeroState:CreatureState {
+        moved = False;
+    }
+    
+    monsterState:CreatureState {
+        moved = False;
+    }
+    
+    #Links
+    :WorldState_ass (world -> myWorldState)
+    :CreatureState_ass (myHero -> myHeroState)
+    :CreatureState_ass (monster -> monsterState)
 
 """
 
 
-
-from state.devstate import DevState
-from bootstrap.scd import bootstrap_scd
-from concrete_syntax.textual_od import parser
-from framework.conformance import Conformance, render_conformance_check_result
-
-state = DevState()
-print("Loading mmm")
-mmm = bootstrap_scd(state)
-print("OK")
-
-print()
-print("Parsing mm")
-mm = parser.parse_od(
-        state,
-        m_text=rt_mm_rpg_def,
-        mm=mmm,
-    )
-print("OK")
-
-
-### COMFORMNIG MODEL HOPEFULLY ###
-
-print()
-print("Parsing comforming model")
-m = parser.parse_od(
-        state,
-        m_text=m_rpg_def,
-        mm=mm,
-    )
-print("OK")
-
-print()
-print("Is our model valid instance of meta model?")
-conf = Conformance(state, m, mm)
-print(render_conformance_check_result(conf.check_nominal()))
+#
+# from state.devstate import DevState
+# from bootstrap.scd import bootstrap_scd
+# from concrete_syntax.textual_od import parser
+# from framework.conformance import Conformance, render_conformance_check_result
+#
+# state = DevState()
+# print("Loading mmm")
+# mmm = bootstrap_scd(state)
+# print("OK")
+#
+# print()
+# print("Parsing mm")
+# mm = parser.parse_od(
+#         state,
+#         m_text=rt_mm_rpg_def,
+#         mm=mmm,
+#     )
+# print("OK")
+#
+#
+# ### COMFORMNIG MODEL HOPEFULLY ###
+#
+# print()
+# print("Parsing comforming model")
+# m = parser.parse_od(
+#         state,
+#         m_text=rt_m_rpg_def,
+#         mm=mm,
+#     )
+# print("OK")
+#
+# print()
+# print("Is our model valid instance of meta model?")
+# conf = Conformance(state, m, mm)
+# print(render_conformance_check_result(conf.check_nominal()))
