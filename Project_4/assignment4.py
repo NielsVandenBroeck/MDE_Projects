@@ -91,7 +91,7 @@ def get_actions(od: ODAPI):
         print(od.get_name(v))
         print(v)
         if od.get_type_name(v) != "Obstacle":
-            actions[f"Move to the {k}"] = action_move_hero
+            actions[f"Move to the {k}"] = partial(action_move_hero, target_tile_name=v)
 
     # If no other action is possible, add the (one and only) choice to advance time
     if len(actions) == 0:
