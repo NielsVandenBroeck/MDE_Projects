@@ -127,7 +127,7 @@ mm_rpg_def = """
     # Creatures stand on a Tile
     Standing_tile:Association (Creature -> Tile) {
         # a creature can stand on maximum 1 tile
-        target_upper_cardinality = 1
+        target_upper_cardinality = 1;
 
         constraint = ```
             conform = True;
@@ -149,18 +149,19 @@ mm_rpg_def = """
             # Neighboring tile cannot be itself
             if get_source(this) == get_target(this): conform = False;
             
-            source = get_source(this)
-            target = get_target(this)
-            other_assoc = get_outgoing(target, "Tile_south")
-            print("testing link",len(other_assoc))
-            
+            other_assoc = get_outgoing(get_target(this), "Tile_south")
+            if not other_assoc:
+                conform = False
+            elif len(other_assoc) != 1:
+                conform = False
+            elif get_target(other_assoc[0]) != get_source(this):
+                conform = False        
             
             conform
         ```;
 
         # TODO CHECK IF NEIGHBOR SAME LINK
         # TODO CHECK IF NEIGHBOR SAME LEVEL
-
     }
 
     Tile_south:Association (Tile -> Tile) {
@@ -171,6 +172,15 @@ mm_rpg_def = """
             conform = True;
             # Neighboring tile cannot be itself
             if get_source(this) == get_target(this): conform = False;
+            
+            other_assoc = get_outgoing(get_target(this), "Tile_north")
+            if not other_assoc:
+                conform = False
+            elif len(other_assoc) != 1:
+                conform = False
+            elif get_target(other_assoc[0]) != get_source(this):
+                conform = False        
+            
             conform
         ```;
     }
@@ -183,6 +193,15 @@ mm_rpg_def = """
             conform = True;
             # Neighboring tile cannot be itself
             if get_source(this) == get_target(this): conform = False;
+            
+            other_assoc = get_outgoing(get_target(this), "Tile_west")
+            if not other_assoc:
+                conform = False
+            elif len(other_assoc) != 1:
+                conform = False
+            elif get_target(other_assoc[0]) != get_source(this):
+                conform = False        
+            
             conform
         ```;
     }
@@ -195,11 +214,15 @@ mm_rpg_def = """
             conform = True;
             # Neighboring tile cannot be itself
             if get_source(this) == get_target(this): conform = False;
-            # Tiles must be on the same level
-            a = get_incoming(get_source(this), "Level_tiles")[0]
-            print(get_name(a))
-            if get_outgoing(get_source(this), "Level_tiles") != get_outgoing(get_target(this), "Level_tiles"):
+            
+            other_assoc = get_outgoing(get_target(this), "Tile_east")
+            if not other_assoc:
                 conform = False
+            elif len(other_assoc) != 1:
+                conform = False
+            elif get_target(other_assoc[0]) != get_source(this):
+                conform = False        
+            
             conform
         ```;
     }
@@ -324,12 +347,12 @@ m_rpg_def = """
     :Tile_north (tile2 -> tile1)
     :Tile_west (tile1 -> door1)
     :Tile_east (door1 -> tile1)
-    
+
     :Tile_south (tile3 -> tile4)
     :Tile_north (tile4 -> tile3)
     :Tile_west (tile3 -> door2)
     :Tile_east (door2 -> tile3)
-    
+
 
     :Connecting_door (door1 -> door2)
     :Connecting_door (door2 -> door1)
