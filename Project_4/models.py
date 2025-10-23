@@ -318,12 +318,12 @@ rt_mm_rpg_def = mm_rpg_def + """
         optional = False;
     }
     
-    Collected_points:AttributeLink (World_state -> Integer) {
+    World_state_collected_points:AttributeLink (World_state -> Integer) {
         name = "collected_points";
         optional = False;
     }
     
-    Creature_moved:AttributeLink (Creature_state -> Boolean) {
+    Creature_state_moved:AttributeLink (Creature_state -> Boolean) {
         name = "moved";
         optional = False;
     }
