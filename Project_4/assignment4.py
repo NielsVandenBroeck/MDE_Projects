@@ -41,7 +41,13 @@ def action_move_monster(od: ODAPI, monster: str, target_tile: str):
 
 def action_move_hero(od: ODAPI, target_tile_name: str):
     # TODO: Handle a move of the Hero, incl. all side effects when stepping on special Tiles
-    raise NotImplementedError
+    # Remove hero from original tile
+    allCreaturePositions = od.get_all_instances("StandingTile")
+    for pos in allCreaturePositions:
+        assert len(pos) == 2, "Invalid amount of StandingTiles"
+        if od.get_type_name(od.get_source(pos[1])) == "Hero":
+            print(pos[1])
+    # raise NotImplementedError
 
 
 def action_fight(od: ODAPI, hero_name: str, monster_name: str):
@@ -89,7 +95,6 @@ def get_actions(od: ODAPI):
         if not v:
             continue
         print(od.get_name(v))
-        print(v)
         if od.get_type_name(v) != "Obstacle":
             actions[f"Move to the {k}"] = partial(action_move_hero, target_tile_name=v)
 
@@ -118,5 +123,4 @@ def make_actions_pure(actions, od):
 def termination_condition(od: ODAPI):
     # TODO: implement the termination conditions, returning None means no termination condition is satisfied
     # Otherwise, return a string with the reason for termination
-
     return None

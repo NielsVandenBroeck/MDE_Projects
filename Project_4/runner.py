@@ -11,7 +11,7 @@ from assignment4 import get_actions, termination_condition
 
 def render_text(od: ODAPI):
     # TODO: Implement, so a short description of the current state is printed
-    txt = ""
+    txt = "TEST"
     return txt
 
 
