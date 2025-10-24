@@ -10,14 +10,20 @@ def precondition_creature_alive(od: ODAPI, creature: str):
 
 
 def precondition_can_use_door(od: ODAPI, door: str):
-    # TODO: Check whether the door can be used by the Hero: Do they have the matching Key?
-    raise NotImplementedError
+    # DONE: Check whether the door can be used by the Hero: Do they have the matching Key?
+    # Get required key of door
+    key = od.get_target(od.get_outgoing(od.get(door), "DoorKey")[0])
 
+    # Check if key in inventory of hero
+    hero = od.get_all_instances("Hero")[0][1]
+    for item_assoc in od.get_outgoing(hero, "HeroInventory"):
+        if od.get_target(item_assoc) == key:
+            return True
+    return False
 
 def precondition_creature_can_move(od: ODAPI, target_tile: str):
-    # TODO: Check whether the target_tile can be occupied by a creature, i.e. it's not an Obstacle
-    raise NotImplementedError
-
+    # DONE: Check whether the target_tile can be occupied by a creature, i.e. it's not an Obstacle
+    return od.get_type_name(od.get(target_tile)) != "Obstacle"
 
 def precondition_fight_possible(od: ODAPI):
     # TODO: Check whether two creatures are on the same Tile so fighting is possible in the current state
@@ -50,7 +56,7 @@ def action_move_monster(od: ODAPI, monster: str, target_tile: str):
 
 
 def action_move_hero(od: ODAPI, original_tile_name: str, target_tile_name: str):
-    # TODO: Handle a move of the Hero, incl. all side effects when stepping on special Tiles
+    # DONE: Handle a move of the Hero, incl. all side effects when stepping on special Tiles
     descriptions = []
 
     # Remove hero from original tile
@@ -73,12 +79,24 @@ def action_move_hero(od: ODAPI, original_tile_name: str, target_tile_name: str):
         od.set_slot_value(hero, "lives", lives-1)
         descriptions.append(f"Hero moved into a trap and lost a life. Lives left: {lives-1}.")
 
-    # Key
+    # Item
+    if od.get_type_name(target_tile) == "StandardTile":
+        items_assocs = od.get_outgoing(target_tile, "StandardTileItem")
+        for item_assoc in items_assocs:
+            item = od.get_target(item_assoc)
+            od.create_link(link_name=f"item_{od.get_name(item)}", assoc_name="HeroInventory", src=hero, tgt=item)
+            if od.get_type_name(item) == "Key":
+                descriptions.append(f"Hero Found a key. Try opening some doors to check which one it belongs to.")
+            elif od.get_type_name(item) == "Objective":
+                points = od.get_slot_value(item, "points")
+                # Add points to worldstate
+                worldstate = od.get_all_instances("WorldState")[0][1]
+                od.set_slot_value(worldstate, "collectedPoints", od.get_slot_value(worldstate,"collectedPoints")+ points)
+                descriptions.append(f"Hero picked up an objective of {points} points")
 
-    # Objective
 
     # Monster (fight function)
-
+    # TODO FIGHT
 
     return descriptions
 
@@ -107,7 +125,7 @@ def get_actions(od: ODAPI):
     # Dictionary mapping "Action text" to the (partial) function that is executed
     actions = {}
 
-    # TODO: Determine the currently possible actions and add them to the actions dictionary
+    # DONE: Determine the currently possible actions and add them to the actions dictionary
     # Get the Hero's current tile
     heroTile = None
     allCreaturePositions = od.get_all_instances("StandingTile")
@@ -130,14 +148,13 @@ def get_actions(od: ODAPI):
         if not v:
             continue
         tile_name = od.get_name(v)
-        if od.get_type_name(v) != "Obstacle":
+        if precondition_creature_can_move(od, tile_name):
             actions[f"Move to the {k}"] = partial(action_move_hero, original_tile_name=heroTile_name, target_tile_name=tile_name)
 
     # Check if hero is located on door tile, make action in this case
     if od.get_type_name(heroTile) == "Door":
-        # TODO precondition_can_use_door
-        door_name = od.get_name(heroTile)
-        actions["Use Door"] = partial(action_use_door, door=door_name)
+        if precondition_can_use_door(od, heroTile_name):
+            actions["Use Door"] = partial(action_use_door, door=heroTile_name)
 
     # Check if at least one monster is present in this level. if so, add action to listen to monster
     heroLevel = od.get_incoming(heroTile,"LevelTiles")[0]
