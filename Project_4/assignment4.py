@@ -66,7 +66,6 @@ def action_use_door(od: ODAPI, door: str):
 def action_move_monsters(od: ODAPI, monsters: dict):
     # DONE: Move the monsters to the target_tiles
     descriptions = []
-    print(monsters)
     for monster_name, target_tile_name in monsters.items():
         monster = od.get(monster_name)
         target_tile = od.get(target_tile_name)
@@ -255,6 +254,22 @@ def get_actions(od: ODAPI):
                 monsters[od.get_name(monster)] = od.get_name(tile)
     if monsters:
         actions["Listen to Monsters"] = partial(action_move_monsters, monsters=monsters)
+
+    """
+    Wrap every action so it automatically advances time
+    """
+    def add_time_wrapper(action_func):
+        def wrapped(od: ODAPI):
+            descriptions = action_func(od)
+            descriptions += action_advance_time(od)
+            return descriptions
+        return wrapped
+
+    for key, action_func in list(actions.items()):
+        actions[key] = add_time_wrapper(action_func)
+    """
+    Wrap every action so it automatically advances time
+    """
 
     # If no other action is possible, add the (one and only) choice to advance time
     if len(actions) == 0:
