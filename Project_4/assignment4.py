@@ -26,9 +26,22 @@ def precondition_creature_can_move(od: ODAPI, target_tile: str):
     return od.get_type_name(od.get(target_tile)) != "Obstacle"
 
 def precondition_fight_possible(od: ODAPI):
-    # TODO: Check whether two creatures are on the same Tile so fighting is possible in the current state
-    raise NotImplementedError
-
+    # DONE: Check whether two creatures are on the same Tile so fighting is possible in the current state
+    # Get Hero Tile
+    heroTile = None
+    allCreaturePositions = od.get_all_instances("StandingTile")
+    for pos in allCreaturePositions:
+        assert len(pos) == 2, "Invalid amount of StandingTiles"
+        if od.get_type_name(od.get_source(pos[1])) == "Hero":
+            heroTile = od.get_target(pos[1])
+    assert heroTile, "Hero not found"
+    # Check if there is at least one alive monster on the same tile.
+    for pos in allCreaturePositions:
+        creature = od.get_source(pos[1])
+        if od.get_type_name(creature) == "Monster":
+            if od.get_target(pos[1]) == heroTile and precondition_creature_alive(od, od.get_name(creature)):
+                return True
+    return False
 
 def mark_as_moved(od: ODAPI, creature_name: str):
     # DONE: Implement the Helper function to mark the creature as moved
@@ -50,9 +63,42 @@ def action_use_door(od: ODAPI, door: str):
     mark_as_moved(od,od.get_name(hero))
     return [f"Hero used {door} and went to level ..."]
 
-def action_move_monster(od: ODAPI, monster: str, target_tile: str):
-    # TODO: Move the monster to the target_tile
-    raise NotImplementedError
+def action_move_monsters(od: ODAPI, monsters: dict):
+    # DONE: Move the monsters to the target_tiles
+    descriptions = []
+    print(monsters)
+    for monster_name, target_tile_name in monsters.items():
+        monster = od.get(monster_name)
+        target_tile = od.get(target_tile_name)
+        assoc = od.get_outgoing(monster, "StandingTile")[0]
+        linkName = od.get_name(assoc)
+        # Remove old StandingTile
+        od.delete(assoc)
+        # Create new StandingTile
+        od.create_link(link_name=linkName,assoc_name="StandingTile", src=monster, tgt=target_tile)
+        descriptions.append(f"Monster {monster_name} moved to {od.get_type_name(target_tile)} {od.get_name(target_tile)}")
+        
+        mark_as_moved(od, monster_name)
+
+    # Monster (fight function)
+    if precondition_fight_possible(od):
+        hero = od.get_all_instances("Hero")
+        assert len(hero) == 1, "Not one unique hero found"
+        hero = hero[0][1]
+        heroName = od.get_name(hero)
+        # Get tile
+        tile = od.get_target(od.get_outgoing(hero, "StandingTile")[0])
+        # Get all creatures on tile
+        creatures = [od.get_source(assoc) for assoc in od.get_incoming(tile, "StandingTile")]
+        # For every creature call fight function
+        for creature in creatures:
+            # Ignore hero
+            if od.get_type_name(creature) == "Hero":
+                continue
+            creatureName = od.get_name(creature)
+            descriptions.append(action_fight(od, heroName, creatureName))
+
+    return descriptions
 
 
 def action_move_hero(od: ODAPI, original_tile_name: str, target_tile_name: str):
@@ -63,11 +109,12 @@ def action_move_hero(od: ODAPI, original_tile_name: str, target_tile_name: str):
     original_tile = od.get(original_tile_name)
     assoc = od.get_incoming(original_tile, "StandingTile")[0]
     hero = od.get_source(assoc)
+    linkName = od.get_name(assoc)
     od.delete(assoc)
 
     # Add hero to new tile
     target_tile = od.get(target_tile_name)
-    od.create_link(link_name="test",assoc_name="StandingTile", src=hero, tgt=target_tile)
+    od.create_link(link_name=linkName,assoc_name="StandingTile", src=hero, tgt=target_tile)
     descriptions.append(f"Hero moved to tile: {target_tile_name}.")
 
     mark_as_moved(od,od.get_name(hero))
@@ -93,18 +140,44 @@ def action_move_hero(od: ODAPI, original_tile_name: str, target_tile_name: str):
                 worldstate = od.get_all_instances("WorldState")[0][1]
                 od.set_slot_value(worldstate, "collectedPoints", od.get_slot_value(worldstate,"collectedPoints")+ points)
                 descriptions.append(f"Hero picked up an objective of {points} points")
-
+            # Remove item from tile so it can only be picked up once
+            od.delete(item_assoc)
 
     # Monster (fight function)
-    # TODO FIGHT
+    if precondition_fight_possible(od):
+        heroName = od.get_name(hero)
+        # Get tile
+        tile = od.get_target(od.get_outgoing(hero, "StandingTile")[0])
+        # Get all creatures on tile
+        creatures = [od.get_source(assoc) for assoc in od.get_incoming(tile, "StandingTile")]
+        # For every creature call fight function
+        for creature in creatures:
+            # Ignore hero
+            if od.get_type_name(creature) == "Hero":
+                continue
+            creatureName = od.get_name(creature)
+            descriptions.append(action_fight(od, heroName, creatureName))
 
     return descriptions
 
 
 def action_fight(od: ODAPI, hero_name: str, monster_name: str):
-    # TODO: Determine the winner of the fight and adjust lives accordingly
-    raise NotImplementedError
+    # DONE/TODO: Determine the winner of the fight and adjust lives accordingly
+    hero = od.get(hero_name)
+    heroLives = od.get_slot_value(hero, "lives")
+    monster = od.get(monster_name)
+    monsterLives = od.get_slot_value(monster, "lives")
 
+    if heroLives > monsterLives:
+        od.set_slot_value(monster, "lives", monsterLives-1)
+        return f"Hero {hero_name} fought against Monster {monster_name} and won because he had more lives ({heroLives}>{monsterLives}), {monster_name} lost one life. Lives left: {monsterLives-1}."
+    elif heroLives < monsterLives:
+        od.set_slot_value(hero, "lives", heroLives-1)
+        return f"Hero {hero_name} fought against Monster {monster_name} and lost because he had less lives ({heroLives}<{monsterLives}), {hero_name} lost one life. Lives left: {heroLives-1}."
+    else:
+        od.set_slot_value(hero, "lives", heroLives-1)
+        od.set_slot_value(monster, "lives", monsterLives-1)
+        return f"Hero {hero_name} fought against Monster {monster_name} and both lost because they had the same amount of lives ({heroLives}={monsterLives}. Both have lost one life. Lives left: {heroLives-1}."
 
 def action_advance_time(od: ODAPI):
     # Example for an action: This advances the time and resets all creatures
@@ -156,14 +229,32 @@ def get_actions(od: ODAPI):
         if precondition_can_use_door(od, heroTile_name):
             actions["Use Door"] = partial(action_use_door, door=heroTile_name)
 
-    # Check if at least one monster is present in this level. if so, add action to listen to monster
-    heroLevel = od.get_incoming(heroTile,"LevelTiles")[0]
+    # Check if at least one monster is present in this level. if so, add action to listen to monsters
+    heroLevel = od.get_source(od.get_incoming(heroTile,"LevelTiles")[0])
+    monsters = {}
     for pos in allCreaturePositions:
         if od.get_type_name(od.get_source(pos[1])) == "Monster":
             monsterTile = od.get_target(pos[1])
-            monsterLevel = od.get_incoming(monsterTile, "LevelTiles")[0]
+            monsterLevel = od.get_source(od.get_incoming(monsterTile, "LevelTiles")[0])
+            monster = od.get_source(pos[1])
             if monsterLevel == heroLevel:
-                actions["Listen to Monsters"] = action_advance_time
+                # Get the surrounding tiles
+                tiles = []
+                for direction in ["North", "East", "South", "West"]:
+                    tile = od.get_outgoing(monsterTile, f"Tile{direction}")
+                    if tile:
+                        tile = od.get_target(tile[0])
+                        # Check whether creature can move there
+                        if precondition_creature_can_move(od, od.get_name(tile)):
+                            tiles.append(tile)
+                # Make it move to it's own tile if it cannot go elsewhere
+                if not tiles:
+                    tiles = [monsterTile]
+                # Get random tile to move to
+                tile = random.choice(tiles)
+                monsters[od.get_name(monster)] = od.get_name(tile)
+    if monsters:
+        actions["Listen to Monsters"] = partial(action_move_monsters, monsters=monsters)
 
     # If no other action is possible, add the (one and only) choice to advance time
     if len(actions) == 0:
