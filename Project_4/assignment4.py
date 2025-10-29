@@ -161,7 +161,7 @@ def action_move_hero(od: ODAPI, original_tile_name: str, target_tile_name: str):
 
 
 def action_fight(od: ODAPI, hero_name: str, monster_name: str):
-    # DONE/TODO: Determine the winner of the fight and adjust lives accordingly
+    # DONE: Determine the winner of the fight and adjust lives accordingly
     hero = od.get(hero_name)
     heroLives = od.get_slot_value(hero, "lives")
     monster = od.get(monster_name)
