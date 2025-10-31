@@ -10,8 +10,19 @@ from assignment4 import get_actions, termination_condition
 
 
 def render_text(od: ODAPI):
-    # TODO: Implement, so a short description of the current state is printed
-    txt = "TEST"
+    # Done: Implement, so a short description of the current state is printed
+    txt = ""
+
+    # Print lives
+    lives = od.get_slot_value(od.get_all_instances("Hero")[0][1], "lives")
+    txt += f"[{lives} lives] "
+
+    # Check for Tiles -> Door, Trap
+
+    # Check for Collectables? key?
+
+    # Check for monsters?
+
     return txt
 
 
