@@ -50,18 +50,22 @@ def mark_as_moved(od: ODAPI, creature_name: str):
 
 def action_use_door(od: ODAPI, door: str):
     # DONE: Move the Hero to the connected Door
-    # Remove hero from door
+    # Get target tile name
     original_tile = od.get(door)
-    assoc = od.get_incoming(original_tile, "StandingTile")[0]
-    hero = od.get_source(assoc)
-    od.delete(assoc)
-
-    # Add hero to connected door
     target_tile = od.get_target(od.get_outgoing(original_tile, "ConnectingDoor")[0])
-    od.create_link(link_name="test",assoc_name="StandingTile", src=hero, tgt=target_tile)
+    target_name = od.get_name(target_tile)
 
-    mark_as_moved(od,od.get_name(hero))
-    return [f"Hero used {door} and went to level ..."]
+    # Get level name
+    assoc = od.get_incoming(target_tile, "LevelTiles")[0]
+    level = od.get_source(assoc)
+    descriptions = [f"Hero used {door} and went to {target_name} in {od.get_name(level)}."]
+
+    # Move hero
+    tmp = action_move_hero(od, door, target_name)
+    for desc in tmp:
+        descriptions.append(desc)    
+
+    return descriptions
 
 def action_move_monsters(od: ODAPI, monsters: dict):
     # DONE: Move the monsters to the target_tiles
