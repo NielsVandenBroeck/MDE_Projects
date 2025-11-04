@@ -12,17 +12,48 @@ from assignment4 import get_actions, termination_condition
 def render_text(od: ODAPI):
     # Done: Implement, so a short description of the current state is printed
     txt = ""
+    HeroText = ""
+    MonstersTexts = ""
+
+    creatures = od.get_all_instances("Creature")
+    for creature in creatures:
+        creature = creature[1]
+        if od.get_type_name(creature) == "Hero":
+            HeroText = "---HERO---\n"
+
+            # Name
+            name = od.get_name(creature)
+            HeroText += f"Name: {name}\n"
+
+            # Lives
+            lives = od.get_slot_value(creature, "lives")
+            HeroText += f"Lives: {lives}\n"
+
+            # Level
+
+            # Inventory
+
+            HeroText += "\n"
+
+
+        else:
+            MonstersTexts += "---MONSTER---\n"
+
+            # Name
+            name = od.get_name(creature)
+            MonstersTexts += f"Name: {name}\n"
+
+            # Lives
+            lives = od.get_slot_value(creature, "lives")
+            MonstersTexts += f"Lives: {lives}\n"
+
+            MonstersTexts += "\n"
 
     # Print lives
     lives = od.get_slot_value(od.get_all_instances("Hero")[0][1], "lives")
     txt += f"[{lives} lives] "
 
-    # Check for Tiles -> Door, Trap
-
-    # Check for Collectables? key?
-
-    # Check for monsters?
-
+    txt = HeroText+MonstersTexts
     return txt
 
 
