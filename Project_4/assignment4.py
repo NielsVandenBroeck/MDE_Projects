@@ -203,12 +203,8 @@ def get_actions(od: ODAPI):
 
     # DONE: Determine the currently possible actions and add them to the actions dictionary
     # Get the Hero's current tile
-    heroTile = None
-    allCreaturePositions = od.get_all_instances("StandingTile")
-    for pos in allCreaturePositions:
-        assert len(pos) == 2, "Invalid amount of StandingTiles"
-        if od.get_type_name(od.get_source(pos[1])) == "Hero":
-            heroTile = od.get_target(pos[1])
+    hero = od.get_all_instances("Hero")[0][1]
+    heroTile = od.get_target(od.get_outgoing(hero, "StandingTile")[0])
     assert heroTile, "Hero not found"
 
     heroTile_name = od.get_name(heroTile)
@@ -235,6 +231,7 @@ def get_actions(od: ODAPI):
     # Check if at least one monster is present in this level. if so, add action to listen to monsters
     heroLevel = od.get_source(od.get_incoming(heroTile,"LevelTiles")[0])
     monsters = {}
+    allCreaturePositions = od.get_all_instances("StandingTile")
     for pos in allCreaturePositions:
         if od.get_type_name(od.get_source(pos[1])) == "Monster":
             monsterTile = od.get_target(pos[1])
