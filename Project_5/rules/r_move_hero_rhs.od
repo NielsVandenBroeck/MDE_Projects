@@ -15,8 +15,6 @@ tile:RAM_Tile
 # Remove lives on a trap tile
 :GlobalCondition {
     condition = ```
-        conform = False
-
         # Get hero tile
         hero = get_all_instances("Hero")[0][1]
         assoc = (get_outgoing(hero, "StandingTile")[0])
