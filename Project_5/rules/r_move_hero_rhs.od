@@ -12,3 +12,18 @@ tile:RAM_Tile
 # Move to new tile
 :RAM_StandingTile (hero -> tile)
 
+# Remove lives on a trap tile
+:GlobalCondition {
+    condition = ```
+        conform = False
+
+        # Get hero tile
+        hero = get_all_instances("Hero")[0][1]
+        assoc = (get_outgoing(hero, "StandingTile")[0])
+        heroTile = get_target(assoc)
+
+        # If trap tile, lose a life
+        if get_type_name(heroTile) == "Trap":
+            set_slot_value(hero, "lives", get_slot_value(hero, "lives") - 1)
+    ```;
+}
