@@ -23,9 +23,6 @@ def get_rules(current_state, rt_mm):
                          ['move_hero']))
 
 
-    rules.append(load_rules(current_state, get_filename, rt_mm_ramified,
-                         ['check_game_over']))
-
     # This rule should come last!
     rules.append(load_rules(current_state, get_filename, rt_mm_ramified,
                          ['advance_time']))
@@ -52,6 +49,7 @@ class TerminationCondition:
                 }
                 """
         }
+        patterns_cs = {}
 
         self.patterns = {cause: parse_od(state, pattern_cs, self.rt_mm_ramified)
                          for cause, pattern_cs in patterns_cs.items()}
