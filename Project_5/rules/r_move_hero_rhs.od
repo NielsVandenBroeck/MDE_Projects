@@ -12,7 +12,7 @@ tile:RAM_Tile
 # Move to new tile
 :RAM_StandingTile (hero -> tile)
 
-# Remove lives on a trap tile
+# Check target tile's effects.
 :GlobalCondition {
     condition = ```
         # Get hero tile
@@ -23,5 +23,19 @@ tile:RAM_Tile
         # If trap tile, lose a life
         if get_type_name(heroTile) == "Trap":
             set_slot_value(hero, "lives", get_slot_value(hero, "lives") - 1)
+
+        # Pick up items
+        item_assocs = get_outgoing(heroTile, "StandardTileItem")
+        for item_assoc in item_assocs:
+            item = get_target(item_assoc)
+            # Add item to inventory
+            create_link(link_name=f"item_{get_name(item)}", assoc_name="HeroInventory", src=hero, tgt=item)
+            # Add points to WorldState
+            if get_type_name(item) == "Objective":
+                points = get_slot_value(item, "points")
+                worldstate = get_all_instances("WorldState")[0][1]
+                set_slot_value(worldstate, "collectedPoints", get_slot_value(worldstate, "collectedPoints") + points)
+            # Remove link to tile
+            delete(item_assoc)
     ```;
 }
