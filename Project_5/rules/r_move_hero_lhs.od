@@ -1,0 +1,34 @@
+hero:RAM_Hero
+
+heroState:RAM_CreatureState {
+    RAM_moved = `True`;
+}
+isHeroState:RAM_CreatureState_ass (hero -> heroState)
+
+standingTile:RAM_Tile
+isStandingTile:RAM_StandingTile (hero -> standingTile)
+
+tile:RAM_Tile {
+    condition = ```
+        conform = False
+
+        # Get hero tile
+        hero = get_all_instances("Hero")[0][1]
+        assoc = (get_outgoing(hero, "StandingTile")[0])
+        heroTile = get_target(assoc)
+        
+        # Check if adjacent tile
+        for dir in ["North", "East", "South", "West"]:
+            # Get all that hero tile goes to
+            assocs = get_outgoing(heroTile, f"Tile{dir}")
+            if not assocs:
+                continue
+            # Check if this is the current tile
+            for assoc in assocs:
+                target = get_target(assoc)
+                if target == this:
+                    conform = True
+                    break
+        conform
+    ```;
+}
