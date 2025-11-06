@@ -9,8 +9,69 @@ from assignment5 import get_rules, TerminationCondition
 
 
 def render_text(od: ODAPI):
-    # TODO: put your rendering function here
-    txt = ""
+    # Done: Implement, so a short description of the current state is printed
+    txt = "CURRENT STATE\n"
+    HeroText = ""
+    MonstersTexts = "---MONSTERS---\n"
+    monster_present = False
+
+    creatures = od.get_all_instances("Creature")
+    for creature in creatures:
+        creature = creature[1]
+        if od.get_type_name(creature) == "Hero":
+            HeroText = "---HERO---\n"
+
+            # Name
+            name = od.get_name(creature)
+            HeroText += f"Name: {name}\n"
+
+            # Lives
+            lives = od.get_slot_value(creature, "lives")
+            HeroText += f"Lives: {lives}\n"
+
+            # Level
+            heroTile = od.get_target(od.get_outgoing(creature, "StandingTile")[0])
+            heroLevel = od.get_source(od.get_incoming(heroTile, "LevelTiles")[0])
+            HeroText += f"Located in level: {od.get_name(heroLevel)} at tile: {od.get_name(heroTile)}\n"
+
+            # Inventory
+            HeroText += "Inventory:\n"
+            inventory_assocs = od.get_outgoing(creature, "HeroInventory")
+            if not inventory_assocs:
+                HeroText += "\t Empty \n"
+            for item_assoc in inventory_assocs:
+                item = od.get_target(item_assoc)
+                HeroText += '\t' + od.get_name(item) + '\n'
+
+
+            HeroText += "\n"
+
+
+        else:
+            monster_present = True
+            # Name
+            name = od.get_name(creature)
+            MonstersTexts += f"Name: {name}\n"
+
+            # Lives
+            lives = od.get_slot_value(creature, "lives")
+            MonstersTexts += f"Lives: {lives}\n"
+
+            # Level
+            Tile = od.get_target(od.get_outgoing(creature, "StandingTile")[0])
+            Level = od.get_source(od.get_incoming(Tile, "LevelTiles")[0])
+            MonstersTexts += f"Located in level: {od.get_name(Level)} at tile: {od.get_name(Tile)}\n"
+
+
+            MonstersTexts += "-------------\n"
+
+    # Print lives
+    lives = od.get_slot_value(od.get_all_instances("Hero")[0][1], "lives")
+    txt += f"[{lives} lives] "
+
+    txt = HeroText
+    if monster_present:
+        txt += MonstersTexts
     return txt
 
 
