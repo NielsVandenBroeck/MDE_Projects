@@ -445,7 +445,7 @@ m_rpg_def = """
     :StandingTile (monster -> tile5)
 """
 
-# TODO: add a valid instance of the additional runtime-information
+# DONE: add a valid instance of the additional runtime-information
 rt_m_rpg_def = m_rpg_def + """
     c:Clock{
         time = 0;

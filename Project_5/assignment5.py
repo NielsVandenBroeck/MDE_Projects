@@ -17,12 +17,20 @@ def get_rules(current_state, rt_mm):
     matcher_rewriter = RuleMatcherRewriter(current_state, rt_mm, rt_mm_ramified)
 
     # TODO: Load other rules grouped by priority, add to action generator in order of priority
-    # Start with rules_0 = ...
-    # This rule should come last!
-    rules_x = load_rules(current_state, get_filename, rt_mm_ramified,
-                         ['advance_time'])
+    rules = []
 
-    return PriorityActionGenerator(matcher_rewriter, [rules_x])
+    rules.append(load_rules(current_state, get_filename, rt_mm_ramified,
+                         ['move_hero']))
+
+
+    rules.append(load_rules(current_state, get_filename, rt_mm_ramified,
+                         ['check_game_over']))
+
+    # This rule should come last!
+    rules.append(load_rules(current_state, get_filename, rt_mm_ramified,
+                         ['advance_time']))
+
+    return PriorityActionGenerator(matcher_rewriter, rules)
 
 
 class TerminationCondition:
@@ -33,6 +41,16 @@ class TerminationCondition:
         # Dict in the format "cause": "pattern"
         patterns_cs = {
             # TODO: Put the patterns for your termination conditions here
+            "Lives are zero or below": """
+                lives:RAM_LowerLives {
+                    condition = `get_slot_value(?, "lives") <= 0`; TODO
+                }
+                """,
+            "All objectives are collected": """
+                addObjectives:RAM_AddObjectives {
+                    condition = `TODO`;
+                }
+                """
         }
 
         self.patterns = {cause: parse_od(state, pattern_cs, self.rt_mm_ramified)
