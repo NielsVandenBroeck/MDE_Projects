@@ -1,0 +1,16 @@
+hero:RAM_Hero
+
+heroState:RAM_CreatureState {
+    RAM_moved = `get_value(this) == False`;
+}
+isHeroState:RAM_CreatureState_ass (hero -> heroState)
+
+standingDoor:RAM_Door
+connectedDoor:RAM_Door
+key:RAM_Key
+
+standingTile:RAM_StandingTile (hero -> standingDoor)
+areConnected:RAM_ConnectingDoor (standingDoor -> connectedDoor)
+
+doorKey:RAM_DoorKey(standingDoor -> key)
+heroKey:RAM_HeroInventory(hero -> key)

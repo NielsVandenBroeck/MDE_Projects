@@ -1,0 +1,9 @@
+hero:RAM_Hero
+
+standingTile:RAM_Tile
+
+isStandingTile:RAM_StandingTile (hero -> standingTile)
+
+key:RAM_Key
+
+tileKey:RAM_StandardTileItem (standingTile -> key)

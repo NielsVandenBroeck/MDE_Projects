@@ -16,17 +16,18 @@ def get_rules(current_state, rt_mm):
     rt_mm_ramified = ramify(current_state, rt_mm)
     matcher_rewriter = RuleMatcherRewriter(current_state, rt_mm, rt_mm_ramified)
 
-    # TODO: Load other rules grouped by priority, add to action generator in order of priority
+    # DONE: Load other rules grouped by priority, add to action generator in order of priority
     rules = []
 
+    # Moving
     rules.append(load_rules(current_state, get_filename, rt_mm_ramified,
-                         ['move_hero']))
+                         ['move_hero_standardTile', 'move_hero_door', 'move_hero_trap', 'use_door']))
 
+    # Picking up items
+    rules.append(load_rules(current_state, get_filename, rt_mm_ramified, ['pick_up_key', 'pick_up_objective']))
 
-    # This rule should come last!
-    rules.append(load_rules(current_state, get_filename, rt_mm_ramified,
-                         ['advance_time']))
-
+    # Advance time
+    rules.append(load_rules(current_state, get_filename, rt_mm_ramified, ['advance_time']))
     return PriorityActionGenerator(matcher_rewriter, rules)
 
 
@@ -37,19 +38,28 @@ class TerminationCondition:
 
         # Dict in the format "cause": "pattern"
         patterns_cs = {
-            # TODO: Put the patterns for your termination conditions here
+            # DONE: Put the patterns for your termination conditions here
             "Lives are zero or below": """
-                lives:RAM_LowerLives {
-                    condition = `get_slot_value(?, "lives") <= 0`; TODO
+                lives:RAM_Hero {
+                    condition = `get_slot_value(this, "lives") <= 0`;
                 }
                 """,
             "All objectives are collected": """
-                addObjectives:RAM_AddObjectives {
-                    condition = `TODO`;
+                objectives:RAM_Hero {
+                    condition = ```
+                        totalObjectives = 0
+                        objectives = get_all_instances("Objective")
+                        for obj in objectives:
+                            totalObjectives += get_slot_value(obj[1], "points")
+                    
+                        worldState = get_all_instances("WorldState")[0][1]
+                        collected = get_slot_value(worldState,"collectedPoints")
+
+                        collected == totalObjectives
+                    ```;
                 }
                 """
         }
-        patterns_cs = {}
 
         self.patterns = {cause: parse_od(state, pattern_cs, self.rt_mm_ramified)
                          for cause, pattern_cs in patterns_cs.items()}

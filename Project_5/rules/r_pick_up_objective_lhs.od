@@ -1,0 +1,24 @@
+hero:RAM_Hero
+
+standingTile:RAM_Tile
+
+isStandingTile:RAM_StandingTile (hero -> standingTile)
+
+objective:RAM_Objective
+
+tileObjective:RAM_StandardTileItem (standingTile -> objective)
+
+world:RAM_World
+
+worldState:RAM_WorldState
+
+
+
+
+
+
+
+
+
+
+worldStateAss:RAM_WorldState_ass (world -> worldState)

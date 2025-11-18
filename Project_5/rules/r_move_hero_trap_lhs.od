@@ -1,0 +1,14 @@
+hero:RAM_Hero {
+    RAM_lives = `get_value(this)`;
+}
+
+heroState:RAM_CreatureState {
+    RAM_moved = `get_value(this) == False`;
+}
+isHeroState:RAM_CreatureState_ass (hero -> heroState)
+
+standingTile:RAM_Tile
+trap:RAM_Trap
+
+StandingTile:RAM_StandingTile (hero -> standingTile)
+areAdjacent:RAM_AdjacentTile (standingTile -> trap)

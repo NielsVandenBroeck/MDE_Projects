@@ -1,0 +1,22 @@
+hero:RAM_Hero
+
+standingTile:RAM_Tile
+
+isStandingTile:RAM_StandingTile (hero -> standingTile)
+
+objective:RAM_Objective
+
+collectObjective:RAM_HeroInventory (hero -> objective)
+
+world:RAM_World
+
+worldState:RAM_WorldState {
+    condition = ```
+        currentPoints = get_slot_value(this, "collectedPoints")
+        collectingPoints = get_slot_value(matched("objective"), "points")
+        set_slot_value(this, "collectedPoints", currentPoints + collectingPoints)
+        True
+    ```;
+}
+
+worldStateAss:RAM_WorldState_ass (world -> worldState)

@@ -1,6 +1,0 @@
-hero:RAM_Hero
-
-heroState:RAM_CreatureState {
-    RAM_moved = `get_value(this) == True`;
-}
-isHeroState:RAM_CreatureState_ass (hero -> heroState)

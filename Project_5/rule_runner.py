@@ -2,8 +2,8 @@ from api.od import ODAPI
 from bootstrap.scd import bootstrap_scd
 from state.devstate import DevState
 from util.loader import parse_and_check, load_rules
-from Project_4.models import mm_rpg_def, m_rpg_def, rt_mm_rpg_def, rt_m_rpg_def
-from Project_4.simulator import RPGSimulator
+from Project_5.models import mm_rpg_def, m_rpg_def, rt_mm_rpg_def, rt_m_rpg_def
+from Project_5.simulator import RPGSimulator
 
 from assignment5 import get_rules, TerminationCondition
 
