@@ -1,0 +1,13 @@
+hero:RAM_Hero {
+    RAM_lives = `get_value(this)`;
+}
+
+monster:RAM_Monster {
+    RAM_lives = `get_value(this)`;
+    condition = `get_slot_value(this, "lives") == get_slot_value(matched("hero"), "lives")`;
+}
+
+tile:RAM_Tile
+
+heroTile:RAM_StandingTile (hero -> tile)
+monsterTile:RAM_StandingTile (monster -> tile)

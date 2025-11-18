@@ -26,6 +26,13 @@ def get_rules(current_state, rt_mm):
     # Picking up items
     rules.append(load_rules(current_state, get_filename, rt_mm_ramified, ['pick_up_key', 'pick_up_objective']))
 
+    # Monster moving
+    rules.append(load_rules(current_state, get_filename, rt_mm_ramified, ['move_monster']))
+
+
+    # Fighting
+    rules.append(load_rules(current_state, get_filename, rt_mm_ramified, ['win_fight','lose_fight','draw_fight']))
+
     # Advance time
     rules.append(load_rules(current_state, get_filename, rt_mm_ramified, ['advance_time']))
     return PriorityActionGenerator(matcher_rewriter, rules)

@@ -1,0 +1,12 @@
+hero:RAM_Hero {
+    RAM_lives = `get_value(this)`;
+}
+
+monster:RAM_Monster {
+    RAM_lives = `get_value(this) - 1`;
+}
+
+tile:RAM_Tile
+
+heroTile:RAM_StandingTile (hero -> tile)
+monsterTile:RAM_StandingTile (monster -> tile)

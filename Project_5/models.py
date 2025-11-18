@@ -384,7 +384,7 @@ m_rpg_def = """
     :DoorKey (door2 -> key1)
     
     :StandingTile (myHero -> tile2)
-    :StandingTile (monster -> tile5)
+    :StandingTile (monster -> door1)
 """
 
 # DONE: add a valid instance of the additional runtime-information

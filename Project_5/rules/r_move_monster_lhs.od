@@ -8,5 +8,19 @@ isMonsterState:RAM_CreatureState_ass (monster -> monsterState)
 standingTile:RAM_Tile
 targetTile:RAM_Tile
 
+playingLevel:RAM_Level {
+    condition = ```
+        heroFound = False
+        hero = get_all_instances("Hero")[0][1]
+        heroT = get_target(get_outgoing(hero, "StandingTile")[0])
+        for assoc in get_outgoing(this, "LevelTiles"):
+            if get_target(assoc) == heroT:
+                heroFound = True
+        heroFound
+    ```;
+}
+
+isMonsterLevel:RAM_LevelTiles(playingLevel -> standingTile)
+
 isStandingTile:RAM_StandingTile (monster -> standingTile)
 areAdjacent:RAM_AdjacentTile (standingTile -> targetTile)

@@ -8,5 +8,20 @@ isMonsterState:RAM_CreatureState_ass (monster -> monsterState)
 standingTile:RAM_Tile
 targetTile:RAM_Tile
 
+playingLevel:RAM_Level
+
+
+
+
+
+
+
+
+
+
+
+isMonsterLevel:RAM_LevelTiles(playingLevel -> standingTile)
+
 newStandingTile:RAM_StandingTile (monster -> targetTile)
 areAdjacent:RAM_AdjacentTile (standingTile -> targetTile)
+
