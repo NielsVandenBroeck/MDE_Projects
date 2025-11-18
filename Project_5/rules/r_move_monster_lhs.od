@@ -1,0 +1,12 @@
+monster:RAM_Monster
+
+monsterState:RAM_CreatureState {
+    RAM_moved = `get_value(this) == False`;
+}
+isMonsterState:RAM_CreatureState_ass (monster -> monsterState)
+
+standingTile:RAM_Tile
+targetTile:RAM_Tile
+
+isStandingTile:RAM_StandingTile (monster -> standingTile)
+areAdjacent:RAM_AdjacentTile (standingTile -> targetTile)
