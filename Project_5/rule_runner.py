@@ -18,6 +18,9 @@ def render_text(od: ODAPI):
     creatures = od.get_all_instances("Creature")
     for creature in creatures:
         creature = creature[1]
+        creatureState = od.get_target(od.get_outgoing(creature, "CreatureState_ass")[0])
+        creatureMoved = od.get_slot_value(creatureState, "moved")
+        creatureFought = od.get_slot_value(creatureState, "fought")
         if od.get_type_name(creature) == "Hero":
             HeroText = "---HERO---\n"
 
@@ -29,10 +32,16 @@ def render_text(od: ODAPI):
             lives = od.get_slot_value(creature, "lives")
             HeroText += f"Lives: {lives}\n"
 
+            # Fought
+            HeroText += f"Fought: {creatureFought}\n"
+
             # Level
             heroTile = od.get_target(od.get_outgoing(creature, "StandingTile")[0])
             heroLevel = od.get_source(od.get_incoming(heroTile, "LevelTiles")[0])
             HeroText += f"Located in level: {od.get_name(heroLevel)} at tile: {od.get_name(heroTile)}\n"
+
+            # Moved
+            HeroText += f"Moved: {creatureMoved}\n"
 
             # Inventory
             HeroText += "Inventory:\n"
@@ -43,12 +52,17 @@ def render_text(od: ODAPI):
                 item = od.get_target(item_assoc)
                 HeroText += '\t' + od.get_name(item) + '\n'
 
+            # Collected Points
+            worldState = od.get_all_instances("WorldState")[0][1]
+            collectedPoints = od.get_slot_value(worldState, "collectedPoints")
+            HeroText += f"Collected points: {collectedPoints}\n"
 
             HeroText += "\n"
 
 
         else:
             monster_present = True
+
             # Name
             name = od.get_name(creature)
             MonstersTexts += f"Name: {name}\n"
@@ -57,11 +71,16 @@ def render_text(od: ODAPI):
             lives = od.get_slot_value(creature, "lives")
             MonstersTexts += f"Lives: {lives}\n"
 
+            # Fought
+            MonstersTexts += f"Fought: {creatureFought}\n"
+
             # Level
             Tile = od.get_target(od.get_outgoing(creature, "StandingTile")[0])
             Level = od.get_source(od.get_incoming(Tile, "LevelTiles")[0])
             MonstersTexts += f"Located in level: {od.get_name(Level)} at tile: {od.get_name(Tile)}\n"
 
+            # Moved
+            MonstersTexts += f"Moved: {creatureMoved}\n"
 
             MonstersTexts += "-------------\n"
 

@@ -7,6 +7,11 @@ monster:RAM_Monster {
     condition = `get_slot_value(this, "lives") > get_slot_value(matched("hero"), "lives")`;
 }
 
+heroState:RAM_CreatureState{
+    RAM_fought = `get_value(this) == False`;
+}
+isHeroState:RAM_CreatureState_ass (hero -> heroState)
+
 monsterState:RAM_CreatureState {
     RAM_fought = `get_value(this) == False`;
 }
