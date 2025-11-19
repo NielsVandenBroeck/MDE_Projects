@@ -237,6 +237,11 @@ rt_mm_rpg_def = mm_rpg_def + """
         optional = False;
     }
     
+    CreatureState_fought:AttributeLink (CreatureState -> Boolean) {
+        name = "fought";
+        optional = False;
+    }
+    
     ### ASSOCIATES
     WorldState_ass:Association (World -> WorldState) {
         target_lower_cardinality = 1;
@@ -399,10 +404,12 @@ rt_m_rpg_def = m_rpg_def + """
     
     myHeroState:CreatureState {
         moved = False;
+        fought = False;
     }
     
     monsterState:CreatureState {
         moved = False;
+        fought = False;
     }
     
     #Links

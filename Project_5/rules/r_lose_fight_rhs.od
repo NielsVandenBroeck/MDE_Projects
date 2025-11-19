@@ -6,6 +6,11 @@ monster:RAM_Monster {
     RAM_lives = `get_value(this)`;
 }
 
+monsterState:RAM_CreatureState {
+    RAM_fought = `True`;
+}
+isMonsterState:RAM_CreatureState_ass (monster -> monsterState)
+
 tile:RAM_Tile
 
 heroTile:RAM_StandingTile (hero -> tile)
