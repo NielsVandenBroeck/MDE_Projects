@@ -1,0 +1,7 @@
+monster:RAM_Monster
+
+standingTile:RAM_Tile
+targetObstacle:RAM_Obstacle
+
+isStandingTile:RAM_StandingTile (monster -> standingTile)
+areAdjacent:RAM_AdjacentTile (standingTile -> targetObstacle)
