@@ -1,0 +1,3 @@
+tilePlace:RAM_PNPlace {
+    condition = 'get_name(this).startswith("hero")'
+{
