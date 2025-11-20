@@ -1,0 +1,221 @@
+# Auto generated topified runtime Meta-Model, merged RPG and Petri Nets
+State:Class {
+    abstract = True;
+}
+CreatureState:Class
+Trap:Class
+Level:Class {
+    constraint = ```
+        conform = True
+        
+        # Name cannot be empty
+        if len(get_value(get_slot(this, "name"))) == 0: conform = False
+        conform
+    ```;
+}
+Hero:Class {
+    lower_cardinality = 1;
+    upper_cardinality = 1;
+}
+PNPlaceState:Class
+World:Class {
+    upper_cardinality = 1;
+    constraint = ```
+        conform = True;
+        
+        ### Objectives cannot sum to more than 100 total ###
+        objectives = get_all_instances("Objective")
+        sum = 0
+        for objective in objectives:
+            sum += get_value(get_slot(objective[1], "points"))
+        if sum > 100: conform = False
+        
+        conform
+    ```;
+    lower_cardinality = 1;
+}
+Monster:Class
+PNPlace:Class
+Top:Class {
+    abstract = True;
+}
+Obstacle:Class
+Door:Class
+Item:Class
+Creature:Class {
+    constraint = ```
+        conform = True
+        
+        # Lives cannot be negative
+        if get_value(get_slot(this, "lives")) < 0: conform = False
+        
+        conform
+    ```;
+    abstract = True;
+}
+Clock:Class
+WorldState:Class
+PNTransition:Class
+Key:Class
+PNConnectable:Class {
+    abstract = True;
+}
+Objective:Class {
+    constraint = ```
+        conform = True
+        
+        # Points cannot be negative
+        if get_value(get_slot(this, "points")) < 0: conform = False
+        
+        conform
+    ```;
+}
+StandardTile:Class
+Tile:Class {
+    abstract = True;
+}
+:Inheritance (CreatureState -> State)
+:Inheritance (PNTransition -> PNConnectable)
+:Inheritance (Tile -> Top)
+:Inheritance (PNPlaceState -> Top)
+:Inheritance (Monster -> Creature)
+:Inheritance (Hero -> Creature)
+:Inheritance (Clock -> Top)
+:Inheritance (Trap -> Tile)
+:Inheritance (Item -> Top)
+:Inheritance (World -> Top)
+:Inheritance (State -> Top)
+:Inheritance (Door -> Tile)
+:Inheritance (Objective -> Item)
+:Inheritance (Key -> Item)
+:Inheritance (StandardTile -> Tile)
+:Inheritance (WorldState -> State)
+:Inheritance (Creature -> Top)
+:Inheritance (PNConnectable -> Top)
+:Inheritance (PNPlace -> PNConnectable)
+:Inheritance (Obstacle -> Tile)
+PNPlaceState_numTokens:AttributeLink (PNPlaceState -> Integer) {
+    name = "numTokens";
+    optional = False;
+    constraint = `"numTokens cannot be negative" if get_value(get_target(this)) < 0 else None`;
+}
+Clock_time:AttributeLink (Clock -> Integer) {
+    optional = False;
+    name = "time";
+}
+CreatureState_moved:AttributeLink (CreatureState -> Boolean) {
+    name = "moved";
+    optional = False;
+}
+Level_name:AttributeLink (Level -> String) {
+    name = "name";
+    optional = False;
+}
+WorldState_collectedPoints:AttributeLink (WorldState -> Integer) {
+    optional = False;
+    name = "collectedPoints";
+}
+CreatureState_fought:AttributeLink (CreatureState -> Boolean) {
+    optional = False;
+    name = "fought";
+}
+CreatureState_ass:Association (Creature -> CreatureState) {
+    target_lower_cardinality = 1;
+    target_upper_cardinality = 1;
+}
+ConnectingDoor:Association (Door -> Door) {
+    target_lower_cardinality = 1;
+    target_upper_cardinality = 1;
+    constraint = ```
+        conform = True;
+        
+        # Connecting door must be in another level
+        target_level_ass = get_incoming(get_target(this), "LevelTiles")[0]
+        source_level_ass = get_incoming(get_source(this), "LevelTiles")[0]
+        if get_source(target_level_ass) == get_source(source_level_ass): conform = False;
+        conform
+    ```;
+}
+StandardTileItem:Association (StandardTile -> Item) {
+    target_lower_cardinality = 0;
+    target_upper_cardinality = 1;
+}
+inh_arc:Association (PNPlace -> PNTransition)
+WorldLevels:Association (World -> Level) {
+    target_lower_cardinality = 1;
+}
+WorldState_ass:Association (World -> WorldState) {
+    target_upper_cardinality = 1;
+    target_lower_cardinality = 1;
+}
+pn_of:Association (PNPlaceState -> PNPlace) {
+    target_lower_cardinality = 1;
+    target_upper_cardinality = 1;
+    source_lower_cardinality = 1;
+    source_upper_cardinality = 1;
+}
+arc:Association (PNConnectable -> PNConnectable)
+DoorKey:Association (Door -> Key) {
+    target_upper_cardinality = 1;
+    target_lower_cardinality = 1;
+}
+AdjacentTile:Association (Tile -> Tile) {
+    target_lower_cardinality = 0;
+    target_upper_cardinality = 4;
+    constraint = ```
+        conform = True;
+        # Neighboring tile cannot be itself
+        if get_source(this) == get_target(this): conform = False;
+        
+        # # Neighbors must be linked both ways
+        # other_assoc = get_outgoing(get_target(this), "AdjacentTile")
+        # if not other_assoc:
+        #     conform = False
+        # elif len(other_assoc) != 1:
+        #     conform = False
+        # elif get_target(other_assoc[0]) != get_source(this):
+        #     conform = False
+        
+        # Neighbors must be in the same level
+        source_assoc = get_incoming(get_source(this), "LevelTiles")
+        target_assoc = get_incoming(get_target(this), "LevelTiles")
+        if not source_assoc or not target_assoc:
+            # Tile must belong to a level
+            conform = False
+        elif len(source_assoc) != 1 or len(target_assoc) != 1:
+            conform = False
+        elif get_source(source_assoc[0]) != get_source(target_assoc[0]):
+            conform = False
+        conform
+    ```;
+}
+HeroInventory:Association (Hero -> Item)
+LevelTiles:Association (Level -> Tile) {
+    target_lower_cardinality = 1;
+}
+StandingTile:Association (Creature -> Tile) {
+    constraint = ```
+        conform = True;
+        # Creatures cannot stand on obstacle tile
+        target = get_target(this)
+        if get_type_name(target) == "Obstacle": conform = False;
+        
+        conform
+    ```;
+    target_upper_cardinality = 1;
+}
+generic_link:Association (Top -> Top)
+:Inheritance (generic_link -> Top)
+:Inheritance (Level -> Top)
+AdjacentTile_direction:AttributeLink (AdjacentTile -> String) {
+    name = "direction";
+    optional = False;
+}
+Creature_lives:AttributeLink (Creature -> Integer) {
+    name = "lives";
+    optional = False;
+}
+Objective_points:AttributeLink (Objective -> Integer) {
+    optional = False;
+    name = "points";
+}
