@@ -1,0 +1,36 @@
+tile1:RAM_Tile
+tile2:RAM_Tile
+
+tile1HeroPlace:RAM_PNPlace
+tile1MonsterPlace:RAM_PNPlace
+
+genericLink1:RAM_generic_link(tile1->tile1HeroPlace)
+
+tile2HeroPlace:RAM_PNPlace
+tile2MonsterPlace:RAM_PNPlace
+
+genericLink2:RAM_generic_link(tile2->tile2HeroPlace)
+
+areAdjacent1:RAM_AdjacentTile (tile1 -> tile2)
+areAdjacent2:RAM_AdjacentTile (tile2 -> tile1)
+
+#tileHeroTransition1:RAM_PNTransition
+#tileHeroLeftArc1:RAM_arc (tile1HeroPlace -> tileHeroTransition1)
+#tileHeroRightArc1:RAM_arc (tileHeroTransition1 -> tile2HeroPlace)
+#tileHeroTransition2:RAM_PNTransition
+#tileHeroLeftArc2:RAM_arc (tile2HeroPlace -> tileHeroTransition2)
+#tileHeroRightArc2:RAM_arc (tileHeroTransition2 -> tile1HeroPlace)
+
+#tileMonsterTransition1:RAM_PNTransition
+#tileMonsterLeftArc1:RAM_arc (tile1MonsterPlace -> tileMonsterTransition1)
+#tileMonsterRightArc1:RAM_arc (tileMonsterTransition1 -> tile2MonsterPlace)
+#tileMonsterTransition2:RAM_PNTransition
+#tileMonsterLeftArc2:RAM_arc (tile2MonsterPlace -> tileMonsterTransition2)
+#tileMonsterRightArc2:RAM_arc (tileMonsterTransition2 -> tile1MonsterPlace)
+
+adjacencyPNTiles1:RAM_generic_link (tile1 -> tile2)
+adjacencyPNTiles2:RAM_generic_link (tile2 -> tile1)
+
+
+
+

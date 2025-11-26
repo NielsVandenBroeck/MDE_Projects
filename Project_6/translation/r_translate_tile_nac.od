@@ -1,0 +1,4 @@
+tile:RAM_Tile
+tileHeroPlace:RAM_PNPlace
+
+genericLink:RAM_generic_link(tile->tileHeroPlace)

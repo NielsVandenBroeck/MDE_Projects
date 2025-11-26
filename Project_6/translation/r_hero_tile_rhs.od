@@ -1,0 +1,12 @@
+hero:RAM_Hero
+standingTile:RAM_Tile
+
+isStandingTile:RAM_StandingTile (hero -> standingTile)
+
+tileHeroPlace:RAM_PNPlace
+tileToPNPLink:RAM_generic_link(standingTile->tileHeroPlace)
+
+tileHeroPlaceState:RAM_PNPlaceState {
+    RAM_numTokens = `1`;
+}
+heroStateToHero:RAM_pn_of (tileHeroPlaceState -> tileHeroPlace)

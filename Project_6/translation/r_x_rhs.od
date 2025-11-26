@@ -1,3 +1,0 @@
-myPlace = RAM_PNPlace {
-    name = 'f"hero_{get_name(matched('aTile))}"'
-}
