@@ -5,4 +5,5 @@ tileMonsterPlace:RAM_PNPlace
 tileObjectivePlace:RAM_PNPlace
 tileKeyPlace:RAM_PNPlace
 
-tileToPNPLink:RAM_generic_link(tile->tileHeroPlace)
+tileToHeroPlace:RAM_generic_link(tile->tileHeroPlace)
+tileToMonsterPlace:RAM_generic_link(tile->tileMonsterPlace)

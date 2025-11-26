@@ -1,15 +1,17 @@
 tile1:RAM_Tile
 tile2:RAM_Tile
 
+areAdjacent1:RAM_AdjacentTile (tile1->tile2)
+areAdjacent2:RAM_AdjacentTile (tile2->tile1)
+
 tile1HeroPlace:RAM_PNPlace
-tile1MonsterPlace:RAM_PNPlace
-
-genericLink1:RAM_generic_link(tile1->tile1HeroPlace)
-
 tile2HeroPlace:RAM_PNPlace
+
+isHeroPlaceOf1:RAM_generic_link(tile1->tile1HeroPlace)
+isHeroPlaceOf2:RAM_generic_link(tile2->tile2HeroPlace)
+
+tile1MonsterPlace:RAM_PNPlace
 tile2MonsterPlace:RAM_PNPlace
 
-genericLink2:RAM_generic_link(tile2->tile2HeroPlace)
-
-areAdjacent1:RAM_AdjacentTile (tile1 -> tile2)
-areAdjacent2:RAM_AdjacentTile (tile2 -> tile1)
+isMonsterPlaceOf1:RAM_generic_link(tile1->tile1MonsterPlace)
+isMonsterPlaceOf2:RAM_generic_link(tile2->tile2MonsterPlace)

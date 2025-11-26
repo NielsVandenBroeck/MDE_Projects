@@ -1,0 +1,169 @@
+
+tileObjectivePlace4:PNPlace
+tileHeroPlace7:PNPlace
+tileMonsterPlace3:PNPlace
+tileObjectivePlace5:PNPlace
+tileObjectivePlace6:PNPlace
+tileMonsterPlace:PNPlace
+tileKeyPlace1:PNPlace
+tileMonsterPlace2:PNPlace
+tileKeyPlace4:PNPlace
+tileMonsterPlace5:PNPlace
+tileMonsterPlace6:PNPlace
+tileHeroPlace5:PNPlace
+tileMonsterPlace1:PNPlace
+tileHeroPlace4:PNPlace
+tileObjectivePlace7:PNPlace
+tileKeyPlace6:PNPlace
+tileHeroPlace3:PNPlace
+tileObjectivePlace2:PNPlace
+tileHeroPlace6:PNPlace
+tileHeroPlace2:PNPlace
+tileKeyPlace2:PNPlace
+tileObjectivePlace3:PNPlace
+tileMonsterPlace0:PNPlace
+tileKeyPlace0:PNPlace
+tileMonsterPlace4:PNPlace
+tileObjectivePlace:PNPlace
+tileHeroPlace:PNPlace
+tileMonsterPlace7:PNPlace
+tileKeyPlace:PNPlace
+tileHeroPlace1:PNPlace
+tileKeyPlace5:PNPlace
+tileObjectivePlace1:PNPlace
+tileKeyPlace3:PNPlace
+tileHeroPlace0:PNPlace
+tileKeyPlace7:PNPlace
+tileObjectivePlace0:PNPlace
+myHero:Hero {
+    lives = 10;
+}
+key1:Key
+tile4:Trap
+myWorldState:WorldState {
+    collectedPoints = 0;
+}
+obj1:Objective {
+    points = 10;
+}
+obj2:Objective {
+    points = 90;
+}
+level1:Level {
+    name = "level1";
+}
+level2:Level {
+    name = "level2";
+}
+myHeroState:CreatureState {
+    fought = False;
+    moved = False;
+}
+monsterState:CreatureState {
+    fought = False;
+    moved = False;
+}
+tile6:Obstacle
+monster:Monster {
+    lives = 5;
+}
+c:Clock {
+    time = 0;
+}
+tile1:StandardTile
+tile3:StandardTile
+tile7:StandardTile
+tile2:StandardTile
+tile5:StandardTile
+world:World
+door1:Door
+door2:Door
+:ConnectingDoor (door1 -> door2)
+:ConnectingDoor (door2 -> door1)
+tileToHeroPlace:generic_link (door1 -> tileHeroPlace)
+tileToMonsterPlace6:generic_link (tile5 -> tileMonsterPlace6)
+tileToMonsterPlace1:generic_link (tile3 -> tileMonsterPlace1)
+tileToMonsterPlace3:generic_link (door2 -> tileMonsterPlace3)
+tileToHeroPlace3:generic_link (door2 -> tileHeroPlace3)
+tileToMonsterPlace:generic_link (door1 -> tileMonsterPlace)
+tileToMonsterPlace4:generic_link (tile7 -> tileMonsterPlace4)
+tileToHeroPlace4:generic_link (tile7 -> tileHeroPlace4)
+tileToMonsterPlace2:generic_link (tile6 -> tileMonsterPlace2)
+tileToHeroPlace2:generic_link (tile6 -> tileHeroPlace2)
+tileToHeroPlace1:generic_link (tile3 -> tileHeroPlace1)
+tileToHeroPlace6:generic_link (tile5 -> tileHeroPlace6)
+tileToHeroPlace0:generic_link (tile1 -> tileHeroPlace0)
+tileToMonsterPlace0:generic_link (tile1 -> tileMonsterPlace0)
+tileToMonsterPlace7:generic_link (tile4 -> tileMonsterPlace7)
+tileToMonsterPlace5:generic_link (tile2 -> tileMonsterPlace5)
+tileToHeroPlace5:generic_link (tile2 -> tileHeroPlace5)
+tileToHeroPlace7:generic_link (tile4 -> tileHeroPlace7)
+:StandardTileItem (tile3 -> key1)
+:StandardTileItem (tile7 -> obj2)
+:StandardTileItem (tile1 -> obj1)
+:DoorKey (door1 -> key1)
+:DoorKey (door2 -> key1)
+:CreatureState_ass (myHero -> myHeroState)
+:CreatureState_ass (monster -> monsterState)
+:AdjacentTile (tile7 -> tile5) {
+    direction = "South";
+}
+:AdjacentTile (tile5 -> tile6) {
+    direction = "East";
+}
+:AdjacentTile (tile6 -> tile5) {
+    direction = "West";
+}
+:AdjacentTile (tile2 -> tile1) {
+    direction = "West";
+}
+:AdjacentTile (tile1 -> tile2) {
+    direction = "East";
+}
+:AdjacentTile (tile2 -> tile3) {
+    direction = "East";
+}
+:AdjacentTile (tile4 -> door1) {
+    direction = "East";
+}
+:AdjacentTile (tile4 -> tile2) {
+    direction = "North";
+}
+:AdjacentTile (door2 -> tile5) {
+    direction = "North";
+}
+:AdjacentTile (door1 -> tile4) {
+    direction = "West";
+}
+:AdjacentTile (door1 -> tile3) {
+    direction = "North";
+}
+:AdjacentTile (tile5 -> door2) {
+    direction = "South";
+}
+:AdjacentTile (tile3 -> door1) {
+    direction = "South";
+}
+:AdjacentTile (tile3 -> tile2) {
+    direction = "West";
+}
+:AdjacentTile (tile2 -> tile4) {
+    direction = "South";
+}
+:AdjacentTile (tile5 -> tile7) {
+    direction = "North";
+}
+:WorldState_ass (world -> myWorldState)
+:LevelTiles (level1 -> tile3)
+:LevelTiles (level2 -> tile7)
+:LevelTiles (level2 -> tile5)
+:LevelTiles (level2 -> tile6)
+:LevelTiles (level2 -> door2)
+:LevelTiles (level1 -> tile2)
+:LevelTiles (level1 -> tile1)
+:LevelTiles (level1 -> tile4)
+:LevelTiles (level1 -> door1)
+:WorldLevels (world -> level1)
+:WorldLevels (world -> level2)
+:StandingTile (myHero -> tile2)
+:StandingTile (monster -> tile5)

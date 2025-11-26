@@ -1,5 +1,5 @@
 tile1:RAM_Tile
 tile2:RAM_Tile
 
-adjacencyPNTiles1:RAM_generic_link (tile1 -> tile2)
-adjacencyPNTiles2:RAM_generic_link (tile2 -> tile1)
+adjacencyTile1:RAM_generic_link (tile1->tile2)
+adjacencyTile2:RAM_generic_link (tile2->tile1)

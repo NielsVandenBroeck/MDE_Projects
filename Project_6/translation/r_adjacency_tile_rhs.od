@@ -1,36 +1,40 @@
 tile1:RAM_Tile
 tile2:RAM_Tile
 
+areAdjacent1:RAM_AdjacentTile (tile1->tile2)
+areAdjacent2:RAM_AdjacentTile (tile2->tile1)
+
 tile1HeroPlace:RAM_PNPlace
-tile1MonsterPlace:RAM_PNPlace
-
-genericLink1:RAM_generic_link(tile1->tile1HeroPlace)
-
 tile2HeroPlace:RAM_PNPlace
+
+isHeroPlaceOf1:RAM_generic_link(tile1->tile1HeroPlace)
+isHeroPlaceOf2:RAM_generic_link(tile2->tile2HeroPlace)
+
+tile1MonsterPlace:RAM_PNPlace
 tile2MonsterPlace:RAM_PNPlace
 
-genericLink2:RAM_generic_link(tile2->tile2HeroPlace)
+isMonsterPlaceOf1:RAM_generic_link(tile1->tile1MonsterPlace)
+isMonsterPlaceOf2:RAM_generic_link(tile2->tile2MonsterPlace)
 
-areAdjacent1:RAM_AdjacentTile (tile1 -> tile2)
-areAdjacent2:RAM_AdjacentTile (tile2 -> tile1)
+# Make transitions
+tileHeroTransition1:RAM_PNTransition
+tileHeroTransition2:RAM_PNTransition
+tileMonsterTransition1:RAM_PNTransition
+tileMonsterTransition2:RAM_PNTransition
 
-#tileHeroTransition1:RAM_PNTransition
-#tileHeroLeftArc1:RAM_arc (tile1HeroPlace -> tileHeroTransition1)
-#tileHeroRightArc1:RAM_arc (tileHeroTransition1 -> tile2HeroPlace)
-#tileHeroTransition2:RAM_PNTransition
-#tileHeroLeftArc2:RAM_arc (tile2HeroPlace -> tileHeroTransition2)
-#tileHeroRightArc2:RAM_arc (tileHeroTransition2 -> tile1HeroPlace)
+# Connect Left side of transitions
+tileHeroLeftArc1:RAM_arc (tile1HeroPlace->tileHeroTransition1)
+tileHeroLeftArc2:RAM_arc (tile2HeroPlace->tileHeroTransition2)
+tileMonsterLeftArc1:RAM_arc (tile1MonsterPlace->tileMonsterTransition1)
+tileMonsterLeftArc2:RAM_arc (tile1MonsterPlace->tileMonsterTransition2)
 
-#tileMonsterTransition1:RAM_PNTransition
-#tileMonsterLeftArc1:RAM_arc (tile1MonsterPlace -> tileMonsterTransition1)
-#tileMonsterRightArc1:RAM_arc (tileMonsterTransition1 -> tile2MonsterPlace)
-#tileMonsterTransition2:RAM_PNTransition
-#tileMonsterLeftArc2:RAM_arc (tile2MonsterPlace -> tileMonsterTransition2)
-#tileMonsterRightArc2:RAM_arc (tileMonsterTransition2 -> tile1MonsterPlace)
-
-adjacencyPNTiles1:RAM_generic_link (tile1 -> tile2)
-adjacencyPNTiles2:RAM_generic_link (tile2 -> tile1)
-
+# Connect right side of transitions
+tileHeroRightArc1:RAM_arc (tileHeroTransition1->tile1HeroPlace)
+tileHeroRightArc2:RAM_arc (tileHeroTransition2->tile2HeroPlace)
+tileMonsterRightArc1:RAM_arc (tileMonsterTransition1->tile1MonsterPlace)
+tileMonsterRightArc2:RAM_arc (tileMonsterTransition2->tile1MonsterPlace)
 
 
-
+# For NAC
+adjacencyTile1:RAM_generic_link (tile1->tile2)
+adjacencyTile2:RAM_generic_link (tile2->tile1)
