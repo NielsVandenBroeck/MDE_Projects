@@ -1,9 +1,31 @@
 tile:RAM_Tile
+
+# Create Places
 tileHeroPlace:RAM_PNPlace
 tileMonsterPlace:RAM_PNPlace
-
 tileObjectivePlace:RAM_PNPlace
 tileKeyPlace:RAM_PNPlace
 
-tileToHeroPlace:RAM_generic_link(tile->tileHeroPlace)
-tileToMonsterPlace:RAM_generic_link(tile->tileMonsterPlace)
+# Create Place State
+tileHeroPlaceState:RAM_PNPlaceState {
+    RAM_numTokens = `0`;
+}
+tileMonsterPlaceState:RAM_PNPlaceState {
+    RAM_numTokens = `0`;
+}
+tileObjectivePlaceState:RAM_PNPlaceState {
+    RAM_numTokens = `0`;
+}
+tileKeyPlaceState:RAM_PNPlaceState {
+    RAM_numTokens = `0`;
+}
+
+# Link Place State to Place
+HeroStateToHeroPlace:RAM_pn_of (tileHeroPlaceState -> tileHeroPlace)
+MonsterStateToMonsterPlace:RAM_pn_of (tileMonsterPlaceState -> tileMonsterPlace)
+ObjectiveStateToObjectivePlace:RAM_pn_of (tileObjectivePlaceState -> tileObjectivePlace)
+KeyStateToKeyPlace:RAM_pn_of (tileKeyPlaceState -> tileKeyPlace)
+
+# Generic link for NAC and Adjacency Rule
+tileToHeroPlace:RAM_generic_link (tile -> tileHeroPlace)
+tileToMonsterPlace:RAM_generic_link (tile -> tileMonsterPlace)

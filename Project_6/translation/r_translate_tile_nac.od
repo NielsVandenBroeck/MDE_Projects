@@ -1,4 +1,9 @@
 tile:RAM_Tile
-tileHeroPlace:RAM_PNPlace
 
-genericLink:RAM_generic_link(tile->tileHeroPlace)
+# Places
+tileHeroPlace:RAM_PNPlace
+tileMonsterPlace:RAM_PNPlace
+
+# Generic Links
+tileToHeroPlace:RAM_generic_link (tile -> tileHeroPlace)
+tileToMonsterPlace:RAM_generic_link (tile -> tileMonsterPlace)
