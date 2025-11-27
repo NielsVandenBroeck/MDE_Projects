@@ -1,12 +1,18 @@
 hero:RAM_Hero
-standingTile:RAM_Tile
+heroTile:RAM_Tile
+heroPlace:RAM_PNPlace
 
-isStandingTile:RAM_StandingTile (hero -> standingTile)
-
-tileHeroPlace:RAM_PNPlace
-tileToPNPLink:RAM_generic_link(standingTile->tileHeroPlace)
-
-tileHeroPlaceState:RAM_PNPlaceState {
-    RAM_numTokens = `1`;
+# Change amount of tokens
+heroPlaceState:RAM_PNPlaceState {
+    RAM_numTokens = `get_value(this) + 1`;
 }
-heroStateToHero:RAM_pn_of (tileHeroPlaceState -> tileHeroPlace)
+
+# Is Place State
+isPlaceState:RAM_pn_of (heroPlaceState -> heroPlace)
+
+# Standing Tile and Place
+isStandingTile:RAM_StandingTile (hero -> heroTile)
+isTilePlace:RAM_generic_link (heroTile -> heroPlace)
+
+# Link Hero and Hero Place for NAC
+isHeroPlace:RAM_generic_link (hero -> heroPlace)

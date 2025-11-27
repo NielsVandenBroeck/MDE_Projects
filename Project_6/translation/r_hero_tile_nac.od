@@ -1,0 +1,5 @@
+hero:RAM_Hero
+heroPlace:RAM_PNPlace
+
+isHeroPlace:RAM_generic_link (hero -> heroPlace)
+
