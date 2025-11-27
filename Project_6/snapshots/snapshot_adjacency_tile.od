@@ -1,281 +1,425 @@
 
-tileObjectivePlace4:PNPlace
-tileHeroPlace7:PNPlace
-tileMonsterPlace3:PNPlace
-tileObjectivePlace5:PNPlace
-tileObjectivePlace6:PNPlace
-tileMonsterPlace:PNPlace
-tileKeyPlace1:PNPlace
-tileMonsterPlace2:PNPlace
-tileKeyPlace4:PNPlace
-tileMonsterPlace5:PNPlace
-tileMonsterPlace6:PNPlace
-tileHeroPlace5:PNPlace
-tileMonsterPlace1:PNPlace
-tileHeroPlace4:PNPlace
-tileObjectivePlace7:PNPlace
-tileKeyPlace6:PNPlace
-tileHeroPlace3:PNPlace
-tileObjectivePlace2:PNPlace
-tileHeroPlace6:PNPlace
-tileHeroPlace2:PNPlace
-tileKeyPlace2:PNPlace
-tileObjectivePlace3:PNPlace
-tileMonsterPlace0:PNPlace
-tileKeyPlace0:PNPlace
-tileMonsterPlace4:PNPlace
-tileObjectivePlace:PNPlace
-tileHeroPlace:PNPlace
-tileMonsterPlace7:PNPlace
-tileKeyPlace:PNPlace
-tileHeroPlace1:PNPlace
-tileKeyPlace5:PNPlace
-tileObjectivePlace1:PNPlace
-tileKeyPlace3:PNPlace
+world:World
+tileMonsterTransition23:PNTransition
+tileHeroTransition22:PNTransition
+tileMonsterTransition14:PNTransition
+tileMonsterTransition26:PNTransition
+tileMonsterTransition24:PNTransition
+tileMonsterTransition12:PNTransition
+tileHeroTransition24:PNTransition
+tileMonsterTransition25:PNTransition
+tileHeroTransition26:PNTransition
+tileMonsterTransition1:PNTransition
+tileMonsterTransition10:PNTransition
+tileMonsterTransition21:PNTransition
+tileHeroTransition15:PNTransition
+tileMonsterTransition13:PNTransition
+tileMonsterTransition16:PNTransition
+tileMonsterTransition20:PNTransition
+tileHeroTransition2:PNTransition
+tileHeroTransition23:PNTransition
+tileMonsterTransition15:PNTransition
+tileHeroTransition12:PNTransition
+tileHeroTransition1:PNTransition
+tileHeroTransition21:PNTransition
+tileHeroTransition10:PNTransition
+tileMonsterTransition2:PNTransition
+tileMonsterTransition11:PNTransition
+tileHeroTransition25:PNTransition
+tileHeroTransition20:PNTransition
+tileHeroTransition11:PNTransition
+tileHeroTransition14:PNTransition
+tileHeroTransition16:PNTransition
+tileMonsterTransition22:PNTransition
+tileHeroTransition13:PNTransition
 tileHeroPlace0:PNPlace
-tileKeyPlace7:PNPlace
+tileKeyPlace:PNPlace
+tileMonsterPlace5:PNPlace
+tileKeyPlace5:PNPlace
+tileObjectivePlace4:PNPlace
+tileMonsterPlace0:PNPlace
+tileObjectivePlace2:PNPlace
+tileObjectivePlace:PNPlace
 tileObjectivePlace0:PNPlace
+tileMonsterPlace6:PNPlace
+tileObjectivePlace7:PNPlace
+tileMonsterPlace2:PNPlace
+tileObjectivePlace5:PNPlace
+tileHeroPlace6:PNPlace
+tileKeyPlace6:PNPlace
+tileObjectivePlace3:PNPlace
+tileHeroPlace1:PNPlace
+tileKeyPlace1:PNPlace
+tileMonsterPlace1:PNPlace
+tileMonsterPlace3:PNPlace
+tileObjectivePlace6:PNPlace
+tileHeroPlace4:PNPlace
+tileMonsterPlace4:PNPlace
+tileKeyPlace4:PNPlace
+tileHeroPlace:PNPlace
+tileMonsterPlace:PNPlace
+tileKeyPlace3:PNPlace
+tileKeyPlace2:PNPlace
+tileHeroPlace5:PNPlace
+tileHeroPlace2:PNPlace
+tileObjectivePlace1:PNPlace
+tileKeyPlace0:PNPlace
+tileMonsterPlace7:PNPlace
+tileHeroPlace7:PNPlace
+tileHeroPlace3:PNPlace
+tileKeyPlace7:PNPlace
+c:Clock {
+    time = 0;
+}
 myHero:Hero {
     lives = 10;
 }
-key1:Key
-tile4:Trap
-myWorldState:WorldState {
-    collectedPoints = 0;
-}
-obj1:Objective {
-    points = 10;
-}
-obj2:Objective {
-    points = 90;
-}
-level1:Level {
-    name = "level1";
-}
-level2:Level {
-    name = "level2";
+door1:Door
+door2:Door
+tile2:StandardTile
+tile3:StandardTile
+tile7:StandardTile
+tile1:StandardTile
+tile5:StandardTile
+tile6:Obstacle
+monsterState:CreatureState {
+    fought = False;
+    moved = False;
 }
 myHeroState:CreatureState {
     fought = False;
     moved = False;
 }
-monsterState:CreatureState {
-    fought = False;
-    moved = False;
+myWorldState:WorldState {
+    collectedPoints = 0;
 }
-tile6:Obstacle
+tileObjectivePlaceState5:PNPlaceState {
+    numTokens = 0;
+}
+tileObjectivePlaceState:PNPlaceState {
+    numTokens = 0;
+}
+tileHeroPlaceState6:PNPlaceState {
+    numTokens = 0;
+}
+tileObjectivePlaceState7:PNPlaceState {
+    numTokens = 0;
+}
+tileHeroPlaceState:PNPlaceState {
+    numTokens = 0;
+}
+tileHeroPlaceState2:PNPlaceState {
+    numTokens = 0;
+}
+tileObjectivePlaceState1:PNPlaceState {
+    numTokens = 0;
+}
+tileKeyPlaceState3:PNPlaceState {
+    numTokens = 0;
+}
+tileMonsterPlaceState2:PNPlaceState {
+    numTokens = 0;
+}
+tileKeyPlaceState6:PNPlaceState {
+    numTokens = 0;
+}
+tileMonsterPlaceState6:PNPlaceState {
+    numTokens = 0;
+}
+tileMonsterPlaceState5:PNPlaceState {
+    numTokens = 0;
+}
+tileHeroPlaceState5:PNPlaceState {
+    numTokens = 0;
+}
+tileKeyPlaceState:PNPlaceState {
+    numTokens = 0;
+}
+tileKeyPlaceState5:PNPlaceState {
+    numTokens = 0;
+}
+tileMonsterPlaceState7:PNPlaceState {
+    numTokens = 0;
+}
+tileObjectivePlaceState2:PNPlaceState {
+    numTokens = 0;
+}
+tileKeyPlaceState0:PNPlaceState {
+    numTokens = 0;
+}
+tileKeyPlaceState7:PNPlaceState {
+    numTokens = 0;
+}
+tileMonsterPlaceState0:PNPlaceState {
+    numTokens = 0;
+}
+tileObjectivePlaceState6:PNPlaceState {
+    numTokens = 0;
+}
+tileKeyPlaceState4:PNPlaceState {
+    numTokens = 0;
+}
+tileObjectivePlaceState0:PNPlaceState {
+    numTokens = 0;
+}
+tileHeroPlaceState4:PNPlaceState {
+    numTokens = 0;
+}
+tileMonsterPlaceState:PNPlaceState {
+    numTokens = 0;
+}
+tileHeroPlaceState0:PNPlaceState {
+    numTokens = 0;
+}
+tileKeyPlaceState2:PNPlaceState {
+    numTokens = 0;
+}
+tileMonsterPlaceState3:PNPlaceState {
+    numTokens = 0;
+}
+tileHeroPlaceState1:PNPlaceState {
+    numTokens = 0;
+}
+tileHeroPlaceState3:PNPlaceState {
+    numTokens = 0;
+}
+tileMonsterPlaceState4:PNPlaceState {
+    numTokens = 0;
+}
+tileHeroPlaceState7:PNPlaceState {
+    numTokens = 0;
+}
+tileObjectivePlaceState4:PNPlaceState {
+    numTokens = 0;
+}
+tileKeyPlaceState1:PNPlaceState {
+    numTokens = 0;
+}
+tileObjectivePlaceState3:PNPlaceState {
+    numTokens = 0;
+}
+tileMonsterPlaceState1:PNPlaceState {
+    numTokens = 0;
+}
 monster:Monster {
     lives = 5;
 }
-c:Clock {
-    time = 0;
+level2:Level {
+    name = "level2";
 }
-tile1:StandardTile
-tile3:StandardTile
-tile7:StandardTile
-tile2:StandardTile
-tile5:StandardTile
-world:World
-tileHeroTransition24:PNTransition
-tileHeroTransition10:PNTransition
-tileMonsterTransition11:PNTransition
-tileHeroTransition26:PNTransition
-tileMonsterTransition25:PNTransition
-tileHeroTransition16:PNTransition
-tileMonsterTransition14:PNTransition
-tileHeroTransition2:PNTransition
-tileMonsterTransition20:PNTransition
-tileHeroTransition13:PNTransition
-tileMonsterTransition26:PNTransition
-tileHeroTransition21:PNTransition
-tileHeroTransition20:PNTransition
-tileMonsterTransition16:PNTransition
-tileMonsterTransition2:PNTransition
-tileMonsterTransition12:PNTransition
-tileMonsterTransition13:PNTransition
-tileMonsterTransition1:PNTransition
-tileHeroTransition25:PNTransition
-tileMonsterTransition15:PNTransition
-tileMonsterTransition21:PNTransition
-tileMonsterTransition10:PNTransition
-tileMonsterTransition22:PNTransition
-tileHeroTransition23:PNTransition
-tileHeroTransition14:PNTransition
-tileHeroTransition11:PNTransition
-tileHeroTransition15:PNTransition
-tileMonsterTransition23:PNTransition
-tileHeroTransition12:PNTransition
-tileMonsterTransition24:PNTransition
-tileHeroTransition1:PNTransition
-tileHeroTransition22:PNTransition
-door1:Door
-door2:Door
-:ConnectingDoor (door1 -> door2)
-:ConnectingDoor (door2 -> door1)
-adjacencyTile26:generic_link (tile2 -> tile4)
-adjacencyTile25:generic_link (tile7 -> tile5)
-tileToHeroPlace:generic_link (door1 -> tileHeroPlace)
-adjacencyTile21:generic_link (tile1 -> tile2)
-tileToMonsterPlace6:generic_link (tile5 -> tileMonsterPlace6)
-tileToMonsterPlace1:generic_link (tile3 -> tileMonsterPlace1)
-tileToMonsterPlace3:generic_link (door2 -> tileMonsterPlace3)
-tileToHeroPlace3:generic_link (door2 -> tileHeroPlace3)
-adjacencyTile12:generic_link (tile2 -> tile3)
-adjacencyTile11:generic_link (tile2 -> tile1)
-adjacencyTile22:generic_link (tile3 -> tile2)
-adjacencyTile2:generic_link (door1 -> tile4)
-adjacencyTile10:generic_link (tile3 -> door1)
-tileToMonsterPlace:generic_link (door1 -> tileMonsterPlace)
-tileToMonsterPlace4:generic_link (tile7 -> tileMonsterPlace4)
-tileToHeroPlace4:generic_link (tile7 -> tileHeroPlace4)
-tileToMonsterPlace2:generic_link (tile6 -> tileMonsterPlace2)
-tileToHeroPlace2:generic_link (tile6 -> tileHeroPlace2)
-tileToHeroPlace1:generic_link (tile3 -> tileHeroPlace1)
-adjacencyTile14:generic_link (tile5 -> door2)
-adjacencyTile15:generic_link (tile5 -> tile7)
-tileToHeroPlace6:generic_link (tile5 -> tileHeroPlace6)
-tileToHeroPlace0:generic_link (tile1 -> tileHeroPlace0)
-adjacencyTile1:generic_link (tile4 -> door1)
-adjacencyTile24:generic_link (door2 -> tile5)
-adjacencyTile16:generic_link (tile4 -> tile2)
-tileToMonsterPlace0:generic_link (tile1 -> tileMonsterPlace0)
-adjacencyTile13:generic_link (tile5 -> tile6)
-adjacencyTile23:generic_link (tile6 -> tile5)
-tileToMonsterPlace7:generic_link (tile4 -> tileMonsterPlace7)
-tileToMonsterPlace5:generic_link (tile2 -> tileMonsterPlace5)
-adjacencyTile20:generic_link (door1 -> tile3)
-tileToHeroPlace5:generic_link (tile2 -> tileHeroPlace5)
-tileToHeroPlace7:generic_link (tile4 -> tileHeroPlace7)
+level1:Level {
+    name = "level1";
+}
+key1:Key
+obj2:Objective {
+    points = 90;
+}
+obj1:Objective {
+    points = 10;
+}
+tile4:Trap
+:StandardTileItem (tile1 -> obj1)
 :StandardTileItem (tile3 -> key1)
 :StandardTileItem (tile7 -> obj2)
-:StandardTileItem (tile1 -> obj1)
-:DoorKey (door1 -> key1)
 :DoorKey (door2 -> key1)
+:DoorKey (door1 -> key1)
+tileMonsterLeftArc10:arc (tileHeroPlace2 -> tileMonsterTransition10)
+tileMonsterLeftArc21:arc (tileHeroPlace2 -> tileMonsterTransition21)
+tileMonsterRightArc23:arc (tileMonsterTransition23 -> tileMonsterPlace4)
+tileMonsterRightArc22:arc (tileMonsterTransition22 -> tileMonsterPlace4)
+tileHeroLeftArc12:arc (tileHeroPlace4 -> tileHeroTransition12)
+tileHeroLeftArc11:arc (tileMonsterPlace2 -> tileHeroTransition11)
+tileMonsterLeftArc22:arc (tileMonsterPlace4 -> tileMonsterTransition22)
+tileHeroRightArc12:arc (tileHeroTransition12 -> tileHeroPlace4)
+tileHeroRightArc2:arc (tileHeroTransition2 -> tileHeroPlace)
+tileMonsterRightArc2:arc (tileMonsterTransition2 -> tileHeroPlace2)
+tileHeroLeftArc20:arc (tileHeroPlace7 -> tileHeroTransition20)
+tileMonsterRightArc16:arc (tileMonsterTransition16 -> tileHeroPlace3)
+tileMonsterRightArc20:arc (tileMonsterTransition20 -> tileHeroPlace2)
+tileMonsterLeftArc11:arc (tileHeroPlace2 -> tileMonsterTransition11)
+tileMonsterRightArc15:arc (tileMonsterTransition15 -> tileHeroPlace6)
+tileMonsterRightArc26:arc (tileMonsterTransition26 -> tileHeroPlace3)
+tileHeroRightArc16:arc (tileHeroTransition16 -> tileMonsterPlace3)
+tileMonsterRightArc12:arc (tileMonsterTransition12 -> tileMonsterPlace4)
+tileHeroRightArc26:arc (tileHeroTransition26 -> tileHeroPlace0)
+tileMonsterLeftArc13:arc (tileMonsterPlace4 -> tileMonsterTransition13)
+tileMonsterRightArc14:arc (tileMonsterTransition14 -> tileMonsterPlace5)
+tileMonsterRightArc13:arc (tileMonsterTransition13 -> tileMonsterPlace4)
+tileMonsterLeftArc14:arc (tileMonsterPlace5 -> tileMonsterTransition14)
+tileHeroLeftArc13:arc (tileHeroPlace4 -> tileHeroTransition13)
+tileHeroRightArc13:arc (tileHeroTransition13 -> tileHeroPlace4)
+tileHeroLeftArc10:arc (tileMonsterPlace2 -> tileHeroTransition10)
+tileHeroLeftArc2:arc (tileHeroPlace -> tileHeroTransition2)
+tileHeroRightArc21:arc (tileHeroTransition21 -> tileHeroPlace1)
+tileHeroLeftArc14:arc (tileHeroPlace5 -> tileHeroTransition14)
+tileHeroRightArc10:arc (tileHeroTransition10 -> tileMonsterPlace2)
+tileHeroRightArc11:arc (tileHeroTransition11 -> tileMonsterPlace2)
+tileMonsterLeftArc1:arc (tileHeroPlace2 -> tileMonsterTransition1)
+tileHeroLeftArc21:arc (tileHeroPlace1 -> tileHeroTransition21)
+tileHeroLeftArc16:arc (tileMonsterPlace3 -> tileHeroTransition16)
+tileMonsterRightArc21:arc (tileMonsterTransition21 -> tileHeroPlace2)
+tileHeroRightArc20:arc (tileHeroTransition20 -> tileHeroPlace7)
+tileHeroRightArc25:arc (tileHeroTransition25 -> tileHeroPlace0)
+tileMonsterLeftArc24:arc (tileMonsterPlace5 -> tileMonsterTransition24)
+tileHeroLeftArc24:arc (tileHeroPlace0 -> tileHeroTransition24)
+tileMonsterLeftArc12:arc (tileMonsterPlace4 -> tileMonsterTransition12)
+tileHeroLeftArc23:arc (tileHeroPlace1 -> tileHeroTransition23)
+tileMonsterLeftArc23:arc (tileMonsterPlace4 -> tileMonsterTransition23)
+tileMonsterRightArc24:arc (tileMonsterTransition24 -> tileMonsterPlace5)
+tileMonsterRightArc10:arc (tileMonsterTransition10 -> tileHeroPlace2)
+tileHeroLeftArc22:arc (tileHeroPlace7 -> tileHeroTransition22)
+tileHeroRightArc1:arc (tileHeroTransition1 -> tileMonsterPlace2)
+tileMonsterLeftArc2:arc (tileHeroPlace2 -> tileMonsterTransition2)
+tileHeroRightArc24:arc (tileHeroTransition24 -> tileHeroPlace0)
+tileMonsterLeftArc26:arc (tileHeroPlace3 -> tileMonsterTransition26)
+tileMonsterRightArc11:arc (tileMonsterTransition11 -> tileHeroPlace2)
+tileHeroLeftArc15:arc (tileMonsterPlace6 -> tileHeroTransition15)
+tileMonsterLeftArc16:arc (tileHeroPlace3 -> tileMonsterTransition16)
+tileMonsterRightArc25:arc (tileMonsterTransition25 -> tileHeroPlace6)
+tileMonsterRightArc1:arc (tileMonsterTransition1 -> tileHeroPlace2)
+tileHeroLeftArc26:arc (tileHeroPlace0 -> tileHeroTransition26)
+tileMonsterLeftArc20:arc (tileHeroPlace2 -> tileMonsterTransition20)
+tileHeroRightArc22:arc (tileHeroTransition22 -> tileHeroPlace7)
+tileMonsterLeftArc15:arc (tileHeroPlace6 -> tileMonsterTransition15)
+tileHeroLeftArc25:arc (tileHeroPlace0 -> tileHeroTransition25)
+tileHeroRightArc14:arc (tileHeroTransition14 -> tileHeroPlace5)
+tileHeroRightArc23:arc (tileHeroTransition23 -> tileHeroPlace1)
+tileHeroRightArc15:arc (tileHeroTransition15 -> tileMonsterPlace6)
+tileHeroLeftArc1:arc (tileMonsterPlace2 -> tileHeroTransition1)
+tileMonsterLeftArc25:arc (tileHeroPlace6 -> tileMonsterTransition25)
+:StandingTile (monster -> tile5)
+:StandingTile (myHero -> tile2)
+:WorldLevels (world -> level2)
+:WorldLevels (world -> level1)
+adjacencyTile26:generic_link (tile5 -> tile7)
+tileToHeroPlace6:generic_link (tile6 -> tileHeroPlace6)
+adjacencyTile23:generic_link (tile4 -> door1)
+tileToHeroPlace2:generic_link (tile2 -> tileHeroPlace2)
+adjacencyTile15:generic_link (tile6 -> tile5)
+tileToHeroPlace0:generic_link (tile5 -> tileHeroPlace0)
+adjacencyTile14:generic_link (door2 -> tile5)
+tileToMonsterPlace4:generic_link (door1 -> tileMonsterPlace4)
+adjacencyTile12:generic_link (door1 -> tile3)
+tileToHeroPlace:generic_link (tile1 -> tileHeroPlace)
+tileToHeroPlace1:generic_link (tile4 -> tileHeroPlace1)
+adjacencyTile24:generic_link (tile5 -> door2)
+adjacencyTile22:generic_link (tile3 -> door1)
+tileToHeroPlace7:generic_link (tile3 -> tileHeroPlace7)
+adjacencyTile20:generic_link (tile3 -> tile2)
+adjacencyTile21:generic_link (tile4 -> tile2)
+tileToHeroPlace4:generic_link (door1 -> tileHeroPlace4)
+adjacencyTile25:generic_link (tile5 -> tile6)
+tileToHeroPlace3:generic_link (tile7 -> tileHeroPlace3)
+tileToMonsterPlace1:generic_link (tile4 -> tileMonsterPlace1)
+tileToMonsterPlace2:generic_link (tile2 -> tileMonsterPlace2)
+tileToMonsterPlace5:generic_link (door2 -> tileMonsterPlace5)
+adjacencyTile16:generic_link (tile7 -> tile5)
+tileToHeroPlace5:generic_link (door2 -> tileHeroPlace5)
+adjacencyTile13:generic_link (door1 -> tile4)
+adjacencyTile11:generic_link (tile2 -> tile4)
+adjacencyTile10:generic_link (tile2 -> tile3)
+tileToMonsterPlace3:generic_link (tile7 -> tileMonsterPlace3)
+adjacencyTile1:generic_link (tile2 -> tile1)
+tileToMonsterPlace7:generic_link (tile3 -> tileMonsterPlace7)
+tileToMonsterPlace6:generic_link (tile6 -> tileMonsterPlace6)
+tileToMonsterPlace0:generic_link (tile5 -> tileMonsterPlace0)
+adjacencyTile2:generic_link (tile1 -> tile2)
+tileToMonsterPlace:generic_link (tile1 -> tileMonsterPlace)
+:ConnectingDoor (door1 -> door2)
+:ConnectingDoor (door2 -> door1)
+:WorldState_ass (world -> myWorldState)
+MonsterStateToMonsterPlace:pn_of (tileMonsterPlaceState -> tileMonsterPlace)
+ObjectiveStateToObjectivePlace2:pn_of (tileObjectivePlaceState2 -> tileObjectivePlace2)
+KeyStateToKeyPlace3:pn_of (tileKeyPlaceState3 -> tileKeyPlace3)
+MonsterStateToMonsterPlace4:pn_of (tileMonsterPlaceState4 -> tileMonsterPlace4)
+HeroStateToHeroPlace5:pn_of (tileHeroPlaceState5 -> tileHeroPlace5)
+ObjectiveStateToObjectivePlace7:pn_of (tileObjectivePlaceState7 -> tileObjectivePlace7)
+MonsterStateToMonsterPlace0:pn_of (tileMonsterPlaceState0 -> tileMonsterPlace0)
+MonsterStateToMonsterPlace2:pn_of (tileMonsterPlaceState2 -> tileMonsterPlace2)
+MonsterStateToMonsterPlace6:pn_of (tileMonsterPlaceState6 -> tileMonsterPlace6)
+KeyStateToKeyPlace:pn_of (tileKeyPlaceState -> tileKeyPlace)
+MonsterStateToMonsterPlace1:pn_of (tileMonsterPlaceState1 -> tileMonsterPlace1)
+HeroStateToHeroPlace0:pn_of (tileHeroPlaceState0 -> tileHeroPlace0)
+ObjectiveStateToObjectivePlace:pn_of (tileObjectivePlaceState -> tileObjectivePlace)
+KeyStateToKeyPlace0:pn_of (tileKeyPlaceState0 -> tileKeyPlace0)
+HeroStateToHeroPlace3:pn_of (tileHeroPlaceState3 -> tileHeroPlace3)
+ObjectiveStateToObjectivePlace5:pn_of (tileObjectivePlaceState5 -> tileObjectivePlace5)
+ObjectiveStateToObjectivePlace1:pn_of (tileObjectivePlaceState1 -> tileObjectivePlace1)
+HeroStateToHeroPlace1:pn_of (tileHeroPlaceState1 -> tileHeroPlace1)
+ObjectiveStateToObjectivePlace6:pn_of (tileObjectivePlaceState6 -> tileObjectivePlace6)
+MonsterStateToMonsterPlace5:pn_of (tileMonsterPlaceState5 -> tileMonsterPlace5)
+KeyStateToKeyPlace2:pn_of (tileKeyPlaceState2 -> tileKeyPlace2)
+KeyStateToKeyPlace5:pn_of (tileKeyPlaceState5 -> tileKeyPlace5)
+ObjectiveStateToObjectivePlace4:pn_of (tileObjectivePlaceState4 -> tileObjectivePlace4)
+HeroStateToHeroPlace:pn_of (tileHeroPlaceState -> tileHeroPlace)
+HeroStateToHeroPlace7:pn_of (tileHeroPlaceState7 -> tileHeroPlace7)
+MonsterStateToMonsterPlace3:pn_of (tileMonsterPlaceState3 -> tileMonsterPlace3)
+HeroStateToHeroPlace2:pn_of (tileHeroPlaceState2 -> tileHeroPlace2)
+ObjectiveStateToObjectivePlace3:pn_of (tileObjectivePlaceState3 -> tileObjectivePlace3)
+KeyStateToKeyPlace6:pn_of (tileKeyPlaceState6 -> tileKeyPlace6)
+KeyStateToKeyPlace1:pn_of (tileKeyPlaceState1 -> tileKeyPlace1)
+HeroStateToHeroPlace4:pn_of (tileHeroPlaceState4 -> tileHeroPlace4)
+MonsterStateToMonsterPlace7:pn_of (tileMonsterPlaceState7 -> tileMonsterPlace7)
+KeyStateToKeyPlace4:pn_of (tileKeyPlaceState4 -> tileKeyPlace4)
+KeyStateToKeyPlace7:pn_of (tileKeyPlaceState7 -> tileKeyPlace7)
+HeroStateToHeroPlace6:pn_of (tileHeroPlaceState6 -> tileHeroPlace6)
+ObjectiveStateToObjectivePlace0:pn_of (tileObjectivePlaceState0 -> tileObjectivePlace0)
 :CreatureState_ass (myHero -> myHeroState)
 :CreatureState_ass (monster -> monsterState)
-:AdjacentTile (tile7 -> tile5) {
-    direction = "South";
-}
-:AdjacentTile (tile5 -> tile6) {
-    direction = "East";
-}
-:AdjacentTile (tile6 -> tile5) {
-    direction = "West";
-}
 :AdjacentTile (tile2 -> tile1) {
     direction = "West";
+}
+:AdjacentTile (tile5 -> tile7) {
+    direction = "North";
 }
 :AdjacentTile (tile1 -> tile2) {
     direction = "East";
 }
+:AdjacentTile (tile7 -> tile5) {
+    direction = "South";
+}
+:AdjacentTile (tile6 -> tile5) {
+    direction = "West";
+}
+:AdjacentTile (tile5 -> door2) {
+    direction = "South";
+}
 :AdjacentTile (tile2 -> tile3) {
     direction = "East";
 }
-:AdjacentTile (tile4 -> door1) {
-    direction = "East";
-}
-:AdjacentTile (tile4 -> tile2) {
-    direction = "North";
-}
-:AdjacentTile (door2 -> tile5) {
-    direction = "North";
-}
-:AdjacentTile (door1 -> tile4) {
+:AdjacentTile (tile3 -> tile2) {
     direction = "West";
 }
 :AdjacentTile (door1 -> tile3) {
     direction = "North";
 }
-:AdjacentTile (tile5 -> door2) {
-    direction = "South";
-}
-:AdjacentTile (tile3 -> door1) {
-    direction = "South";
-}
-:AdjacentTile (tile3 -> tile2) {
-    direction = "West";
+:AdjacentTile (tile4 -> tile2) {
+    direction = "North";
 }
 :AdjacentTile (tile2 -> tile4) {
     direction = "South";
 }
-:AdjacentTile (tile5 -> tile7) {
+:AdjacentTile (tile5 -> tile6) {
+    direction = "East";
+}
+:AdjacentTile (tile3 -> door1) {
+    direction = "South";
+}
+:AdjacentTile (tile4 -> door1) {
+    direction = "East";
+}
+:AdjacentTile (door1 -> tile4) {
+    direction = "West";
+}
+:AdjacentTile (door2 -> tile5) {
     direction = "North";
 }
-tileMonsterLeftArc15:arc (tileHeroPlace6 -> tileMonsterTransition15)
-tileHeroRightArc20:arc (tileHeroTransition20 -> tileMonsterPlace)
-tileHeroLeftArc24:arc (tileHeroPlace3 -> tileHeroTransition24)
-tileMonsterRightArc25:arc (tileMonsterTransition25 -> tileHeroPlace6)
-tileMonsterRightArc13:arc (tileMonsterTransition13 -> tileHeroPlace6)
-tileHeroRightArc21:arc (tileHeroTransition21 -> tileMonsterPlace0)
-tileHeroRightArc16:arc (tileHeroTransition16 -> tileMonsterPlace7)
-tileHeroRightArc26:arc (tileHeroTransition26 -> tileHeroPlace5)
-tileMonsterRightArc23:arc (tileMonsterTransition23 -> tileHeroPlace6)
-tileHeroLeftArc12:arc (tileMonsterPlace5 -> tileHeroTransition12)
-tileHeroRightArc23:arc (tileHeroTransition23 -> tileHeroPlace2)
-tileMonsterRightArc1:arc (tileMonsterTransition1 -> tileHeroPlace7)
-tileHeroLeftArc15:arc (tileMonsterPlace6 -> tileHeroTransition15)
-tileHeroRightArc22:arc (tileHeroTransition22 -> tileHeroPlace1)
-tileHeroRightArc24:arc (tileHeroTransition24 -> tileHeroPlace3)
-tileMonsterLeftArc20:arc (tileHeroPlace1 -> tileMonsterTransition20)
-tileMonsterRightArc22:arc (tileMonsterTransition22 -> tileHeroPlace5)
-tileHeroLeftArc2:arc (tileMonsterPlace -> tileHeroTransition2)
-tileMonsterLeftArc21:arc (tileHeroPlace5 -> tileMonsterTransition21)
-tileMonsterRightArc10:arc (tileMonsterTransition10 -> tileHeroPlace1)
-tileHeroLeftArc10:arc (tileMonsterPlace1 -> tileHeroTransition10)
-tileMonsterRightArc14:arc (tileMonsterTransition14 -> tileHeroPlace6)
-tileHeroLeftArc21:arc (tileMonsterPlace0 -> tileHeroTransition21)
-tileMonsterLeftArc23:arc (tileHeroPlace6 -> tileMonsterTransition23)
-tileMonsterRightArc26:arc (tileMonsterTransition26 -> tileHeroPlace7)
-tileMonsterLeftArc14:arc (tileHeroPlace6 -> tileMonsterTransition14)
-tileMonsterLeftArc10:arc (tileHeroPlace1 -> tileMonsterTransition10)
-tileMonsterLeftArc12:arc (tileHeroPlace5 -> tileMonsterTransition12)
-tileHeroLeftArc23:arc (tileHeroPlace2 -> tileHeroTransition23)
-tileMonsterRightArc11:arc (tileMonsterTransition11 -> tileHeroPlace5)
-tileMonsterLeftArc11:arc (tileHeroPlace5 -> tileMonsterTransition11)
-tileMonsterRightArc15:arc (tileMonsterTransition15 -> tileHeroPlace6)
-tileMonsterRightArc12:arc (tileMonsterTransition12 -> tileHeroPlace5)
-tileHeroRightArc10:arc (tileHeroTransition10 -> tileMonsterPlace1)
-tileMonsterRightArc20:arc (tileMonsterTransition20 -> tileHeroPlace1)
-tileMonsterLeftArc13:arc (tileHeroPlace6 -> tileMonsterTransition13)
-tileHeroLeftArc25:arc (tileHeroPlace4 -> tileHeroTransition25)
-tileHeroLeftArc11:arc (tileMonsterPlace5 -> tileHeroTransition11)
-tileMonsterLeftArc26:arc (tileHeroPlace7 -> tileMonsterTransition26)
-tileMonsterLeftArc2:arc (tileHeroPlace7 -> tileMonsterTransition2)
-tileHeroLeftArc16:arc (tileMonsterPlace7 -> tileHeroTransition16)
-tileMonsterLeftArc24:arc (tileHeroPlace6 -> tileMonsterTransition24)
-tileHeroLeftArc20:arc (tileMonsterPlace -> tileHeroTransition20)
-tileMonsterRightArc2:arc (tileMonsterTransition2 -> tileHeroPlace7)
-tileHeroLeftArc14:arc (tileMonsterPlace6 -> tileHeroTransition14)
-tileHeroLeftArc13:arc (tileMonsterPlace6 -> tileHeroTransition13)
-tileHeroRightArc14:arc (tileHeroTransition14 -> tileMonsterPlace6)
-tileHeroRightArc1:arc (tileHeroTransition1 -> tileMonsterPlace7)
-tileMonsterLeftArc25:arc (tileHeroPlace6 -> tileMonsterTransition25)
-tileMonsterLeftArc16:arc (tileHeroPlace7 -> tileMonsterTransition16)
-tileHeroRightArc13:arc (tileHeroTransition13 -> tileMonsterPlace6)
-tileMonsterRightArc21:arc (tileMonsterTransition21 -> tileHeroPlace5)
-tileMonsterRightArc24:arc (tileMonsterTransition24 -> tileHeroPlace6)
-tileHeroLeftArc26:arc (tileHeroPlace5 -> tileHeroTransition26)
-tileHeroRightArc25:arc (tileHeroTransition25 -> tileHeroPlace4)
-tileHeroRightArc2:arc (tileHeroTransition2 -> tileMonsterPlace)
-tileMonsterLeftArc22:arc (tileHeroPlace5 -> tileMonsterTransition22)
-tileHeroRightArc12:arc (tileHeroTransition12 -> tileMonsterPlace5)
-tileHeroRightArc15:arc (tileHeroTransition15 -> tileMonsterPlace6)
-tileHeroLeftArc1:arc (tileMonsterPlace7 -> tileHeroTransition1)
-tileHeroLeftArc22:arc (tileHeroPlace1 -> tileHeroTransition22)
-tileMonsterLeftArc1:arc (tileHeroPlace7 -> tileMonsterTransition1)
-tileMonsterRightArc16:arc (tileMonsterTransition16 -> tileHeroPlace7)
-tileHeroRightArc11:arc (tileHeroTransition11 -> tileMonsterPlace5)
-:WorldState_ass (world -> myWorldState)
-:LevelTiles (level1 -> tile3)
-:LevelTiles (level2 -> tile7)
-:LevelTiles (level2 -> tile5)
 :LevelTiles (level2 -> tile6)
-:LevelTiles (level2 -> door2)
-:LevelTiles (level1 -> tile2)
-:LevelTiles (level1 -> tile1)
 :LevelTiles (level1 -> tile4)
+:LevelTiles (level2 -> door2)
+:LevelTiles (level1 -> tile1)
+:LevelTiles (level1 -> tile3)
 :LevelTiles (level1 -> door1)
-:WorldLevels (world -> level1)
-:WorldLevels (world -> level2)
-:StandingTile (myHero -> tile2)
-:StandingTile (monster -> tile5)
+:LevelTiles (level1 -> tile2)
+:LevelTiles (level2 -> tile5)
+:LevelTiles (level2 -> tile7)
