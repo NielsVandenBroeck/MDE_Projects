@@ -1,39 +1,53 @@
 tile1:RAM_Tile
 tile2:RAM_Tile
-tile1HeroPlace:RAM_PNPlace
-tile2HeroPlace:RAM_PNPlace
-tile1MonsterPlace:RAM_PNPlace
-tile2MonsterPlace:RAM_PNPlace
+heroPlace1:RAM_PNPlace {
+    condition = `get_name(this) == f"hero_place_{get_name(matched('tile1'))}"`;
+}
+heroPlace2:RAM_PNPlace {
+    condition = `get_name(this) == f"hero_place_{get_name(matched('tile2'))}"`;
+}
+monsterPlace1:RAM_PNPlace {
+    condition = `get_name(this) == f"monster_place_{get_name(matched('tile1'))}"`;
+}
+monsterPlace2:RAM_PNPlace {
+    condition = `get_name(this) == f"monster_place_{get_name(matched('tile2'))}"`;
+}
 
-# Adjacent
-areAdjacent1:RAM_AdjacentTile (tile1->tile2)
-areAdjacent2:RAM_AdjacentTile (tile2->tile1)
+# Adjacency
+isAdjacentForwards:RAM_AdjacentTile (tile1 -> tile2)
+isAdjacentBackwards:RAM_AdjacentTile (tile2 -> tile1)
 
-# Places From The Tiles
-isHeroPlaceOf1:RAM_generic_link(tile1->tile1HeroPlace)
-isHeroPlaceOf2:RAM_generic_link(tile2->tile2HeroPlace)
-isMonsterPlaceOf1:RAM_generic_link(tile1->tile1MonsterPlace)
-isMonsterPlaceOf2:RAM_generic_link(tile2->tile2MonsterPlace)
+# Place From Tile
+isHeroPlaceOf1:RAM_generic_link (tile1 -> heroPlace1)
+isHeroPlaceOf2:RAM_generic_link (tile2 -> heroPlace2)
+isMonsterPlaceOf1:RAM_generic_link (tile1 -> monsterPlace1)
+isMonsterPlaceOf2:RAM_generic_link (tile2 -> monsterPlace2)
 
-# Make transitions
-tileHeroTransition1:RAM_PNTransition
-tileHeroTransition2:RAM_PNTransition
-tileMonsterTransition1:RAM_PNTransition
-tileMonsterTransition2:RAM_PNTransition
+# Create Transitions
+heroTransition1:RAM_PNTransition {
+    name = `f"move_hero_{get_name(matched('tile1'))}_to_{get_name(matched('tile2'))}"`;
+}
+heroTransition2:RAM_PNTransition {
+    name = `f"move_hero_{get_name(matched('tile2'))}_to_{get_name(matched('tile1'))}"`;
+}
+monsterTransition1:RAM_PNTransition {
+    name = `f"move_monster_{get_name(matched('tile1'))}_to_{get_name(matched('tile2'))}"`;
+}
+monsterTransition2:RAM_PNTransition {
+    name = `f"move_monster_{get_name(matched('tile2'))}_to_{get_name(matched('tile1'))}"`;
+}
 
-# Connect Left side of transitions
-tileHeroLeftArc1:RAM_arc (tile1HeroPlace->tileHeroTransition1)
-tileHeroLeftArc2:RAM_arc (tile2HeroPlace->tileHeroTransition2)
-tileMonsterLeftArc1:RAM_arc (tile1MonsterPlace->tileMonsterTransition1)
-tileMonsterLeftArc2:RAM_arc (tile1MonsterPlace->tileMonsterTransition2)
+# Create Arcs
+heroTransitionBeginArc1:RAM_arc (heroPlace1 -> heroTransition1)
+heroTransitionEndArc1:RAM_arc (heroTransition1 -> heroPlace2)
+heroTransitionBeginArc2:RAM_arc (heroPlace2 -> heroTransition2)
+heroTransitionEndArc2:RAM_arc (heroTransition2 -> heroPlace1)
 
-# Connect right side of transitions
-tileHeroRightArc1:RAM_arc (tileHeroTransition1->tile1HeroPlace)
-tileHeroRightArc2:RAM_arc (tileHeroTransition2->tile2HeroPlace)
-tileMonsterRightArc1:RAM_arc (tileMonsterTransition1->tile1MonsterPlace)
-tileMonsterRightArc2:RAM_arc (tileMonsterTransition2->tile1MonsterPlace)
+monsterTransitionBeginArc1:RAM_arc (monsterPlace1 -> monsterTransition1)
+monsterTransitionEndArc1:RAM_arc (monsterTransition1 -> monsterPlace2)
+monsterTransitionBeginArc2:RAM_arc (monsterPlace2 -> monsterTransition2)
+monsterTransitionEndArc2:RAM_arc (monsterTransition2 -> monsterPlace1)
 
-
-# For NAC
-adjacencyTile1:RAM_generic_link (tile1->tile2)
-adjacencyTile2:RAM_generic_link (tile2->tile1)
+# Generic Link For NAC
+tileToTile1:RAM_generic_link (tile1 -> tile2)
+tileToTile2:RAM_generic_link (tile2 -> tile1)

@@ -1,14 +1,16 @@
 hero:RAM_Hero
-heroTile:RAM_Tile
-heroPlace:RAM_PNPlace
-heroPlaceState:RAM_PNPlaceState {
-    RAM_numTokens = `True`;
+tile:RAM_Tile
+place:RAM_PNPlace {
+    condition = `get_name(this) == f"hero_place_{get_name(matched('tile'))}"`;
+}
+placeState:RAM_PNPlaceState {
+    condition = `get_name(this) == f"hero_place_state_{get_name(matched('tile'))}"`;
+    RAM_numTokens = `get_value(this) == 0`;
 }
 
-# Is Place State
-isPlaceState:RAM_pn_of (heroPlaceState -> heroPlace)
-
-# Standing Tile and Place
-isStandingTile:RAM_StandingTile (hero -> heroTile)
-# TODO: make it so only hero works here, now monster also works because tile is linked to every place
-isTilePlace:RAM_generic_link (heroTile -> heroPlace)
+# Is Standing Tile?
+isStandingTile:RAM_StandingTile (hero -> tile)
+# Is Place State?
+isPlaceState:RAM_pn_of (placeState -> place)
+# Is Place Of Tile
+isPlaceOfTile:RAM_generic_link (tile -> place)

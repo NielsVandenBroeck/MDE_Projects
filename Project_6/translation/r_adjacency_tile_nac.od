@@ -1,6 +1,6 @@
 tile1:RAM_Tile
 tile2:RAM_Tile
 
-# Are Linked
-adjacencyTile1:RAM_generic_link (tile1->tile2)
-adjacencyTile2:RAM_generic_link (tile2->tile1)
+# Generic Link For NAC
+adjacencyTileAlreadyTranslated1:RAM_generic_link (tile1 -> tile2)
+adjacencyTileAlreadyTranslated2:RAM_generic_link (tile2 -> tile1)

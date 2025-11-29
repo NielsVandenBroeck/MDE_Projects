@@ -1,9 +1,4 @@
 tile:RAM_Tile
 
-# Places
-tileHeroPlace:RAM_PNPlace
-tileMonsterPlace:RAM_PNPlace
-
-# Generic Links
-tileToHeroPlace:RAM_generic_link (tile -> tileHeroPlace)
-tileToMonsterPlace:RAM_generic_link (tile -> tileMonsterPlace)
+# Generic Link For NAC
+isTileTranslated:RAM_generic_link (tile -> tile)
