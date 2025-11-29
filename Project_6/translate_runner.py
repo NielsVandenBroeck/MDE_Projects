@@ -25,7 +25,7 @@ rule_names = [
     # TODO: this is where your rules go
     "translate_tile",
     "adjacency_tile",
-    "hero_tile"
+    "hero_tile",
 ]
 
 print("Loading rules")

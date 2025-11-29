@@ -1,275 +1,212 @@
 
-world:World
-tileHeroPlace0:PNPlace
-tileKeyPlace:PNPlace
-tileMonsterPlace5:PNPlace
-tileKeyPlace5:PNPlace
-tileObjectivePlace4:PNPlace
-tileMonsterPlace0:PNPlace
-tileObjectivePlace2:PNPlace
-tileObjectivePlace:PNPlace
-tileObjectivePlace0:PNPlace
-tileMonsterPlace6:PNPlace
-tileObjectivePlace7:PNPlace
-tileMonsterPlace2:PNPlace
-tileObjectivePlace5:PNPlace
-tileHeroPlace6:PNPlace
-tileKeyPlace6:PNPlace
-tileObjectivePlace3:PNPlace
-tileHeroPlace1:PNPlace
-tileKeyPlace1:PNPlace
-tileMonsterPlace1:PNPlace
-tileMonsterPlace3:PNPlace
-tileObjectivePlace6:PNPlace
-tileHeroPlace4:PNPlace
-tileMonsterPlace4:PNPlace
-tileKeyPlace4:PNPlace
-tileHeroPlace:PNPlace
-tileMonsterPlace:PNPlace
-tileKeyPlace3:PNPlace
-tileKeyPlace2:PNPlace
-tileHeroPlace5:PNPlace
-tileHeroPlace2:PNPlace
-tileObjectivePlace1:PNPlace
-tileKeyPlace0:PNPlace
-tileMonsterPlace7:PNPlace
-tileHeroPlace7:PNPlace
-tileHeroPlace3:PNPlace
-tileKeyPlace7:PNPlace
-c:Clock {
-    time = 0;
-}
 myHero:Hero {
     lives = 10;
 }
-door1:Door
-door2:Door
-tile2:StandardTile
-tile3:StandardTile
-tile7:StandardTile
-tile1:StandardTile
-tile5:StandardTile
-tile6:Obstacle
-monsterState:CreatureState {
-    fought = False;
-    moved = False;
+tile4:Trap
+hero_place_state_tile5:PNPlaceState {
+    numTokens = 0;
+}
+objective_place_state_door1:PNPlaceState {
+    numTokens = 0;
+}
+monster_place_state_tile5:PNPlaceState {
+    numTokens = 0;
+}
+key_place_state_tile5:PNPlaceState {
+    numTokens = 0;
+}
+objective_place_state_tile5:PNPlaceState {
+    numTokens = 0;
+}
+objective_place_state_tile7:PNPlaceState {
+    numTokens = 0;
+}
+monster_place_state_door1:PNPlaceState {
+    numTokens = 0;
+}
+hero_place_state_tile1:PNPlaceState {
+    numTokens = 0;
+}
+monster_place_state_tile3:PNPlaceState {
+    numTokens = 0;
+}
+monster_place_state_tile1:PNPlaceState {
+    numTokens = 0;
+}
+key_place_state_door1:PNPlaceState {
+    numTokens = 0;
+}
+key_place_state_tile7:PNPlaceState {
+    numTokens = 0;
+}
+monster_place_state_tile2:PNPlaceState {
+    numTokens = 0;
+}
+hero_place_state_door1:PNPlaceState {
+    numTokens = 0;
+}
+monster_place_state_tile4:PNPlaceState {
+    numTokens = 0;
+}
+hero_place_state_tile6:PNPlaceState {
+    numTokens = 0;
+}
+key_place_state_tile2:PNPlaceState {
+    numTokens = 0;
+}
+key_place_state_tile3:PNPlaceState {
+    numTokens = 0;
+}
+objective_place_state_tile4:PNPlaceState {
+    numTokens = 0;
+}
+key_place_state_tile4:PNPlaceState {
+    numTokens = 0;
+}
+objective_place_state_door2:PNPlaceState {
+    numTokens = 0;
+}
+hero_place_state_tile2:PNPlaceState {
+    numTokens = 0;
+}
+objective_place_state_tile3:PNPlaceState {
+    numTokens = 0;
+}
+objective_place_state_tile6:PNPlaceState {
+    numTokens = 0;
+}
+hero_place_state_tile7:PNPlaceState {
+    numTokens = 0;
+}
+objective_place_state_tile1:PNPlaceState {
+    numTokens = 0;
+}
+key_place_state_tile6:PNPlaceState {
+    numTokens = 0;
+}
+objective_place_state_tile2:PNPlaceState {
+    numTokens = 0;
+}
+hero_place_state_door2:PNPlaceState {
+    numTokens = 0;
+}
+monster_place_state_tile7:PNPlaceState {
+    numTokens = 0;
+}
+monster_place_state_door2:PNPlaceState {
+    numTokens = 0;
+}
+key_place_state_tile1:PNPlaceState {
+    numTokens = 0;
+}
+key_place_state_door2:PNPlaceState {
+    numTokens = 0;
+}
+monster_place_state_tile6:PNPlaceState {
+    numTokens = 0;
+}
+hero_place_state_tile3:PNPlaceState {
+    numTokens = 0;
+}
+hero_place_state_tile4:PNPlaceState {
+    numTokens = 0;
 }
 myHeroState:CreatureState {
     fought = False;
     moved = False;
 }
-myWorldState:WorldState {
-    collectedPoints = 0;
+monsterState:CreatureState {
+    moved = False;
+    fought = False;
 }
-tileObjectivePlaceState5:PNPlaceState {
-    numTokens = 0;
-}
-tileObjectivePlaceState:PNPlaceState {
-    numTokens = 0;
-}
-tileHeroPlaceState6:PNPlaceState {
-    numTokens = 0;
-}
-tileObjectivePlaceState7:PNPlaceState {
-    numTokens = 0;
-}
-tileHeroPlaceState:PNPlaceState {
-    numTokens = 0;
-}
-tileHeroPlaceState2:PNPlaceState {
-    numTokens = 0;
-}
-tileObjectivePlaceState1:PNPlaceState {
-    numTokens = 0;
-}
-tileKeyPlaceState3:PNPlaceState {
-    numTokens = 0;
-}
-tileMonsterPlaceState2:PNPlaceState {
-    numTokens = 0;
-}
-tileKeyPlaceState6:PNPlaceState {
-    numTokens = 0;
-}
-tileMonsterPlaceState6:PNPlaceState {
-    numTokens = 0;
-}
-tileMonsterPlaceState5:PNPlaceState {
-    numTokens = 0;
-}
-tileHeroPlaceState5:PNPlaceState {
-    numTokens = 0;
-}
-tileKeyPlaceState:PNPlaceState {
-    numTokens = 0;
-}
-tileKeyPlaceState5:PNPlaceState {
-    numTokens = 0;
-}
-tileMonsterPlaceState7:PNPlaceState {
-    numTokens = 0;
-}
-tileObjectivePlaceState2:PNPlaceState {
-    numTokens = 0;
-}
-tileKeyPlaceState0:PNPlaceState {
-    numTokens = 0;
-}
-tileKeyPlaceState7:PNPlaceState {
-    numTokens = 0;
-}
-tileMonsterPlaceState0:PNPlaceState {
-    numTokens = 0;
-}
-tileObjectivePlaceState6:PNPlaceState {
-    numTokens = 0;
-}
-tileKeyPlaceState4:PNPlaceState {
-    numTokens = 0;
-}
-tileObjectivePlaceState0:PNPlaceState {
-    numTokens = 0;
-}
-tileHeroPlaceState4:PNPlaceState {
-    numTokens = 0;
-}
-tileMonsterPlaceState:PNPlaceState {
-    numTokens = 0;
-}
-tileHeroPlaceState0:PNPlaceState {
-    numTokens = 0;
-}
-tileKeyPlaceState2:PNPlaceState {
-    numTokens = 0;
-}
-tileMonsterPlaceState3:PNPlaceState {
-    numTokens = 0;
-}
-tileHeroPlaceState1:PNPlaceState {
-    numTokens = 0;
-}
-tileHeroPlaceState3:PNPlaceState {
-    numTokens = 0;
-}
-tileMonsterPlaceState4:PNPlaceState {
-    numTokens = 0;
-}
-tileHeroPlaceState7:PNPlaceState {
-    numTokens = 0;
-}
-tileObjectivePlaceState4:PNPlaceState {
-    numTokens = 0;
-}
-tileKeyPlaceState1:PNPlaceState {
-    numTokens = 0;
-}
-tileObjectivePlaceState3:PNPlaceState {
-    numTokens = 0;
-}
-tileMonsterPlaceState1:PNPlaceState {
-    numTokens = 0;
-}
-monster:Monster {
-    lives = 5;
+door2:Door
+door1:Door
+level1:Level {
+    name = "level1";
 }
 level2:Level {
     name = "level2";
 }
-level1:Level {
-    name = "level1";
+tile1:StandardTile
+tile2:StandardTile
+tile7:StandardTile
+tile5:StandardTile
+tile3:StandardTile
+c:Clock {
+    time = 0;
 }
-key1:Key
+tile6:Obstacle
+key_place_tile7:PNPlace
+objective_place_tile5:PNPlace
+objective_place_tile6:PNPlace
+monster_place_tile4:PNPlace
+hero_place_tile4:PNPlace
+objective_place_door1:PNPlace
+monster_place_tile7:PNPlace
+key_place_tile6:PNPlace
+monster_place_tile3:PNPlace
+monster_place_door2:PNPlace
+objective_place_door2:PNPlace
+objective_place_tile2:PNPlace
+hero_place_tile7:PNPlace
+hero_place_tile3:PNPlace
+monster_place_tile2:PNPlace
+hero_place_door1:PNPlace
+key_place_tile2:PNPlace
+key_place_door2:PNPlace
+hero_place_tile5:PNPlace
+key_place_tile4:PNPlace
+hero_place_door2:PNPlace
+key_place_tile5:PNPlace
+objective_place_tile4:PNPlace
+monster_place_tile6:PNPlace
+hero_place_tile1:PNPlace
+monster_place_tile5:PNPlace
+objective_place_tile7:PNPlace
+objective_place_tile3:PNPlace
+key_place_door1:PNPlace
+monster_place_tile1:PNPlace
+key_place_tile3:PNPlace
+key_place_tile1:PNPlace
+objective_place_tile1:PNPlace
+hero_place_tile2:PNPlace
+monster_place_door1:PNPlace
+hero_place_tile6:PNPlace
+myWorldState:WorldState {
+    collectedPoints = 0;
+}
+monster:Monster {
+    lives = 5;
+}
 obj2:Objective {
     points = 90;
 }
 obj1:Objective {
     points = 10;
 }
-tile4:Trap
-:StandardTileItem (tile1 -> obj1)
-:StandardTileItem (tile3 -> key1)
-:StandardTileItem (tile7 -> obj2)
-:DoorKey (door2 -> key1)
-:DoorKey (door1 -> key1)
-:StandingTile (monster -> tile5)
-:StandingTile (myHero -> tile2)
-:WorldLevels (world -> level2)
+key1:Key
+world:World
 :WorldLevels (world -> level1)
-tileToHeroPlace6:generic_link (tile6 -> tileHeroPlace6)
-tileToHeroPlace2:generic_link (tile2 -> tileHeroPlace2)
-tileToHeroPlace0:generic_link (tile5 -> tileHeroPlace0)
-tileToMonsterPlace4:generic_link (door1 -> tileMonsterPlace4)
-tileToHeroPlace:generic_link (tile1 -> tileHeroPlace)
-tileToHeroPlace1:generic_link (tile4 -> tileHeroPlace1)
-tileToHeroPlace7:generic_link (tile3 -> tileHeroPlace7)
-tileToHeroPlace4:generic_link (door1 -> tileHeroPlace4)
-tileToHeroPlace3:generic_link (tile7 -> tileHeroPlace3)
-tileToMonsterPlace1:generic_link (tile4 -> tileMonsterPlace1)
-tileToMonsterPlace2:generic_link (tile2 -> tileMonsterPlace2)
-tileToMonsterPlace5:generic_link (door2 -> tileMonsterPlace5)
-tileToHeroPlace5:generic_link (door2 -> tileHeroPlace5)
-tileToMonsterPlace3:generic_link (tile7 -> tileMonsterPlace3)
-tileToMonsterPlace7:generic_link (tile3 -> tileMonsterPlace7)
-tileToMonsterPlace6:generic_link (tile6 -> tileMonsterPlace6)
-tileToMonsterPlace0:generic_link (tile5 -> tileMonsterPlace0)
-tileToMonsterPlace:generic_link (tile1 -> tileMonsterPlace)
-:ConnectingDoor (door1 -> door2)
-:ConnectingDoor (door2 -> door1)
-:WorldState_ass (world -> myWorldState)
-MonsterStateToMonsterPlace:pn_of (tileMonsterPlaceState -> tileMonsterPlace)
-ObjectiveStateToObjectivePlace2:pn_of (tileObjectivePlaceState2 -> tileObjectivePlace2)
-KeyStateToKeyPlace3:pn_of (tileKeyPlaceState3 -> tileKeyPlace3)
-MonsterStateToMonsterPlace4:pn_of (tileMonsterPlaceState4 -> tileMonsterPlace4)
-HeroStateToHeroPlace5:pn_of (tileHeroPlaceState5 -> tileHeroPlace5)
-ObjectiveStateToObjectivePlace7:pn_of (tileObjectivePlaceState7 -> tileObjectivePlace7)
-MonsterStateToMonsterPlace0:pn_of (tileMonsterPlaceState0 -> tileMonsterPlace0)
-MonsterStateToMonsterPlace2:pn_of (tileMonsterPlaceState2 -> tileMonsterPlace2)
-MonsterStateToMonsterPlace6:pn_of (tileMonsterPlaceState6 -> tileMonsterPlace6)
-KeyStateToKeyPlace:pn_of (tileKeyPlaceState -> tileKeyPlace)
-MonsterStateToMonsterPlace1:pn_of (tileMonsterPlaceState1 -> tileMonsterPlace1)
-HeroStateToHeroPlace0:pn_of (tileHeroPlaceState0 -> tileHeroPlace0)
-ObjectiveStateToObjectivePlace:pn_of (tileObjectivePlaceState -> tileObjectivePlace)
-KeyStateToKeyPlace0:pn_of (tileKeyPlaceState0 -> tileKeyPlace0)
-HeroStateToHeroPlace3:pn_of (tileHeroPlaceState3 -> tileHeroPlace3)
-ObjectiveStateToObjectivePlace5:pn_of (tileObjectivePlaceState5 -> tileObjectivePlace5)
-ObjectiveStateToObjectivePlace1:pn_of (tileObjectivePlaceState1 -> tileObjectivePlace1)
-HeroStateToHeroPlace1:pn_of (tileHeroPlaceState1 -> tileHeroPlace1)
-ObjectiveStateToObjectivePlace6:pn_of (tileObjectivePlaceState6 -> tileObjectivePlace6)
-MonsterStateToMonsterPlace5:pn_of (tileMonsterPlaceState5 -> tileMonsterPlace5)
-KeyStateToKeyPlace2:pn_of (tileKeyPlaceState2 -> tileKeyPlace2)
-KeyStateToKeyPlace5:pn_of (tileKeyPlaceState5 -> tileKeyPlace5)
-ObjectiveStateToObjectivePlace4:pn_of (tileObjectivePlaceState4 -> tileObjectivePlace4)
-HeroStateToHeroPlace:pn_of (tileHeroPlaceState -> tileHeroPlace)
-HeroStateToHeroPlace7:pn_of (tileHeroPlaceState7 -> tileHeroPlace7)
-MonsterStateToMonsterPlace3:pn_of (tileMonsterPlaceState3 -> tileMonsterPlace3)
-HeroStateToHeroPlace2:pn_of (tileHeroPlaceState2 -> tileHeroPlace2)
-ObjectiveStateToObjectivePlace3:pn_of (tileObjectivePlaceState3 -> tileObjectivePlace3)
-KeyStateToKeyPlace6:pn_of (tileKeyPlaceState6 -> tileKeyPlace6)
-KeyStateToKeyPlace1:pn_of (tileKeyPlaceState1 -> tileKeyPlace1)
-HeroStateToHeroPlace4:pn_of (tileHeroPlaceState4 -> tileHeroPlace4)
-MonsterStateToMonsterPlace7:pn_of (tileMonsterPlaceState7 -> tileMonsterPlace7)
-KeyStateToKeyPlace4:pn_of (tileKeyPlaceState4 -> tileKeyPlace4)
-KeyStateToKeyPlace7:pn_of (tileKeyPlaceState7 -> tileKeyPlace7)
-HeroStateToHeroPlace6:pn_of (tileHeroPlaceState6 -> tileHeroPlace6)
-ObjectiveStateToObjectivePlace0:pn_of (tileObjectivePlaceState0 -> tileObjectivePlace0)
-:CreatureState_ass (myHero -> myHeroState)
-:CreatureState_ass (monster -> monsterState)
-:AdjacentTile (tile2 -> tile1) {
-    direction = "West";
+:WorldLevels (world -> level2)
+:AdjacentTile (door1 -> tile3) {
+    direction = "North";
+}
+:AdjacentTile (tile4 -> door1) {
+    direction = "East";
 }
 :AdjacentTile (tile5 -> tile7) {
     direction = "North";
 }
-:AdjacentTile (tile1 -> tile2) {
-    direction = "East";
-}
-:AdjacentTile (tile7 -> tile5) {
+:AdjacentTile (tile5 -> door2) {
     direction = "South";
 }
 :AdjacentTile (tile6 -> tile5) {
     direction = "West";
 }
-:AdjacentTile (tile5 -> door2) {
+:AdjacentTile (tile4 -> tile2) {
+    direction = "North";
+}
+:AdjacentTile (tile3 -> door1) {
     direction = "South";
 }
 :AdjacentTile (tile2 -> tile3) {
@@ -278,36 +215,108 @@ ObjectiveStateToObjectivePlace0:pn_of (tileObjectivePlaceState0 -> tileObjective
 :AdjacentTile (tile3 -> tile2) {
     direction = "West";
 }
-:AdjacentTile (door1 -> tile3) {
-    direction = "North";
-}
-:AdjacentTile (tile4 -> tile2) {
-    direction = "North";
-}
-:AdjacentTile (tile2 -> tile4) {
-    direction = "South";
+:AdjacentTile (door1 -> tile4) {
+    direction = "West";
 }
 :AdjacentTile (tile5 -> tile6) {
     direction = "East";
 }
-:AdjacentTile (tile3 -> door1) {
+:AdjacentTile (tile7 -> tile5) {
     direction = "South";
 }
-:AdjacentTile (tile4 -> door1) {
+:AdjacentTile (tile2 -> tile4) {
+    direction = "South";
+}
+:AdjacentTile (tile1 -> tile2) {
     direction = "East";
 }
-:AdjacentTile (door1 -> tile4) {
+:AdjacentTile (tile2 -> tile1) {
     direction = "West";
 }
 :AdjacentTile (door2 -> tile5) {
     direction = "North";
 }
-:LevelTiles (level2 -> tile6)
-:LevelTiles (level1 -> tile4)
+:LevelTiles (level2 -> tile5)
 :LevelTiles (level2 -> door2)
-:LevelTiles (level1 -> tile1)
+:LevelTiles (level1 -> tile2)
+:LevelTiles (level2 -> tile7)
 :LevelTiles (level1 -> tile3)
 :LevelTiles (level1 -> door1)
-:LevelTiles (level1 -> tile2)
-:LevelTiles (level2 -> tile5)
-:LevelTiles (level2 -> tile7)
+:LevelTiles (level1 -> tile4)
+:LevelTiles (level2 -> tile6)
+:LevelTiles (level1 -> tile1)
+tileToMonsterPlace5:generic_link (tile5 -> monster_place_tile5)
+tileToMonsterPlace7:generic_link (tile6 -> monster_place_tile6)
+tileToHeroPlace7:generic_link (tile6 -> hero_place_tile6)
+tileToSelf0:generic_link (tile4 -> tile4)
+tileToMonsterPlace4:generic_link (tile3 -> monster_place_tile3)
+tileToMonsterPlace6:generic_link (door2 -> monster_place_door2)
+tileToHeroPlace0:generic_link (tile4 -> hero_place_tile4)
+tileToSelf1:generic_link (tile2 -> tile2)
+tileToMonsterPlace3:generic_link (tile1 -> monster_place_tile1)
+tileToMonsterPlace:generic_link (tile7 -> monster_place_tile7)
+tileToMonsterPlace0:generic_link (tile4 -> monster_place_tile4)
+tileToHeroPlace:generic_link (tile7 -> hero_place_tile7)
+tileToHeroPlace4:generic_link (tile3 -> hero_place_tile3)
+tileToSelf2:generic_link (door1 -> door1)
+tileToHeroPlace6:generic_link (door2 -> hero_place_door2)
+tileToSelf5:generic_link (tile5 -> tile5)
+tileToSelf4:generic_link (tile3 -> tile3)
+tileToMonsterPlace2:generic_link (door1 -> monster_place_door1)
+tileToSelf3:generic_link (tile1 -> tile1)
+tileToSelf7:generic_link (tile6 -> tile6)
+tileToHeroPlace3:generic_link (tile1 -> hero_place_tile1)
+tileToHeroPlace2:generic_link (door1 -> hero_place_door1)
+tileToSelf:generic_link (tile7 -> tile7)
+tileToHeroPlace1:generic_link (tile2 -> hero_place_tile2)
+tileToSelf6:generic_link (door2 -> door2)
+tileToHeroPlace5:generic_link (tile5 -> hero_place_tile5)
+tileToMonsterPlace1:generic_link (tile2 -> monster_place_tile2)
+:StandardTileItem (tile1 -> obj1)
+:StandardTileItem (tile7 -> obj2)
+:StandardTileItem (tile3 -> key1)
+:ConnectingDoor (door1 -> door2)
+:ConnectingDoor (door2 -> door1)
+:DoorKey (door2 -> key1)
+:DoorKey (door1 -> key1)
+:CreatureState_ass (monster -> monsterState)
+:CreatureState_ass (myHero -> myHeroState)
+ObjectiveStateToObjectivePlace6:pn_of (objective_place_state_door2 -> objective_place_door2)
+KeyStateToKeyPlace:pn_of (key_place_state_tile7 -> key_place_tile7)
+ObjectiveStateToObjectivePlace5:pn_of (objective_place_state_tile5 -> objective_place_tile5)
+KeyStateToKeyPlace3:pn_of (key_place_state_tile1 -> key_place_tile1)
+ObjectiveStateToObjectivePlace4:pn_of (objective_place_state_tile3 -> objective_place_tile3)
+MonsterStateToMonsterPlace3:pn_of (monster_place_state_tile1 -> monster_place_tile1)
+KeyStateToKeyPlace5:pn_of (key_place_state_tile5 -> key_place_tile5)
+ObjectiveStateToObjectivePlace2:pn_of (objective_place_state_door1 -> objective_place_door1)
+HeroStateToHeroPlace0:pn_of (hero_place_state_tile4 -> hero_place_tile4)
+KeyStateToKeyPlace7:pn_of (key_place_state_tile6 -> key_place_tile6)
+HeroStateToHeroPlace3:pn_of (hero_place_state_tile1 -> hero_place_tile1)
+MonsterStateToMonsterPlace7:pn_of (monster_place_state_tile6 -> monster_place_tile6)
+MonsterStateToMonsterPlace0:pn_of (monster_place_state_tile4 -> monster_place_tile4)
+ObjectiveStateToObjectivePlace7:pn_of (objective_place_state_tile6 -> objective_place_tile6)
+KeyStateToKeyPlace2:pn_of (key_place_state_door1 -> key_place_door1)
+KeyStateToKeyPlace4:pn_of (key_place_state_tile3 -> key_place_tile3)
+ObjectiveStateToObjectivePlace1:pn_of (objective_place_state_tile2 -> objective_place_tile2)
+HeroStateToHeroPlace5:pn_of (hero_place_state_tile5 -> hero_place_tile5)
+HeroStateToHeroPlace:pn_of (hero_place_state_tile7 -> hero_place_tile7)
+MonsterStateToMonsterPlace6:pn_of (monster_place_state_door2 -> monster_place_door2)
+HeroStateToHeroPlace6:pn_of (hero_place_state_door2 -> hero_place_door2)
+KeyStateToKeyPlace0:pn_of (key_place_state_tile4 -> key_place_tile4)
+HeroStateToHeroPlace1:pn_of (hero_place_state_tile2 -> hero_place_tile2)
+KeyStateToKeyPlace6:pn_of (key_place_state_door2 -> key_place_door2)
+ObjectiveStateToObjectivePlace3:pn_of (objective_place_state_tile1 -> objective_place_tile1)
+HeroStateToHeroPlace2:pn_of (hero_place_state_door1 -> hero_place_door1)
+HeroStateToHeroPlace7:pn_of (hero_place_state_tile6 -> hero_place_tile6)
+MonsterStateToMonsterPlace5:pn_of (monster_place_state_tile5 -> monster_place_tile5)
+MonsterStateToMonsterPlace2:pn_of (monster_place_state_door1 -> monster_place_door1)
+KeyStateToKeyPlace1:pn_of (key_place_state_tile2 -> key_place_tile2)
+MonsterStateToMonsterPlace4:pn_of (monster_place_state_tile3 -> monster_place_tile3)
+ObjectiveStateToObjectivePlace:pn_of (objective_place_state_tile7 -> objective_place_tile7)
+ObjectiveStateToObjectivePlace0:pn_of (objective_place_state_tile4 -> objective_place_tile4)
+MonsterStateToMonsterPlace:pn_of (monster_place_state_tile7 -> monster_place_tile7)
+HeroStateToHeroPlace4:pn_of (hero_place_state_tile3 -> hero_place_tile3)
+MonsterStateToMonsterPlace1:pn_of (monster_place_state_tile2 -> monster_place_tile2)
+:StandingTile (monster -> tile5)
+:StandingTile (myHero -> tile2)
+:WorldState_ass (world -> myWorldState)
