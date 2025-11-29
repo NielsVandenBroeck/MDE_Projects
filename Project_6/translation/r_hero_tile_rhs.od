@@ -5,7 +5,7 @@ place:RAM_PNPlace {
 }
 placeState:RAM_PNPlaceState {
     condition = `get_name(this) == f"hero_place_state_{get_name(matched('tile'))}"`;
-    RAM_numTokens = `get_value(this) == get_value(this) + 1`;
+    RAM_numTokens = `get_value(this) + 1`;
 }
 
 # Is Standing Tile?
