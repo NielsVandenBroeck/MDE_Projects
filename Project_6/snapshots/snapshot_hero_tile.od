@@ -1,17 +1,209 @@
 
-level1:Level {
-    name = "level1";
+door2:Door
+door1:Door
+move_hero_tile3_to_tile2:PNTransition
+move_monster_tile4_to_door1:PNTransition
+move_monster_tile3_to_tile2:PNTransition
+move_hero_tile5_to_tile7:PNTransition
+move_hero_tile2_to_tile4:PNTransition
+move_monster_tile2_to_tile1:PNTransition
+move_monster_tile7_to_tile5:PNTransition
+move_hero_door1_to_tile3:PNTransition
+move_hero_tile4_to_door1:PNTransition
+move_hero_tile2_to_tile1:PNTransition
+move_monster_tile4_to_tile2:PNTransition
+move_hero_tile3_to_door1:PNTransition
+move_monster_tile1_to_tile2:PNTransition
+move_monster_door2_to_tile5:PNTransition
+move_monster_tile5_to_tile6:PNTransition
+move_hero_tile7_to_tile5:PNTransition
+move_monster_door1_to_tile3:PNTransition
+move_hero_tile5_to_door2:PNTransition
+move_monster_tile3_to_door1:PNTransition
+move_hero_tile6_to_tile5:PNTransition
+move_hero_tile2_to_tile3:PNTransition
+move_hero_tile5_to_tile6:PNTransition
+move_monster_tile2_to_tile3:PNTransition
+move_monster_tile2_to_tile4:PNTransition
+move_hero_door2_to_tile5:PNTransition
+move_monster_tile6_to_tile5:PNTransition
+move_monster_tile5_to_door2:PNTransition
+move_hero_door1_to_tile4:PNTransition
+move_monster_door1_to_tile4:PNTransition
+move_hero_tile1_to_tile2:PNTransition
+move_monster_tile5_to_tile7:PNTransition
+move_hero_tile4_to_tile2:PNTransition
+myWorldState:WorldState {
+    collectedPoints = 0;
 }
-level2:Level {
-    name = "level2";
-}
+tile6:Obstacle
 obj1:Objective {
     points = 10;
 }
 obj2:Objective {
     points = 90;
 }
-tile6:Obstacle
+world:World
+monster_place_tile1:PNPlace
+hero_place_tile3:PNPlace
+key_place_door1:PNPlace
+monster_place_tile2:PNPlace
+objective_place_tile1:PNPlace
+hero_place_tile2:PNPlace
+hero_place_tile5:PNPlace
+monster_place_tile4:PNPlace
+key_place_tile1:PNPlace
+objective_place_tile2:PNPlace
+hero_place_tile7:PNPlace
+objective_place_tile5:PNPlace
+monster_place_tile7:PNPlace
+hero_place_door1:PNPlace
+key_place_tile7:PNPlace
+hero_place_tile4:PNPlace
+key_place_tile5:PNPlace
+hero_place_tile1:PNPlace
+key_place_tile2:PNPlace
+objective_place_tile6:PNPlace
+hero_place_door2:PNPlace
+key_place_tile3:PNPlace
+objective_place_tile4:PNPlace
+monster_place_tile5:PNPlace
+key_place_tile6:PNPlace
+key_place_tile4:PNPlace
+objective_place_tile3:PNPlace
+hero_place_tile6:PNPlace
+monster_place_door1:PNPlace
+objective_place_tile7:PNPlace
+monster_place_tile6:PNPlace
+monster_place_door2:PNPlace
+key_place_door2:PNPlace
+objective_place_door1:PNPlace
+monster_place_tile3:PNPlace
+objective_place_door2:PNPlace
+c:Clock {
+    time = 0;
+}
+objective_place_state_tile4:PNPlaceState {
+    numTokens = 0;
+}
+hero_place_state_door1:PNPlaceState {
+    numTokens = 0;
+}
+key_place_state_tile4:PNPlaceState {
+    numTokens = 0;
+}
+objective_place_state_tile2:PNPlaceState {
+    numTokens = 0;
+}
+monster_place_state_tile1:PNPlaceState {
+    numTokens = 0;
+}
+hero_place_state_tile6:PNPlaceState {
+    numTokens = 0;
+}
+hero_place_state_tile7:PNPlaceState {
+    numTokens = 0;
+}
+key_place_state_tile7:PNPlaceState {
+    numTokens = 0;
+}
+key_place_state_tile2:PNPlaceState {
+    numTokens = 0;
+}
+objective_place_state_tile6:PNPlaceState {
+    numTokens = 0;
+}
+hero_place_state_door2:PNPlaceState {
+    numTokens = 0;
+}
+key_place_state_door1:PNPlaceState {
+    numTokens = 0;
+}
+monster_place_state_door1:PNPlaceState {
+    numTokens = 0;
+}
+monster_place_state_tile4:PNPlaceState {
+    numTokens = 0;
+}
+key_place_state_tile1:PNPlaceState {
+    numTokens = 0;
+}
+objective_place_state_tile1:PNPlaceState {
+    numTokens = 0;
+}
+key_place_state_tile5:PNPlaceState {
+    numTokens = 0;
+}
+monster_place_state_tile5:PNPlaceState {
+    numTokens = 0;
+}
+objective_place_state_door1:PNPlaceState {
+    numTokens = 0;
+}
+objective_place_state_door2:PNPlaceState {
+    numTokens = 0;
+}
+hero_place_state_tile3:PNPlaceState {
+    numTokens = 0;
+}
+hero_place_state_tile5:PNPlaceState {
+    numTokens = 0;
+}
+key_place_state_tile6:PNPlaceState {
+    numTokens = 0;
+}
+monster_place_state_tile3:PNPlaceState {
+    numTokens = 0;
+}
+objective_place_state_tile5:PNPlaceState {
+    numTokens = 0;
+}
+key_place_state_door2:PNPlaceState {
+    numTokens = 0;
+}
+hero_place_state_tile1:PNPlaceState {
+    numTokens = 0;
+}
+hero_place_state_tile4:PNPlaceState {
+    numTokens = 0;
+}
+monster_place_state_tile7:PNPlaceState {
+    numTokens = 0;
+}
+hero_place_state_tile2:PNPlaceState {
+    numTokens = 0;
+}
+key_place_state_tile3:PNPlaceState {
+    numTokens = 0;
+}
+monster_place_state_tile6:PNPlaceState {
+    numTokens = 0;
+}
+objective_place_state_tile7:PNPlaceState {
+    numTokens = 0;
+}
+objective_place_state_tile3:PNPlaceState {
+    numTokens = 0;
+}
+monster_place_state_tile2:PNPlaceState {
+    numTokens = 0;
+}
+monster_place_state_door2:PNPlaceState {
+    numTokens = 0;
+}
+key1:Key
+tile4:Trap
+monster:Monster {
+    lives = 5;
+}
+myHero:Hero {
+    lives = 10;
+}
+tile1:StandardTile
+tile5:StandardTile
+tile3:StandardTile
+tile2:StandardTile
+tile7:StandardTile
 myHeroState:CreatureState {
     moved = False;
     fought = False;
@@ -20,416 +212,224 @@ monsterState:CreatureState {
     fought = False;
     moved = False;
 }
-c:Clock {
-    time = 0;
+level2:Level {
+    name = "level2";
 }
-tile4:Trap
-monster_place_state_tile7:PNPlaceState {
-    numTokens = 0;
+level1:Level {
+    name = "level1";
 }
-hero_place_state_tile7:PNPlaceState {
-    numTokens = 0;
-}
-key_place_state_door1:PNPlaceState {
-    numTokens = 0;
-}
-key_place_state_tile5:PNPlaceState {
-    numTokens = 0;
-}
-monster_place_state_tile2:PNPlaceState {
-    numTokens = 0;
-}
-key_place_state_tile6:PNPlaceState {
-    numTokens = 0;
-}
-monster_place_state_door2:PNPlaceState {
-    numTokens = 0;
-}
-key_place_state_door2:PNPlaceState {
-    numTokens = 0;
-}
-objective_place_state_door2:PNPlaceState {
-    numTokens = 0;
-}
-objective_place_state_tile3:PNPlaceState {
-    numTokens = 0;
-}
-objective_place_state_tile7:PNPlaceState {
-    numTokens = 0;
-}
-key_place_state_tile2:PNPlaceState {
-    numTokens = 0;
-}
-objective_place_state_tile5:PNPlaceState {
-    numTokens = 0;
-}
-objective_place_state_tile1:PNPlaceState {
-    numTokens = 0;
-}
-monster_place_state_tile4:PNPlaceState {
-    numTokens = 0;
-}
-monster_place_state_tile6:PNPlaceState {
-    numTokens = 0;
-}
-monster_place_state_tile1:PNPlaceState {
-    numTokens = 0;
-}
-hero_place_state_tile3:PNPlaceState {
-    numTokens = 0;
-}
-hero_place_state_tile2:PNPlaceState {
-    numTokens = 0;
-}
-key_place_state_tile1:PNPlaceState {
-    numTokens = 0;
-}
-monster_place_state_tile3:PNPlaceState {
-    numTokens = 0;
-}
-hero_place_state_tile5:PNPlaceState {
-    numTokens = 0;
-}
-hero_place_state_tile4:PNPlaceState {
-    numTokens = 0;
-}
-hero_place_state_door1:PNPlaceState {
-    numTokens = 0;
-}
-objective_place_state_tile6:PNPlaceState {
-    numTokens = 0;
-}
-objective_place_state_tile2:PNPlaceState {
-    numTokens = 0;
-}
-key_place_state_tile3:PNPlaceState {
-    numTokens = 0;
-}
-hero_place_state_tile1:PNPlaceState {
-    numTokens = 0;
-}
-objective_place_state_door1:PNPlaceState {
-    numTokens = 0;
-}
-key_place_state_tile4:PNPlaceState {
-    numTokens = 0;
-}
-monster_place_state_door1:PNPlaceState {
-    numTokens = 0;
-}
-monster_place_state_tile5:PNPlaceState {
-    numTokens = 0;
-}
-hero_place_state_tile6:PNPlaceState {
-    numTokens = 0;
-}
-key_place_state_tile7:PNPlaceState {
-    numTokens = 0;
-}
-hero_place_state_door2:PNPlaceState {
-    numTokens = 0;
-}
-objective_place_state_tile4:PNPlaceState {
-    numTokens = 0;
-}
-tile1:StandardTile
-tile2:StandardTile
-tile5:StandardTile
-tile7:StandardTile
-tile3:StandardTile
-objective_place_tile5:PNPlace
-monster_place_tile5:PNPlace
-key_place_tile5:PNPlace
-objective_place_tile7:PNPlace
-monster_place_tile7:PNPlace
-key_place_tile3:PNPlace
-hero_place_tile4:PNPlace
-monster_place_tile4:PNPlace
-key_place_tile4:PNPlace
-monster_place_door2:PNPlace
-hero_place_tile3:PNPlace
-hero_place_tile6:PNPlace
-hero_place_tile7:PNPlace
-hero_place_door1:PNPlace
-objective_place_tile3:PNPlace
-monster_place_tile3:PNPlace
-hero_place_tile5:PNPlace
-hero_place_door2:PNPlace
-hero_place_tile1:PNPlace
-key_place_tile7:PNPlace
-monster_place_tile1:PNPlace
-objective_place_tile1:PNPlace
-objective_place_tile2:PNPlace
-objective_place_tile6:PNPlace
-key_place_door1:PNPlace
-key_place_tile6:PNPlace
-key_place_tile1:PNPlace
-hero_place_tile2:PNPlace
-monster_place_tile6:PNPlace
-objective_place_tile4:PNPlace
-objective_place_door2:PNPlace
-monster_place_tile2:PNPlace
-key_place_tile2:PNPlace
-key_place_door2:PNPlace
-objective_place_door1:PNPlace
-monster_place_door1:PNPlace
-key1:Key
-myHero:Hero {
-    lives = 10;
-}
-door2:Door
-door1:Door
-monster:Monster {
-    lives = 5;
-}
-move_monster_tile2_to_tile1:PNTransition
-move_hero_tile2_to_tile3:PNTransition
-move_hero_tile3_to_tile2:PNTransition
-move_monster_tile6_to_tile5:PNTransition
-move_monster_tile5_to_door2:PNTransition
-move_monster_tile4_to_door1:PNTransition
-move_hero_tile2_to_tile1:PNTransition
-move_monster_tile3_to_door1:PNTransition
-move_monster_tile3_to_tile2:PNTransition
-move_hero_tile4_to_tile2:PNTransition
-move_hero_tile2_to_tile4:PNTransition
-move_hero_tile7_to_tile5:PNTransition
-move_monster_door1_to_tile4:PNTransition
-move_monster_tile5_to_tile6:PNTransition
-move_monster_tile5_to_tile7:PNTransition
-move_monster_door2_to_tile5:PNTransition
-move_monster_tile2_to_tile4:PNTransition
-move_hero_tile3_to_door1:PNTransition
-move_monster_tile4_to_tile2:PNTransition
-move_monster_tile2_to_tile3:PNTransition
-move_hero_tile4_to_door1:PNTransition
-move_monster_tile1_to_tile2:PNTransition
-move_hero_tile1_to_tile2:PNTransition
-move_hero_door2_to_tile5:PNTransition
-move_hero_tile5_to_tile6:PNTransition
-move_monster_tile7_to_tile5:PNTransition
-move_hero_door1_to_tile4:PNTransition
-move_hero_tile6_to_tile5:PNTransition
-move_hero_door1_to_tile3:PNTransition
-move_hero_tile5_to_door2:PNTransition
-move_hero_tile5_to_tile7:PNTransition
-move_monster_door1_to_tile3:PNTransition
-world:World
-myWorldState:WorldState {
-    collectedPoints = 0;
-}
-:AdjacentTile (tile3 -> door1) {
-    direction = "South";
-}
-:AdjacentTile (tile4 -> door1) {
+:StandardTileItem (tile7 -> obj2)
+:StandardTileItem (tile3 -> key1)
+:StandardTileItem (tile1 -> obj1)
+tileToSelf6:generic_link (tile2 -> tile2)
+tileToMonsterPlace4:generic_link (tile1 -> monster_place_tile1)
+tileToTile1:generic_link (tile5 -> door2)
+tileToMonsterPlace5:generic_link (tile6 -> monster_place_tile6)
+tileToHeroPlace:generic_link (tile4 -> hero_place_tile4)
+tileToSelf4:generic_link (tile1 -> tile1)
+tileToSelf5:generic_link (tile6 -> tile6)
+tileToSelf:generic_link (tile4 -> tile4)
+tileToHeroPlace3:generic_link (door1 -> hero_place_door1)
+tileToMonsterPlace0:generic_link (door2 -> monster_place_door2)
+tileToTile21:generic_link (tile4 -> door1)
+tileToTile14:generic_link (tile6 -> tile5)
+tileToMonsterPlace7:generic_link (tile7 -> monster_place_tile7)
+heroToPlace:generic_link (myHero -> hero_place_tile2)
+tileToSelf7:generic_link (tile7 -> tile7)
+tileToTile16:generic_link (tile2 -> tile3)
+tileToHeroPlace6:generic_link (tile2 -> hero_place_tile2)
+tileToTile2:generic_link (door2 -> tile5)
+tileToTile22:generic_link (door1 -> tile3)
+tileToSelf2:generic_link (tile3 -> tile3)
+tileToSelf1:generic_link (tile5 -> tile5)
+tileToTile10:generic_link (tile2 -> tile4)
+tileToMonsterPlace2:generic_link (tile3 -> monster_place_tile3)
+tileToHeroPlace4:generic_link (tile1 -> hero_place_tile1)
+tileToMonsterPlace:generic_link (tile4 -> monster_place_tile4)
+tileToHeroPlace0:generic_link (door2 -> hero_place_door2)
+tileToTile25:generic_link (tile5 -> tile7)
+tileToTile20:generic_link (tile4 -> tile2)
+tileToTile11:generic_link (door1 -> tile4)
+tileToHeroPlace5:generic_link (tile6 -> hero_place_tile6)
+tileToMonsterPlace6:generic_link (tile2 -> monster_place_tile2)
+tileToTile24:generic_link (tile5 -> tile6)
+tileToTile13:generic_link (tile2 -> tile1)
+tileToTile23:generic_link (tile1 -> tile2)
+tileToMonsterPlace3:generic_link (door1 -> monster_place_door1)
+tileToMonsterPlace1:generic_link (tile5 -> monster_place_tile5)
+tileToSelf0:generic_link (door2 -> door2)
+tileToHeroPlace7:generic_link (tile7 -> hero_place_tile7)
+tileToTile26:generic_link (tile3 -> tile2)
+tileToTile15:generic_link (tile7 -> tile5)
+tileToHeroPlace1:generic_link (tile5 -> hero_place_tile5)
+tileToHeroPlace2:generic_link (tile3 -> hero_place_tile3)
+tileToSelf3:generic_link (door1 -> door1)
+tileToTile12:generic_link (tile3 -> door1)
+:AdjacentTile (tile5 -> tile6) {
     direction = "East";
 }
-:AdjacentTile (tile6 -> tile5) {
+:AdjacentTile (tile3 -> tile2) {
     direction = "West";
 }
-:AdjacentTile (tile2 -> tile3) {
-    direction = "East";
-}
-:AdjacentTile (tile2 -> tile4) {
+:AdjacentTile (tile3 -> door1) {
     direction = "South";
 }
 :AdjacentTile (tile4 -> tile2) {
     direction = "North";
 }
-:AdjacentTile (tile5 -> door2) {
+:AdjacentTile (tile7 -> tile5) {
     direction = "South";
 }
-:AdjacentTile (tile3 -> tile2) {
+:AdjacentTile (tile1 -> tile2) {
+    direction = "East";
+}
+:AdjacentTile (tile2 -> tile4) {
+    direction = "South";
+}
+:AdjacentTile (tile2 -> tile1) {
+    direction = "West";
+}
+:AdjacentTile (door1 -> tile4) {
+    direction = "West";
+}
+:AdjacentTile (tile6 -> tile5) {
     direction = "West";
 }
 :AdjacentTile (door1 -> tile3) {
     direction = "North";
 }
-:AdjacentTile (door1 -> tile4) {
-    direction = "West";
-}
 :AdjacentTile (tile5 -> tile7) {
     direction = "North";
 }
-:AdjacentTile (tile1 -> tile2) {
+:AdjacentTile (tile2 -> tile3) {
+    direction = "East";
+}
+:AdjacentTile (tile5 -> door2) {
+    direction = "South";
+}
+:AdjacentTile (tile4 -> door1) {
     direction = "East";
 }
 :AdjacentTile (door2 -> tile5) {
     direction = "North";
 }
-:AdjacentTile (tile2 -> tile1) {
-    direction = "West";
-}
-:AdjacentTile (tile7 -> tile5) {
-    direction = "South";
-}
-:AdjacentTile (tile5 -> tile6) {
-    direction = "East";
-}
-heroTransitionBeginArc21:arc (hero_place_tile4 -> move_hero_tile4_to_door1)
-heroTransitionBeginArc20:arc (hero_place_tile4 -> move_hero_tile4_to_tile2)
-monsterTransitionEndArc15:arc (move_monster_tile5_to_tile7 -> monster_place_tile7)
-heroTransitionBeginArc12:arc (hero_place_door1 -> move_hero_door1_to_tile3)
-monsterTransitionEndArc20:arc (move_monster_tile4_to_tile2 -> monster_place_tile2)
-monsterTransitionBeginArc15:arc (monster_place_tile5 -> move_monster_tile5_to_tile7)
-heroTransitionEndArc24:arc (move_hero_tile1_to_tile2 -> hero_place_tile2)
-heroTransitionBeginArc2:arc (hero_place_tile6 -> move_hero_tile6_to_tile5)
-monsterTransitionBeginArc14:arc (monster_place_tile2 -> move_monster_tile2_to_tile1)
-monsterTransitionEndArc2:arc (move_monster_tile6_to_tile5 -> monster_place_tile5)
-heroTransitionBeginArc16:arc (hero_place_door2 -> move_hero_door2_to_tile5)
-heroTransitionBeginArc26:arc (hero_place_tile5 -> move_hero_tile5_to_door2)
-monsterTransitionBeginArc11:arc (monster_place_door1 -> move_monster_door1_to_tile4)
-monsterTransitionBeginArc1:arc (monster_place_tile5 -> move_monster_tile5_to_tile6)
-monsterTransitionBeginArc23:arc (monster_place_tile3 -> move_monster_tile3_to_tile2)
-heroTransitionBeginArc10:arc (hero_place_tile2 -> move_hero_tile2_to_tile4)
-monsterTransitionBeginArc20:arc (monster_place_tile4 -> move_monster_tile4_to_tile2)
-heroTransitionEndArc1:arc (move_hero_tile5_to_tile6 -> hero_place_tile6)
-monsterTransitionEndArc10:arc (move_monster_tile2_to_tile4 -> monster_place_tile4)
-monsterTransitionEndArc26:arc (move_monster_tile5_to_door2 -> monster_place_door2)
-heroTransitionBeginArc22:arc (hero_place_tile3 -> move_hero_tile3_to_door1)
-monsterTransitionEndArc25:arc (move_monster_tile7_to_tile5 -> monster_place_tile5)
-heroTransitionEndArc16:arc (move_hero_door2_to_tile5 -> hero_place_tile5)
-monsterTransitionBeginArc22:arc (monster_place_tile3 -> move_monster_tile3_to_door1)
-heroTransitionEndArc26:arc (move_hero_tile5_to_door2 -> hero_place_door2)
-heroTransitionEndArc14:arc (move_hero_tile2_to_tile1 -> hero_place_tile1)
-monsterTransitionEndArc24:arc (move_monster_tile1_to_tile2 -> monster_place_tile2)
-heroTransitionEndArc21:arc (move_hero_tile4_to_door1 -> hero_place_door1)
-monsterTransitionBeginArc2:arc (monster_place_tile6 -> move_monster_tile6_to_tile5)
-heroTransitionBeginArc13:arc (hero_place_tile2 -> move_hero_tile2_to_tile3)
-heroTransitionBeginArc23:arc (hero_place_tile3 -> move_hero_tile3_to_tile2)
-heroTransitionBeginArc15:arc (hero_place_tile5 -> move_hero_tile5_to_tile7)
-monsterTransitionEndArc21:arc (move_monster_tile4_to_door1 -> monster_place_door1)
-heroTransitionEndArc2:arc (move_hero_tile6_to_tile5 -> hero_place_tile5)
-monsterTransitionEndArc13:arc (move_monster_tile2_to_tile3 -> monster_place_tile3)
-heroTransitionBeginArc14:arc (hero_place_tile2 -> move_hero_tile2_to_tile1)
-monsterTransitionEndArc12:arc (move_monster_door1_to_tile3 -> monster_place_tile3)
-monsterTransitionEndArc14:arc (move_monster_tile2_to_tile1 -> monster_place_tile1)
-heroTransitionEndArc22:arc (move_hero_tile3_to_door1 -> hero_place_door1)
-heroTransitionEndArc12:arc (move_hero_door1_to_tile3 -> hero_place_tile3)
-monsterTransitionBeginArc10:arc (monster_place_tile2 -> move_monster_tile2_to_tile4)
-heroTransitionBeginArc1:arc (hero_place_tile5 -> move_hero_tile5_to_tile6)
-monsterTransitionEndArc1:arc (move_monster_tile5_to_tile6 -> monster_place_tile6)
-heroTransitionEndArc25:arc (move_hero_tile7_to_tile5 -> hero_place_tile5)
-heroTransitionEndArc15:arc (move_hero_tile5_to_tile7 -> hero_place_tile7)
-heroTransitionBeginArc11:arc (hero_place_door1 -> move_hero_door1_to_tile4)
-monsterTransitionBeginArc25:arc (monster_place_tile7 -> move_monster_tile7_to_tile5)
-heroTransitionEndArc23:arc (move_hero_tile3_to_tile2 -> hero_place_tile2)
-monsterTransitionBeginArc16:arc (monster_place_door2 -> move_monster_door2_to_tile5)
-monsterTransitionEndArc23:arc (move_monster_tile3_to_tile2 -> monster_place_tile2)
-heroTransitionEndArc10:arc (move_hero_tile2_to_tile4 -> hero_place_tile4)
-monsterTransitionBeginArc12:arc (monster_place_door1 -> move_monster_door1_to_tile3)
-monsterTransitionBeginArc21:arc (monster_place_tile4 -> move_monster_tile4_to_door1)
-heroTransitionBeginArc24:arc (hero_place_tile1 -> move_hero_tile1_to_tile2)
-monsterTransitionBeginArc26:arc (monster_place_tile5 -> move_monster_tile5_to_door2)
-heroTransitionBeginArc25:arc (hero_place_tile7 -> move_hero_tile7_to_tile5)
-heroTransitionEndArc20:arc (move_hero_tile4_to_tile2 -> hero_place_tile2)
-monsterTransitionEndArc11:arc (move_monster_door1_to_tile4 -> monster_place_tile4)
-monsterTransitionBeginArc13:arc (monster_place_tile2 -> move_monster_tile2_to_tile3)
-monsterTransitionEndArc22:arc (move_monster_tile3_to_door1 -> monster_place_door1)
-monsterTransitionEndArc16:arc (move_monster_door2_to_tile5 -> monster_place_tile5)
-heroTransitionEndArc11:arc (move_hero_door1_to_tile4 -> hero_place_tile4)
-monsterTransitionBeginArc24:arc (monster_place_tile1 -> move_monster_tile1_to_tile2)
-heroTransitionEndArc13:arc (move_hero_tile2_to_tile3 -> hero_place_tile3)
-:StandingTile (monster -> tile5)
-:StandingTile (myHero -> tile2)
-:WorldLevels (world -> level2)
 :WorldLevels (world -> level1)
-:DoorKey (door2 -> key1)
-:DoorKey (door1 -> key1)
+:WorldLevels (world -> level2)
 :WorldState_ass (world -> myWorldState)
-:CreatureState_ass (myHero -> myHeroState)
-:CreatureState_ass (monster -> monsterState)
-tileToMonsterPlace4:generic_link (tile3 -> monster_place_tile3)
-tileToSelf2:generic_link (door1 -> door1)
-tileToSelf0:generic_link (tile4 -> tile4)
-tileToMonsterPlace0:generic_link (tile4 -> monster_place_tile4)
-tileToSelf4:generic_link (tile3 -> tile3)
-tileToHeroPlace0:generic_link (tile4 -> hero_place_tile4)
-tileToTile21:generic_link (tile4 -> door1)
-tileToTile22:generic_link (tile3 -> door1)
-tileToTile24:generic_link (tile1 -> tile2)
-tileToHeroPlace3:generic_link (tile1 -> hero_place_tile1)
-tileToMonsterPlace6:generic_link (door2 -> monster_place_door2)
-tileToMonsterPlace2:generic_link (door1 -> monster_place_door1)
-tileToTile23:generic_link (tile3 -> tile2)
-tileToMonsterPlace1:generic_link (tile2 -> monster_place_tile2)
-tileToTile13:generic_link (tile2 -> tile3)
-tileToTile1:generic_link (tile5 -> tile6)
-tileToHeroPlace4:generic_link (tile3 -> hero_place_tile3)
-tileToHeroPlace2:generic_link (door1 -> hero_place_door1)
-tileToTile15:generic_link (tile5 -> tile7)
-tileToTile2:generic_link (tile6 -> tile5)
-tileToHeroPlace1:generic_link (tile2 -> hero_place_tile2)
-tileToTile20:generic_link (tile4 -> tile2)
-tileToHeroPlace7:generic_link (tile6 -> hero_place_tile6)
-tileToSelf1:generic_link (tile2 -> tile2)
-tileToHeroPlace6:generic_link (door2 -> hero_place_door2)
-tileToTile14:generic_link (tile2 -> tile1)
-tileToMonsterPlace3:generic_link (tile1 -> monster_place_tile1)
-tileToMonsterPlace5:generic_link (tile5 -> monster_place_tile5)
-tileToTile25:generic_link (tile7 -> tile5)
-tileToSelf:generic_link (tile7 -> tile7)
-tileToTile10:generic_link (tile2 -> tile4)
-tileToTile16:generic_link (door2 -> tile5)
-tileToMonsterPlace:generic_link (tile7 -> monster_place_tile7)
-tileToTile11:generic_link (door1 -> tile4)
-tileToSelf3:generic_link (tile1 -> tile1)
-tileToHeroPlace5:generic_link (tile5 -> hero_place_tile5)
-tileToTile12:generic_link (door1 -> tile3)
-tileToSelf7:generic_link (tile6 -> tile6)
-tileToSelf6:generic_link (door2 -> door2)
-tileToMonsterPlace7:generic_link (tile6 -> monster_place_tile6)
-tileToTile26:generic_link (tile5 -> door2)
-tileToSelf5:generic_link (tile5 -> tile5)
-tileToHeroPlace:generic_link (tile7 -> hero_place_tile7)
-heroToPlace:generic_link (myHero -> hero_place_tile2)
 :LevelTiles (level2 -> tile6)
-:LevelTiles (level2 -> tile5)
-:LevelTiles (level1 -> tile2)
-:LevelTiles (level1 -> tile1)
-:LevelTiles (level1 -> tile4)
+:LevelTiles (level1 -> tile3)
 :LevelTiles (level2 -> door2)
 :LevelTiles (level2 -> tile7)
-:LevelTiles (level1 -> tile3)
+:LevelTiles (level1 -> tile2)
 :LevelTiles (level1 -> door1)
-HeroStateToHeroPlace5:pn_of (hero_place_state_tile5 -> hero_place_tile5)
-HeroStateToHeroPlace3:pn_of (hero_place_state_tile1 -> hero_place_tile1)
-ObjectiveStateToObjectivePlace6:pn_of (objective_place_state_door2 -> objective_place_door2)
-KeyStateToKeyPlace4:pn_of (key_place_state_tile3 -> key_place_tile3)
-ObjectiveStateToObjectivePlace3:pn_of (objective_place_state_tile1 -> objective_place_tile1)
-HeroStateToHeroPlace0:pn_of (hero_place_state_tile4 -> hero_place_tile4)
-KeyStateToKeyPlace0:pn_of (key_place_state_tile4 -> key_place_tile4)
-MonsterStateToMonsterPlace3:pn_of (monster_place_state_tile1 -> monster_place_tile1)
-HeroStateToHeroPlace4:pn_of (hero_place_state_tile3 -> hero_place_tile3)
-MonsterStateToMonsterPlace5:pn_of (monster_place_state_tile5 -> monster_place_tile5)
-ObjectiveStateToObjectivePlace1:pn_of (objective_place_state_tile2 -> objective_place_tile2)
-KeyStateToKeyPlace5:pn_of (key_place_state_tile5 -> key_place_tile5)
-ObjectiveStateToObjectivePlace5:pn_of (objective_place_state_tile5 -> objective_place_tile5)
-HeroStateToHeroPlace1:pn_of (hero_place_state_tile2 -> hero_place_tile2)
-MonsterStateToMonsterPlace6:pn_of (monster_place_state_door2 -> monster_place_door2)
-KeyStateToKeyPlace7:pn_of (key_place_state_tile6 -> key_place_tile6)
-MonsterStateToMonsterPlace4:pn_of (monster_place_state_tile3 -> monster_place_tile3)
-HeroStateToHeroPlace2:pn_of (hero_place_state_door1 -> hero_place_door1)
-MonsterStateToMonsterPlace2:pn_of (monster_place_state_door1 -> monster_place_door1)
-MonsterStateToMonsterPlace:pn_of (monster_place_state_tile7 -> monster_place_tile7)
-ObjectiveStateToObjectivePlace:pn_of (objective_place_state_tile7 -> objective_place_tile7)
-ObjectiveStateToObjectivePlace7:pn_of (objective_place_state_tile6 -> objective_place_tile6)
-KeyStateToKeyPlace:pn_of (key_place_state_tile7 -> key_place_tile7)
-HeroStateToHeroPlace6:pn_of (hero_place_state_door2 -> hero_place_door2)
-ObjectiveStateToObjectivePlace0:pn_of (objective_place_state_tile4 -> objective_place_tile4)
-MonsterStateToMonsterPlace7:pn_of (monster_place_state_tile6 -> monster_place_tile6)
-KeyStateToKeyPlace2:pn_of (key_place_state_door1 -> key_place_door1)
-KeyStateToKeyPlace3:pn_of (key_place_state_tile1 -> key_place_tile1)
-MonsterStateToMonsterPlace1:pn_of (monster_place_state_tile2 -> monster_place_tile2)
-KeyStateToKeyPlace6:pn_of (key_place_state_door2 -> key_place_door2)
-ObjectiveStateToObjectivePlace2:pn_of (objective_place_state_door1 -> objective_place_door1)
-ObjectiveStateToObjectivePlace4:pn_of (objective_place_state_tile3 -> objective_place_tile3)
-MonsterStateToMonsterPlace0:pn_of (monster_place_state_tile4 -> monster_place_tile4)
-HeroStateToHeroPlace7:pn_of (hero_place_state_tile6 -> hero_place_tile6)
-HeroStateToHeroPlace:pn_of (hero_place_state_tile7 -> hero_place_tile7)
-KeyStateToKeyPlace1:pn_of (key_place_state_tile2 -> key_place_tile2)
-:StandardTileItem (tile1 -> obj1)
-:StandardTileItem (tile7 -> obj2)
-:StandardTileItem (tile3 -> key1)
-:ConnectingDoor (door2 -> door1)
+:LevelTiles (level2 -> tile5)
+:LevelTiles (level1 -> tile1)
+:LevelTiles (level1 -> tile4)
+:CreatureState_ass (monster -> monsterState)
+:CreatureState_ass (myHero -> myHeroState)
+:StandingTile (monster -> tile5)
+:StandingTile (myHero -> tile2)
+hero_tile2_to1_get_name(matched('tile2')):arc (hero_place_tile2 -> move_hero_tile2_to_tile4)
+hero_tile4_to2_get_name(matched('tile1')):arc (move_hero_tile4_to_tile2 -> hero_place_tile2)
+monster_tile2_to2_get_name(matched('tile2'))0:arc (move_monster_tile2_to_tile1 -> monster_place_tile1)
+monster_tile5_to1_get_name(matched('tile1'))0:arc (monster_place_tile5 -> move_monster_tile5_to_tile7)
+monster_tile7_to2_get_name(matched('tile2')):arc (move_monster_tile7_to_tile5 -> monster_place_tile5)
+hero_tile5_to1_get_name(matched('tile1'))0:arc (hero_place_tile5 -> move_hero_tile5_to_tile7)
+hero_tile1_to1_get_name(matched('tile1')):arc (hero_place_tile1 -> move_hero_tile1_to_tile2)
+monster_door1_to2_get_name(matched('tile2')):arc (move_monster_door1_to_tile4 -> monster_place_tile4)
+monster_tile5_to2_get_name(matched('tile2')):arc (move_monster_tile5_to_door2 -> monster_place_door2)
+hero_tile4_to1_get_name(matched('tile1'))0:arc (hero_place_tile4 -> move_hero_tile4_to_door1)
+hero_tile5_to2_get_name(matched('tile2')):arc (move_hero_tile5_to_door2 -> hero_place_door2)
+monster_tile3_to1_get_name(matched('tile2')):arc (monster_place_tile3 -> move_monster_tile3_to_door1)
+monster_tile2_to1_get_name(matched('tile2')):arc (monster_place_tile2 -> move_monster_tile2_to_tile4)
+monster_tile2_to2_get_name(matched('tile2'))1:arc (move_monster_tile2_to_tile3 -> monster_place_tile3)
+hero_tile2_to2_get_name(matched('tile2')):arc (move_hero_tile2_to_tile4 -> hero_place_tile4)
+monster_door2_to2_get_name(matched('tile1')):arc (move_monster_door2_to_tile5 -> monster_place_tile5)
+hero_tile6_to1_get_name(matched('tile2')):arc (hero_place_tile6 -> move_hero_tile6_to_tile5)
+hero_tile5_to2_get_name(matched('tile1'))0:arc (move_hero_tile5_to_tile7 -> hero_place_tile7)
+monster_tile3_to2_get_name(matched('tile1')):arc (move_monster_tile3_to_tile2 -> monster_place_tile2)
+hero_tile1_to2_get_name(matched('tile1')):arc (move_hero_tile1_to_tile2 -> hero_place_tile2)
+hero_tile5_to2_get_name(matched('tile1')):arc (move_hero_tile5_to_tile6 -> hero_place_tile6)
+monster_tile5_to2_get_name(matched('tile1')):arc (move_monster_tile5_to_tile6 -> monster_place_tile6)
+hero_tile2_to2_get_name(matched('tile2'))1:arc (move_hero_tile2_to_tile3 -> hero_place_tile3)
+hero_tile3_to2_get_name(matched('tile1')):arc (move_hero_tile3_to_tile2 -> hero_place_tile2)
+monster_tile5_to2_get_name(matched('tile1'))0:arc (move_monster_tile5_to_tile7 -> monster_place_tile7)
+monster_tile4_to2_get_name(matched('tile1'))0:arc (move_monster_tile4_to_door1 -> monster_place_door1)
+hero_door2_to1_get_name(matched('tile1')):arc (hero_place_door2 -> move_hero_door2_to_tile5)
+monster_door2_to1_get_name(matched('tile1')):arc (monster_place_door2 -> move_monster_door2_to_tile5)
+monster_tile6_to2_get_name(matched('tile2')):arc (move_monster_tile6_to_tile5 -> monster_place_tile5)
+hero_door2_to2_get_name(matched('tile1')):arc (move_hero_door2_to_tile5 -> hero_place_tile5)
+hero_tile5_to1_get_name(matched('tile2')):arc (hero_place_tile5 -> move_hero_tile5_to_door2)
+monster_door1_to1_get_name(matched('tile1')):arc (monster_place_door1 -> move_monster_door1_to_tile3)
+hero_tile4_to1_get_name(matched('tile1')):arc (hero_place_tile4 -> move_hero_tile4_to_tile2)
+hero_tile3_to2_get_name(matched('tile2')):arc (move_hero_tile3_to_door1 -> hero_place_door1)
+monster_tile5_to1_get_name(matched('tile2')):arc (monster_place_tile5 -> move_monster_tile5_to_door2)
+hero_tile7_to1_get_name(matched('tile2')):arc (hero_place_tile7 -> move_hero_tile7_to_tile5)
+hero_tile3_to1_get_name(matched('tile1')):arc (hero_place_tile3 -> move_hero_tile3_to_tile2)
+monster_tile2_to2_get_name(matched('tile2')):arc (move_monster_tile2_to_tile4 -> monster_place_tile4)
+monster_tile1_to2_get_name(matched('tile1')):arc (move_monster_tile1_to_tile2 -> monster_place_tile2)
+monster_tile6_to1_get_name(matched('tile2')):arc (monster_place_tile6 -> move_monster_tile6_to_tile5)
+hero_tile5_to1_get_name(matched('tile1')):arc (hero_place_tile5 -> move_hero_tile5_to_tile6)
+hero_door1_to1_get_name(matched('tile1')):arc (hero_place_door1 -> move_hero_door1_to_tile3)
+monster_door1_to2_get_name(matched('tile1')):arc (move_monster_door1_to_tile3 -> monster_place_tile3)
+hero_tile7_to2_get_name(matched('tile2')):arc (move_hero_tile7_to_tile5 -> hero_place_tile5)
+hero_tile2_to1_get_name(matched('tile2'))1:arc (hero_place_tile2 -> move_hero_tile2_to_tile3)
+monster_tile4_to2_get_name(matched('tile1')):arc (move_monster_tile4_to_tile2 -> monster_place_tile2)
+monster_tile4_to1_get_name(matched('tile1'))0:arc (monster_place_tile4 -> move_monster_tile4_to_door1)
+monster_tile1_to1_get_name(matched('tile1')):arc (monster_place_tile1 -> move_monster_tile1_to_tile2)
+monster_tile3_to1_get_name(matched('tile1')):arc (monster_place_tile3 -> move_monster_tile3_to_tile2)
+monster_tile4_to1_get_name(matched('tile1')):arc (monster_place_tile4 -> move_monster_tile4_to_tile2)
+hero_tile3_to1_get_name(matched('tile2')):arc (hero_place_tile3 -> move_hero_tile3_to_door1)
+hero_tile2_to2_get_name(matched('tile2'))0:arc (move_hero_tile2_to_tile1 -> hero_place_tile1)
+hero_door1_to2_get_name(matched('tile2')):arc (move_hero_door1_to_tile4 -> hero_place_tile4)
+monster_tile5_to1_get_name(matched('tile1')):arc (monster_place_tile5 -> move_monster_tile5_to_tile6)
+monster_tile2_to1_get_name(matched('tile2'))1:arc (monster_place_tile2 -> move_monster_tile2_to_tile3)
+monster_door1_to1_get_name(matched('tile2')):arc (monster_place_door1 -> move_monster_door1_to_tile4)
+monster_tile7_to1_get_name(matched('tile2')):arc (monster_place_tile7 -> move_monster_tile7_to_tile5)
+hero_tile6_to2_get_name(matched('tile2')):arc (move_hero_tile6_to_tile5 -> hero_place_tile5)
+hero_door1_to1_get_name(matched('tile2')):arc (hero_place_door1 -> move_hero_door1_to_tile4)
+hero_tile4_to2_get_name(matched('tile1'))0:arc (move_hero_tile4_to_door1 -> hero_place_door1)
+hero_tile2_to1_get_name(matched('tile2'))0:arc (hero_place_tile2 -> move_hero_tile2_to_tile1)
+monster_tile2_to1_get_name(matched('tile2'))0:arc (monster_place_tile2 -> move_monster_tile2_to_tile1)
+monster_tile3_to2_get_name(matched('tile2')):arc (move_monster_tile3_to_door1 -> monster_place_door1)
+hero_door1_to2_get_name(matched('tile1')):arc (move_hero_door1_to_tile3 -> hero_place_tile3)
 :ConnectingDoor (door1 -> door2)
+:ConnectingDoor (door2 -> door1)
+:DoorKey (door2 -> key1)
+:DoorKey (door1 -> key1)
+link_key_state_door2:pn_of (key_place_state_door2 -> key_place_door2)
+link_objective_state_tile2:pn_of (objective_place_state_tile2 -> objective_place_tile2)
+link_key_state_tile1:pn_of (key_place_state_tile1 -> key_place_tile1)
+link_monster_state_door2:pn_of (monster_place_state_door2 -> monster_place_door2)
+link_objective_state_tile6:pn_of (objective_place_state_tile6 -> objective_place_tile6)
+link_key_state_tile2:pn_of (key_place_state_tile2 -> key_place_tile2)
+link_key_state_tile3:pn_of (key_place_state_tile3 -> key_place_tile3)
+link_monster_state_tile3:pn_of (monster_place_state_tile3 -> monster_place_tile3)
+link_objective_state_tile7:pn_of (objective_place_state_tile7 -> objective_place_tile7)
+link_monster_state_tile6:pn_of (monster_place_state_tile6 -> monster_place_tile6)
+link_hero_state_door1:pn_of (hero_place_state_door1 -> hero_place_door1)
+link_key_state_tile6:pn_of (key_place_state_tile6 -> key_place_tile6)
+link_key_state_door1:pn_of (key_place_state_door1 -> key_place_door1)
+link_hero_state_tile6:pn_of (hero_place_state_tile6 -> hero_place_tile6)
+link_monster_state_tile4:pn_of (monster_place_state_tile4 -> monster_place_tile4)
+link_objective_state_tile1:pn_of (objective_place_state_tile1 -> objective_place_tile1)
+link_hero_state_door2:pn_of (hero_place_state_door2 -> hero_place_door2)
+link_monster_state_door1:pn_of (monster_place_state_door1 -> monster_place_door1)
+link_monster_state_tile7:pn_of (monster_place_state_tile7 -> monster_place_tile7)
+link_objective_state_door1:pn_of (objective_place_state_door1 -> objective_place_door1)
+link_key_state_tile4:pn_of (key_place_state_tile4 -> key_place_tile4)
+link_hero_state_tile4:pn_of (hero_place_state_tile4 -> hero_place_tile4)
+link_hero_state_tile7:pn_of (hero_place_state_tile7 -> hero_place_tile7)
+link_key_state_tile7:pn_of (key_place_state_tile7 -> key_place_tile7)
+link_objective_state_tile4:pn_of (objective_place_state_tile4 -> objective_place_tile4)
+link_monster_state_tile2:pn_of (monster_place_state_tile2 -> monster_place_tile2)
+link_objective_state_tile5:pn_of (objective_place_state_tile5 -> objective_place_tile5)
+link_hero_state_tile2:pn_of (hero_place_state_tile2 -> hero_place_tile2)
+link_objective_state_door2:pn_of (objective_place_state_door2 -> objective_place_door2)
+link_hero_state_tile3:pn_of (hero_place_state_tile3 -> hero_place_tile3)
+link_objective_state_tile3:pn_of (objective_place_state_tile3 -> objective_place_tile3)
+link_hero_state_tile5:pn_of (hero_place_state_tile5 -> hero_place_tile5)
+link_key_state_tile5:pn_of (key_place_state_tile5 -> key_place_tile5)
+link_hero_state_tile1:pn_of (hero_place_state_tile1 -> hero_place_tile1)
+link_monster_state_tile5:pn_of (monster_place_state_tile5 -> monster_place_tile5)
+link_monster_state_tile1:pn_of (monster_place_state_tile1 -> monster_place_tile1)

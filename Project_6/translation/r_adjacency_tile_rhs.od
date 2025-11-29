@@ -38,15 +38,31 @@ monsterTransition2:RAM_PNTransition {
 }
 
 # Create Arcs
-heroTransitionBeginArc1:RAM_arc (heroPlace1 -> heroTransition1)
-heroTransitionEndArc1:RAM_arc (heroTransition1 -> heroPlace2)
-heroTransitionBeginArc2:RAM_arc (heroPlace2 -> heroTransition2)
-heroTransitionEndArc2:RAM_arc (heroTransition2 -> heroPlace1)
+heroTransitionBeginArc1:RAM_arc (heroPlace1 -> heroTransition1) {
+    name = `f"hero_{get_name(matched('tile1'))}_to1_get_name(matched('tile2'))"`;
+}
+heroTransitionEndArc1:RAM_arc (heroTransition1 -> heroPlace2) {
+    name = `f"hero_{get_name(matched('tile1'))}_to2_get_name(matched('tile2'))"`;
+}
+heroTransitionBeginArc2:RAM_arc (heroPlace2 -> heroTransition2) {
+    name = `f"hero_{get_name(matched('tile2'))}_to1_get_name(matched('tile1'))"`;
+}
+heroTransitionEndArc2:RAM_arc (heroTransition2 -> heroPlace1) {
+    name = `f"hero_{get_name(matched('tile2'))}_to2_get_name(matched('tile1'))"`;
+}
 
-monsterTransitionBeginArc1:RAM_arc (monsterPlace1 -> monsterTransition1)
-monsterTransitionEndArc1:RAM_arc (monsterTransition1 -> monsterPlace2)
-monsterTransitionBeginArc2:RAM_arc (monsterPlace2 -> monsterTransition2)
-monsterTransitionEndArc2:RAM_arc (monsterTransition2 -> monsterPlace1)
+monsterTransitionBeginArc1:RAM_arc (monsterPlace1 -> monsterTransition1) {
+    name = `f"monster_{get_name(matched('tile1'))}_to1_get_name(matched('tile2'))"`;
+}
+monsterTransitionEndArc1:RAM_arc (monsterTransition1 -> monsterPlace2) {
+    name = `f"monster_{get_name(matched('tile1'))}_to2_get_name(matched('tile2'))"`;
+}
+monsterTransitionBeginArc2:RAM_arc (monsterPlace2 -> monsterTransition2) {
+    name = `f"monster_{get_name(matched('tile2'))}_to1_get_name(matched('tile1'))"`;
+}
+monsterTransitionEndArc2:RAM_arc (monsterTransition2 -> monsterPlace1) {
+    name = `f"monster_{get_name(matched('tile2'))}_to2_get_name(matched('tile1'))"`;
+}
 
 # Generic Link For NAC
 tileToTile1:RAM_generic_link (tile1 -> tile2)
