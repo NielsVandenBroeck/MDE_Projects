@@ -16,7 +16,7 @@ from simulator import RPGSimulator
 #     print("where `model.od` is a valid instance of RPG+Petri-Net.")
 #     sys.exit(1)
 
-model_file = "snapshots/snapshot_x.od"
+model_file = "snapshots/snapshot_translate_tile.od"
 state = DevState()
 scd_mm = bootstrap_scd(state)
 

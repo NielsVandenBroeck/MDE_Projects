@@ -1,0 +1,4 @@
+tile:RAM_Tile
+
+# Generic Link For NAC
+isTileTranslated:RAM_generic_link (tile -> tile)

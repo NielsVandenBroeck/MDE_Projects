@@ -23,7 +23,9 @@ ramified_merged_mm = ramify(state, merged_mm)
 
 rule_names = [
     # TODO: this is where your rules go
-    "x"
+    "translate_tile",
+    "adjacency_tile",
+    "hero_tile",
 ]
 
 print("Loading rules")
