@@ -1,0 +1,23 @@
+tile1:RAM_Tile
+tile2:RAM_Tile
+level:RAM_Level
+
+isAdjacent:RAM_AdjacentTile (tile1 -> tile2)
+isTile1Inlevel:RAM_LevelTiles (level -> tile1)
+isTile2Inlevel:RAM_LevelTiles (level -> tile2)
+
+levelPlace:RAM_PNPlace {
+    condition = `get_name(this) == f"level_place_{get_name(matched('level'))}"`;
+}
+
+monsterTransition:RAM_PNTransition {
+    condition = `get_name(this) == f"move_monster_{get_name(matched('tile1'))}_to_{get_name(matched('tile2'))}"`;
+}
+
+# Arcs between level and neighbor transition for monster
+moveMonsterRequired1:RAM_arc (levelPlace -> monsterTransition) {
+    name = `f"monster_move_required_from_{get_name(matched('tile1'))}_to_{get_name(matched('tile2'))}_1"`;
+}
+moveMonsterRequired2:RAM_arc (monsterTransition -> levelPlace) {
+    name = `f"monster_move_required_from_{get_name(matched('tile1'))}_to_{get_name(matched('tile2'))}_2"`;
+}

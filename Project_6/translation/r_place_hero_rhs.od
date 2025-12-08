@@ -1,15 +1,31 @@
 hero:RAM_Hero
 tile:RAM_Tile
+level:RAM_Level
+
+isStandingTile:RAM_StandingTile (hero -> tile)
+isHeroLevel:RAM_LevelTiles (level -> tile)
+
 place:RAM_PNPlace {
     condition = `get_name(this) == f"hero_place_{get_name(matched('tile'))}"`;
 }
 placeState:RAM_PNPlaceState {
     condition = `get_name(this) == f"hero_place_state_{get_name(matched('tile'))}"`;
-    RAM_numTokens = `get_value(this) + 1`;
+    RAM_numTokens = `1`;
 }
 
-# Is Standing Tile?
-isStandingTile:RAM_StandingTile (hero -> tile)
+levelPlace:RAM_PNPlace {
+    condition = `get_name(this) == f"level_place_{get_name(matched('level'))}"`;
+}
+
+levelPlaceState:RAM_PNPlaceState {
+    condition = `get_name(this) == f"level_place_state_{get_name(matched('level'))}"`;
+    RAM_numTokens = `1`;
+}
+
+lvlStateToLvlPlace:RAM_pn_of (levelPlaceState -> levelPlace) {
+    condition = `get_name(this) == f"level_place_link_{get_name(matched('level'))}"`;
+}
+
 # Is Place State?
 isPlaceState:RAM_pn_of (placeState -> place)
 # Is Place Of Tile?

@@ -1,0 +1,16 @@
+monster:RAM_Monster
+tile:RAM_Tile
+place:RAM_PNPlace {
+    condition = `get_name(this) == f"monster_place_{get_name(matched('tile'))}"`;
+}
+placeState:RAM_PNPlaceState {
+    condition = `get_name(this) == f"monster_place_state_{get_name(matched('tile'))}"`;
+    RAM_numTokens = `get_value(this) == 0`;
+}
+
+# Is Standing Tile?
+isStandingTile:RAM_StandingTile (monster -> tile)
+# Is Place State?
+isPlaceState:RAM_pn_of (placeState -> place)
+# Is Place Of Tile?
+isPlaceOfTile:RAM_generic_link (tile -> place)

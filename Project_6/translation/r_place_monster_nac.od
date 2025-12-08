@@ -1,0 +1,8 @@
+monster:RAM_Monster
+tile:RAM_Tile
+place:RAM_PNPlace {
+    condition = `get_name(this) == f"monster_place_{get_name(matched('tile'))}"`;
+}
+
+# Generic Link For NAC
+monsterToPlace:RAM_generic_link (monster -> place)

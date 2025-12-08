@@ -1,0 +1,5 @@
+level:RAM_Level
+
+levelPlace:RAM_PNPlace {
+    condition = `get_name(this) == f"level_place_{get_name(matched('level'))}"`;
+}

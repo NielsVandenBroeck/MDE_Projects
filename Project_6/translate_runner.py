@@ -23,9 +23,10 @@ ramified_merged_mm = ramify(state, merged_mm)
 
 rule_names = [
     # TODO: this is where your rules go
+    "translate_level",
+    "translate_inventory",
     "translate_tile",
     "adjacency_tile",
-    "translate_inventory",
     "hero_lives",
     "place_objective",
     "place_hero",
@@ -33,6 +34,8 @@ rule_names = [
     "place_key",
     "connect_key_door",
     "translate_trap",
+    "monster_same_level_required",
+    "place_monster",
 ]
 
 print("Loading rules")

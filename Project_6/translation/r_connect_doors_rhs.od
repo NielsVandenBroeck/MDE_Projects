@@ -1,12 +1,27 @@
 door1:RAM_Door
 door2:RAM_Door
 
+level1:RAM_Level
+level2:RAM_Level
+
+# Get levels of both doors
+isDoor1Inlevel1:RAM_LevelTiles (level1 -> door1)
+isDoor2Inlevel2:RAM_LevelTiles (level2 -> door2)
+
+# Get places of doors
 door1Place:RAM_PNPlace {
     condition = `get_name(this) == f"hero_place_{get_name(matched('door1'))}"`;
 }
-
 door2Place:RAM_PNPlace {
     condition = `get_name(this) == f"hero_place_{get_name(matched('door2'))}"`;
+}
+
+# Get places of levels
+level1Place:RAM_PNPlace {
+    condition = `get_name(this) == f"level_place_{get_name(matched('level1'))}"`;
+}
+level2Place:RAM_PNPlace {
+    condition = `get_name(this) == f"level_place_{get_name(matched('level2'))}"`;
 }
 
 # Create 'use_door' transition between doors
@@ -20,6 +35,14 @@ useDoorTransition1:RAM_arc (door1Place -> useDoorTransition) {
 }
 useDoorTransition4:RAM_arc (useDoorTransition -> door2Place) {
     name = `f"use_door_from_{get_name(matched('door1'))}_to_{get_name(matched('door2'))}_2"`;
+}
+
+# Arcs between level and door transition to switch level status
+changeFromLevel1:RAM_arc (level1Place -> useDoorTransition) {
+    name = `f"change_level_from_{get_name(matched('level1'))}_to_{get_name(matched('level2'))}_1"`;
+}
+changeToLevel2:RAM_arc (useDoorTransition -> level2Place) {
+    name = `f"use_door_from_{get_name(matched('level1'))}_to_{get_name(matched('level2'))}_2"`;
 }
 
 # Check if doors are connected

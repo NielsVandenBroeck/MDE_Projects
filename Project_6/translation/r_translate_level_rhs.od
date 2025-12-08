@@ -1,0 +1,15 @@
+level:RAM_Level
+
+levelPlace:RAM_PNPlace {
+    name = `f"level_place_{get_name(matched('level'))}"`;
+}
+
+placeState:RAM_PNPlaceState {
+    name = `f"level_place_state_{get_name(matched('level'))}"`;
+    RAM_numTokens = `0`;
+}
+
+# Link Place State To Place
+lvlStateToLvlPlace:RAM_pn_of (placeState -> levelPlace) {
+    name = `f"level_place_link_{get_name(matched('level'))}"`;
+}
