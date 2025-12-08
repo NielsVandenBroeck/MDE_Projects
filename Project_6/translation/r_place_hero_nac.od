@@ -3,14 +3,11 @@ tile:RAM_Tile
 place:RAM_PNPlace {
     condition = `get_name(this) == f"hero_place_{get_name(matched('tile'))}"`;
 }
-placeState:RAM_PNPlaceState {
-    condition = `get_name(this) == f"hero_place_state_{get_name(matched('tile'))}"`;
-    RAM_numTokens = `get_value(this) == 0`;
-}
 
 # Is Standing Tile?
 isStandingTile:RAM_StandingTile (hero -> tile)
-# Is Place State?
-isPlaceState:RAM_pn_of (placeState -> place)
-# Is Place Of Tile
+# Is Place Of Tile?
 isPlaceOfTile:RAM_generic_link (tile -> place)
+
+# Generic Link For NAC
+heroToPlace:RAM_generic_link (hero -> place)

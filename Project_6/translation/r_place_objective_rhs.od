@@ -1,0 +1,52 @@
+obj:RAM_Objective
+tile:RAM_StandardTile
+
+heroPlace:RAM_PNPlace {
+    condition = `get_name(this) == f"hero_place_{get_name(matched('tile'))}"`;
+}
+
+objPlace:RAM_PNPlace {
+    condition = `get_name(this) == f"objective_place_{get_name(matched('tile'))}"`;
+}
+objPlaceState:RAM_PNPlaceState {
+    condition = `get_name(this) == f"objective_place_state_{get_name(matched('tile'))}"`;
+    RAM_numTokens = `get_value(this) + 1`;
+}
+
+# Inventory to link obj places with
+InvPlace:RAM_PNPlace {
+    condition = `get_name(this) == f"inventory_place"`;
+}
+
+# Make 'pick_up' transition from place to inventory
+pickUpTransition:RAM_PNTransition {
+    name = `f"pick_up_{get_name(matched('obj'))}"`;
+}
+
+# Create Arcs
+pickUpTransition1:RAM_arc (objPlace -> pickUpTransition) {
+    name = `f"pick_up_{get_name(matched('obj'))}_on_tile_{get_name(matched('tile'))}_1"`;
+}
+pickUpTransition2:RAM_arc (pickUpTransition -> InvPlace) {
+    name = `f"pick_up_{get_name(matched('obj'))}_on_tile_{get_name(matched('tile'))}_2"`;
+}
+#Arcs so that hero has to be present in tile
+pickUpTransition3:RAM_arc (heroPlace -> pickUpTransition) {
+    name = `f"pick_up_{get_name(matched('obj'))}_on_tile_{get_name(matched('tile'))}_3"`;
+}
+pickUpTransition4:RAM_arc (pickUpTransition -> heroPlace) {
+    name = `f"pick_up_{get_name(matched('obj'))}_on_tile_{get_name(matched('tile'))}_4"`;
+}
+
+
+# Is Objective Tile?
+isObjTile:RAM_StandardTileItem (tile -> obj)
+# Is Place State?
+isPlaceState:RAM_pn_of (objPlaceState -> objPlace)
+# Is Place Of Tile?
+isPlaceOfTile:RAM_generic_link (tile -> objPlace)
+# Is herp place of Tile?
+isHeroPlaceOfTile:RAM_generic_link (tile -> heroPlace)
+
+# Generic Link For NAC
+objToPlace:RAM_generic_link (obj -> objPlace)

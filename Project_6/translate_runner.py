@@ -25,7 +25,10 @@ rule_names = [
     # TODO: this is where your rules go
     "translate_tile",
     "adjacency_tile",
-    "hero_tile",
+    "translate_inventory",
+    "place_objective",
+    "place_hero",
+    "connect_doors",
 ]
 
 print("Loading rules")

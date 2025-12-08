@@ -1,0 +1,4 @@
+# Get inventory Place
+place:RAM_PNPlace {
+    condition = `get_name(this) == f"inventory_place"`;
+}

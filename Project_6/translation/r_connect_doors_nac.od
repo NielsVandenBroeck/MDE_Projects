@@ -1,0 +1,5 @@
+door1:RAM_Door
+door2:RAM_Door
+
+# Generic Link For NAC
+connectedDoors:RAM_generic_link (door1 -> door2)

@@ -12,7 +12,7 @@ placeState:RAM_PNPlaceState {
 isStandingTile:RAM_StandingTile (hero -> tile)
 # Is Place State?
 isPlaceState:RAM_pn_of (placeState -> place)
-# Is Place Of Tile
+# Is Place Of Tile?
 isPlaceOfTile:RAM_generic_link (tile -> place)
 
 # Generic Link For NAC

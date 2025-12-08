@@ -1,0 +1,13 @@
+obj:RAM_Objective
+tile:RAM_StandardTile
+objPlace:RAM_PNPlace {
+    condition = `get_name(this) == f"objective_place_{get_name(matched('tile'))}"`;
+}
+
+# Is Objective Tile?
+isObjTile:RAM_StandardTileItem (tile -> obj)
+# Is Place Of Tile?
+isPlaceOfTile:RAM_generic_link (tile -> objPlace)
+
+# Generic Link For NAC
+objToPlace:RAM_generic_link (obj -> objPlace)

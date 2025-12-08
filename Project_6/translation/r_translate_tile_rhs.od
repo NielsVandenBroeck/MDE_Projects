@@ -46,9 +46,11 @@ KeyStateToKeyPlace:RAM_pn_of (keyPlaceState -> keyPlace) {
     name = `f"link_key_state_{get_name(matched('tile'))}"`;
 }
 
-# Generic Link For Adjacency Rule
+# Generic Links
 tileToHeroPlace:RAM_generic_link (tile -> heroPlace)
 tileToMonsterPlace:RAM_generic_link (tile -> monsterPlace)
+tileToObjectivePlace:RAM_generic_link (tile -> objectivePlace)
+tileToKeyPlace:RAM_generic_link (tile -> keyPlace)
 
 # Generic Link For NAC
 tileToSelf:RAM_generic_link (tile -> tile)

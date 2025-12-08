@@ -1,0 +1,14 @@
+# make place for inventory with name inventory_place
+place:RAM_PNPlace {
+    name = `f"inventory_place"`;
+}
+
+placeState:RAM_PNPlaceState {
+    name = `f"inventory_place_state"`;
+    RAM_numTokens = `0`;
+}
+
+# Link Place State To Place
+invStateToInvPlace:RAM_pn_of (placeState -> place) {
+    name = `f"link_inventory_place_state"`;
+}

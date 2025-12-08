@@ -1,0 +1,33 @@
+door1:RAM_Door
+door2:RAM_Door
+
+door1Place:RAM_PNPlace {
+    condition = `get_name(this) == f"hero_place_{get_name(matched('door1'))}"`;
+}
+
+door2Place:RAM_PNPlace {
+    condition = `get_name(this) == f"hero_place_{get_name(matched('door2'))}"`;
+}
+
+# Create 'use_door' transition between doors
+useDoorTransition:RAM_PNTransition {
+    name = `f"use_door_from_{get_name(matched('door1'))}_to_{get_name(matched('door2'))}"`;
+}
+
+# Create Arcs
+useDoorTransition1:RAM_arc (door1Place -> useDoorTransition) {
+    name = `f"use_door_from_{get_name(matched('door1'))}_to_{get_name(matched('door2'))}_1"`;
+}
+useDoorTransition4:RAM_arc (useDoorTransition -> door2Place) {
+    name = `f"use_door_from_{get_name(matched('door1'))}_to_{get_name(matched('door2'))}_2"`;
+}
+
+# Check if doors are connected
+areConnected:RAM_ConnectingDoor (door1 -> door2)
+
+# Check if places correspond to doors
+isPlaceOfDoor1:RAM_generic_link (door1 -> door1Place)
+isPlaceOfDoor2:RAM_generic_link (door2 -> door2Place)
+
+# Generic Link For NAC
+connectedDoors1:RAM_generic_link (door1 -> door2)

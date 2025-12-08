@@ -1,0 +1,17 @@
+door1:RAM_Door
+door2:RAM_Door
+
+door1Place:RAM_PNPlace {
+    condition = `get_name(this) == f"hero_place_{get_name(matched('door1'))}"`;
+}
+
+door2Place:RAM_PNPlace {
+    condition = `get_name(this) == f"hero_place_{get_name(matched('door2'))}"`;
+}
+
+# Check if doors are connected
+areConnected:RAM_ConnectingDoor (door1 -> door2)
+
+# Check if places correspond to doors
+isPlaceOfDoor1:RAM_generic_link (door1 -> door1Place)
+isPlaceOfDoor2:RAM_generic_link (door2 -> door2Place)
