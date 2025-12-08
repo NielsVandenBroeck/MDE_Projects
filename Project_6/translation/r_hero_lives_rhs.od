@@ -1,0 +1,13 @@
+hero:RAM_Hero
+
+heroLives:RAM_PNPlace {
+    name = `f"hero_lives_place"`;
+}
+
+heroLivesState:RAM_PNPlaceState {
+    name = `f"hero_lives_place_state"`;
+    RAM_numTokens = `get_slot_value(matched('hero'), 'lives')`;
+}
+
+# Link Place State To Place
+heroStateToHeroPlace:RAM_pn_of (heroLivesState -> heroLives)

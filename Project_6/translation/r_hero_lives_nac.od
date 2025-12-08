@@ -1,0 +1,4 @@
+# Get hero Lives
+heroLives:RAM_PNPlace {
+    condition = `get_name(this) == f"hero_lives_place"`;
+}

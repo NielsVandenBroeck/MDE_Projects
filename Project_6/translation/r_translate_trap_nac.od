@@ -1,0 +1,16 @@
+trap:RAM_Trap
+tileFrom:RAM_Tile
+
+heroTransition:RAM_PNTransition {
+    condition = `get_name(this) == f"move_hero_{get_name(matched('tileFrom'))}_to_{get_name(matched('trap'))}"`;
+}
+
+# Check adjacency from tile to trap, we only want to add functionality to this transition
+isAdjacentForwards:RAM_AdjacentTile (tileFrom -> trap)
+
+heroLivesPlace:RAM_PNPlace {
+    condition = `get_name(this) == f"hero_lives_place"`;
+}
+
+# Create Arc from lives to transition to trap
+loseLifeArc:RAM_arc (heroLivesPlace -> heroTransition)

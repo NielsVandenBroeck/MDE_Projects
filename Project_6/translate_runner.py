@@ -26,11 +26,13 @@ rule_names = [
     "translate_tile",
     "adjacency_tile",
     "translate_inventory",
+    "hero_lives",
     "place_objective",
     "place_hero",
     "connect_doors",
     "place_key",
-    "connect_key_door"
+    "connect_key_door",
+    "translate_trap",
 ]
 
 print("Loading rules")
