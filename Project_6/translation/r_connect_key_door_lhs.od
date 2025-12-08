@@ -1,0 +1,16 @@
+key:RAM_Key
+tile:RAM_StandardTile
+
+# Is Key Tile?
+isKeyTile:RAM_StandardTileItem (tile -> key)
+
+keyCollectedPlace:RAM_PNPlace {
+    condition = `get_name(this) == f"key_collected_place_{get_name(matched('tile'))}"`;
+}
+
+# Connecting door
+door:RAM_Door
+isConnectingDoor:RAM_DoorKey (door -> key)
+doorTransition:RAM_PNTransition {
+    condition = `f"use_door_from_{get_name(matched('door'))}" in get_name(this)`;
+}

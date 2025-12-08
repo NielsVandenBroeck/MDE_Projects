@@ -18,10 +18,10 @@ InvPlace:RAM_PNPlace {
 
 # Make place for objective
 objPlace:RAM_PNPlace {
-    condition = `get_name(this) == f"objective_place_{get_name(matched('tile'))}"`;
+    name = `f"objective_place_{get_name(matched('tile'))}"`;
 }
 objPlaceState:RAM_PNPlaceState {
-    condition = `get_name(this) == f"objective_place_state_{get_name(matched('tile'))}"`;
+    name = `f"objective_place_state_{get_name(matched('tile'))}"`;
     RAM_numTokens = `1`;
 }
 

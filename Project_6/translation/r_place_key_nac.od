@@ -1,0 +1,5 @@
+key:RAM_Objective
+keyPlace:RAM_PNPlace
+
+# Generic Link For NAC
+keyToPlace:RAM_generic_link (key -> keyPlace)

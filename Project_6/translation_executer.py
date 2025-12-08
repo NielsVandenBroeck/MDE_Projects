@@ -10,13 +10,16 @@ from transformation.rule import RuleMatcherRewriter, ActionGenerator
 from util import loader, simulator
 from simulator import RPGSimulator
 
+from translate_runner import rule_names
+
 # if len(sys.argv) != 2:
 #     print("Usage:")
 #     print(f"  python {__file__} model.od")
 #     print("where `model.od` is a valid instance of RPG+Petri-Net.")
 #     sys.exit(1)
 
-model_file = "snapshots/snapshot_connect_doors.od"
+model_file = f"snapshots/snapshot_{rule_names[-1]}.od"
+print(model_file)
 state = DevState()
 scd_mm = bootstrap_scd(state)
 

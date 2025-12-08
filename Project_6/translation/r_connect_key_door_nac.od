@@ -1,0 +1,15 @@
+key:RAM_Key
+tile:RAM_StandardTile
+
+# Is Key Tile?
+isKeyTile:RAM_StandardTileItem (tile -> key)
+
+keyCollectedPlace:RAM_PNPlace {
+    condition = `get_name(this) == f"key_collected_place_{get_name(matched('tile'))}"`;
+}
+
+# Connecting door
+door:RAM_Door
+
+# Generic Link For NAC
+doorToKey:RAM_generic_link (door -> keyCollectedPlace)

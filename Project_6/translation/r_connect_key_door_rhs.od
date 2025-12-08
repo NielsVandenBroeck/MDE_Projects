@@ -1,0 +1,27 @@
+key:RAM_Key
+tile:RAM_StandardTile
+
+# Is Key Tile?
+isKeyTile:RAM_StandardTileItem (tile -> key)
+
+keyCollectedPlace:RAM_PNPlace {
+    condition = `get_name(this) == f"key_collected_place_{get_name(matched('tile'))}"`;
+}
+
+# Connecting door
+door:RAM_Door
+isConnectingDoor:RAM_DoorKey (door -> key)
+doorTransition:RAM_PNTransition {
+    condition = `"use_door_from_{get_name(matched('door'))}" in get_name(this)`;
+}
+
+# Add key to transition to use door
+useDoorTransition1:RAM_arc (keyCollectedPlace -> doorTransition) {
+    name = `f"require_key_{get_name(matched('key'))}_for_door_{get_name(matched('door'))}_1"`;
+}
+useDoorTransition2:RAM_arc (doorTransition -> keyCollectedPlace) {
+    name = `f"require_key_{get_name(matched('key'))}_for_door_{get_name(matched('door'))}_2"`;
+}
+
+# Generic Link For NAC
+doorToKey:RAM_generic_link (door -> keyCollectedPlace)

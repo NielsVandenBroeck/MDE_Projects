@@ -1,0 +1,12 @@
+key:RAM_Key
+tile:RAM_StandardTile
+
+# Is Key Tile?
+isKeyTile:RAM_StandardTileItem (tile -> key)
+
+heroPlace:RAM_PNPlace {
+    condition = `get_name(this) == f"hero_place_{get_name(matched('tile'))}"`;
+}
+
+# Is hero place of Tile?
+isHeroPlaceOfTile:RAM_generic_link (tile -> heroPlace)

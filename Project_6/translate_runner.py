@@ -29,6 +29,8 @@ rule_names = [
     "place_objective",
     "place_hero",
     "connect_doors",
+    "place_key",
+    "connect_key_door"
 ]
 
 print("Loading rules")

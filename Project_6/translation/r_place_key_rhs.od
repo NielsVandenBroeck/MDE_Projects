@@ -1,0 +1,59 @@
+key:RAM_Key
+tile:RAM_StandardTile
+
+# Is Key Tile?
+isKeyTile:RAM_StandardTileItem (tile -> key)
+
+heroPlace:RAM_PNPlace {
+    condition = `get_name(this) == f"hero_place_{get_name(matched('tile'))}"`;
+}
+
+# Is hero place of Tile?
+isHeroPlaceOfTile:RAM_generic_link (tile -> heroPlace)
+
+# Make place for key
+keyPlace:RAM_PNPlace {
+    name = `f"key_place_{get_name(matched('tile'))}"`;
+}
+keyPlaceState:RAM_PNPlaceState {
+    name = `f"key_place_state_{get_name(matched('tile'))}"`;
+    RAM_numTokens = `1`;
+}
+isPlaceState:RAM_pn_of (keyPlaceState -> keyPlace) {
+    name = `f"link_key_state_{get_name(matched('key'))}"`;
+}
+
+# Make place for collectedKey
+keyCollectedPlace:RAM_PNPlace {
+    name = `f"key_collected_place_{get_name(matched('tile'))}"`;
+}
+keyCollectedPlaceState:RAM_PNPlaceState {
+    name = `f"key_collected_place_state_{get_name(matched('tile'))}"`;
+    RAM_numTokens = `0`;
+}
+isCollectedPlaceState:RAM_pn_of (keyCollectedPlaceState -> keyCollectedPlace) {
+    name = `f"link_collected_key_state_{get_name(matched('key'))}"`;
+}
+
+# Make 'pick_up' transition from place to keyCollectedPlace
+pickUpTransition:RAM_PNTransition {
+    name = `f"pick_up_{get_name(matched('key'))}"`;
+}
+
+# Create Arcs
+pickUpTransition1:RAM_arc (keyPlace -> pickUpTransition) {
+    name = `f"pick_up_{get_name(matched('key'))}_on_tile_{get_name(matched('tile'))}_1"`;
+}
+pickUpTransition2:RAM_arc (pickUpTransition -> keyCollectedPlace) {
+    name = `f"pick_up_{get_name(matched('key'))}_on_tile_{get_name(matched('tile'))}_2"`;
+}
+#Arcs so that hero has to be present in tile
+pickUpTransition3:RAM_arc (heroPlace -> pickUpTransition) {
+    name = `f"pick_up_{get_name(matched('key'))}_on_tile_{get_name(matched('tile'))}_3"`;
+}
+pickUpTransition4:RAM_arc (pickUpTransition -> heroPlace) {
+    name = `f"pick_up_{get_name(matched('key'))}_on_tile_{get_name(matched('tile'))}_4"`;
+}
+
+# Generic Link For NAC
+keyToPlace:RAM_generic_link (key -> keyPlace)
