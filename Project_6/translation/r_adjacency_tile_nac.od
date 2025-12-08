@@ -3,4 +3,3 @@ tile2:RAM_Tile
 
 # Generic Link For NAC
 adjacencyTileAlreadyTranslated1:RAM_generic_link (tile1 -> tile2)
-# adjacencyTileAlreadyTranslated2:RAM_generic_link (tile2 -> tile1)

@@ -1,31 +1,18 @@
 obj:RAM_Objective
 tile:RAM_StandardTile
 
+# Is Objective Tile?
+isObjTile:RAM_StandardTileItem (tile -> obj)
+
 heroPlace:RAM_PNPlace {
     condition = `get_name(this) == f"hero_place_{get_name(matched('tile'))}"`;
 }
 
-objPlace:RAM_PNPlace {
-    condition = `get_name(this) == f"objective_place_{get_name(matched('tile'))}"`;
-}
-objPlaceState:RAM_PNPlaceState {
-    condition = `get_name(this) == f"objective_place_state_{get_name(matched('tile'))}"`;
-    RAM_numTokens = `get_value(this) == 0`;
-}
-
-
+# Is hero place of Tile?
+isHeroPlaceOfTile:RAM_generic_link (tile -> heroPlace)
 
 # Inventory to link obj places with
 InvPlace:RAM_PNPlace {
     condition = `get_name(this) == f"inventory_place"`;
 }
-
-# Is Objective Tile?
-isObjTile:RAM_StandardTileItem (tile -> obj)
-# Is Place State?
-isPlaceState:RAM_pn_of (objPlaceState -> objPlace)
-# Is Place Of Tile?
-isPlaceOfTile:RAM_generic_link (tile -> objPlace)
-# Is herp place of Tile?
-isHeroPlaceOfTile:RAM_generic_link (tile -> heroPlace)
 

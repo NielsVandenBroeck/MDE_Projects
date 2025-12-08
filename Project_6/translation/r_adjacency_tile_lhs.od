@@ -15,7 +15,6 @@ monsterPlace2:RAM_PNPlace {
 
 # Adjacency
 isAdjacentForwards:RAM_AdjacentTile (tile1 -> tile2)
-isAdjacentBackwards:RAM_AdjacentTile (tile2 -> tile1)
 
 # Place From Tile
 isHeroPlaceOf1:RAM_generic_link (tile1 -> heroPlace1)

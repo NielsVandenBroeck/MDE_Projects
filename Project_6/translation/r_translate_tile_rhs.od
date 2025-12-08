@@ -7,12 +7,6 @@ heroPlace:RAM_PNPlace {
 monsterPlace:RAM_PNPlace {
     name = `f"monster_place_{get_name(matched('tile'))}"`;
 }
-objectivePlace:RAM_PNPlace {
-    name = `f"objective_place_{get_name(matched('tile'))}"`;
-}
-keyPlace:RAM_PNPlace {
-    name = `f"key_place_{get_name(matched('tile'))}"`;
-}
 
 # Create Place States
 heroPlaceState:RAM_PNPlaceState {
@@ -23,14 +17,6 @@ monsterPlaceState:RAM_PNPlaceState {
     name = `f"monster_place_state_{get_name(matched('tile'))}"`;
     RAM_numTokens = `0`;
 }
-objectivePlaceState:RAM_PNPlaceState {
-    name = `f"objective_place_state_{get_name(matched('tile'))}"`;
-    RAM_numTokens = `0`;
-}
-keyPlaceState:RAM_PNPlaceState {
-    name = `f"key_place_state_{get_name(matched('tile'))}"`;
-    RAM_numTokens = `0`;
-}
 
 # Link Place State To Place
 HeroStateToHeroPlace:RAM_pn_of (heroPlaceState -> heroPlace) {
@@ -39,18 +25,10 @@ HeroStateToHeroPlace:RAM_pn_of (heroPlaceState -> heroPlace) {
 MonsterStateToMonsterPlace:RAM_pn_of (monsterPlaceState -> monsterPlace) {
     name = `f"link_monster_state_{get_name(matched('tile'))}"`;
 }
-ObjectiveStateToObjectivePlace:RAM_pn_of (objectivePlaceState -> objectivePlace) {
-    name = `f"link_objective_state_{get_name(matched('tile'))}"`;
-}
-KeyStateToKeyPlace:RAM_pn_of (keyPlaceState -> keyPlace) {
-    name = `f"link_key_state_{get_name(matched('tile'))}"`;
-}
 
 # Generic Links
 tileToHeroPlace:RAM_generic_link (tile -> heroPlace)
 tileToMonsterPlace:RAM_generic_link (tile -> monsterPlace)
-tileToObjectivePlace:RAM_generic_link (tile -> objectivePlace)
-tileToKeyPlace:RAM_generic_link (tile -> keyPlace)
 
 # Generic Link For NAC
 tileToSelf:RAM_generic_link (tile -> tile)
