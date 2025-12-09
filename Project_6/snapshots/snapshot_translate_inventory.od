@@ -1,0 +1,130 @@
+
+tile4:Trap
+world:World
+door1:Door
+door2:Door
+key1:Key
+myWorldState:WorldState {
+    collectedPoints = 0;
+}
+myHeroState:CreatureState {
+    fought = False;
+    moved = False;
+}
+monsterState:CreatureState {
+    fought = False;
+    moved = False;
+}
+c:Clock {
+    time = 0;
+}
+inventory_place:PNPlace
+level_place_level2:PNPlace
+level_place_level1:PNPlace
+inventory_place_state:PNPlaceState {
+    numTokens = 0;
+}
+level_place_state_level1:PNPlaceState {
+    numTokens = 0;
+}
+level_place_state_level2:PNPlaceState {
+    numTokens = 0;
+}
+tile6:Obstacle
+level2:Level {
+    name = "level2";
+}
+level1:Level {
+    name = "level1";
+}
+tile7:StandardTile
+tile1:StandardTile
+tile3:StandardTile
+tile2:StandardTile
+tile5:StandardTile
+myHero:Hero {
+    lives = 10;
+}
+obj2:Objective {
+    points = 90;
+}
+obj1:Objective {
+    points = 10;
+}
+monster:Monster {
+    lives = 5;
+}
+:WorldLevels (world -> level1)
+:WorldLevels (world -> level2)
+:StandingTile (monster -> tile5)
+:StandingTile (myHero -> tile2)
+:WorldState_ass (world -> myWorldState)
+:DoorKey (door2 -> key1)
+:DoorKey (door1 -> key1)
+:AdjacentTile (tile6 -> tile5) {
+    direction = "West";
+}
+:AdjacentTile (tile4 -> tile2) {
+    direction = "North";
+}
+:AdjacentTile (tile3 -> tile2) {
+    direction = "West";
+}
+:AdjacentTile (tile5 -> door2) {
+    direction = "South";
+}
+:AdjacentTile (tile2 -> tile1) {
+    direction = "West";
+}
+:AdjacentTile (tile2 -> tile3) {
+    direction = "East";
+}
+:AdjacentTile (tile5 -> tile7) {
+    direction = "North";
+}
+:AdjacentTile (tile2 -> tile4) {
+    direction = "South";
+}
+:AdjacentTile (tile1 -> tile2) {
+    direction = "East";
+}
+:AdjacentTile (tile7 -> tile5) {
+    direction = "South";
+}
+:AdjacentTile (door1 -> tile4) {
+    direction = "West";
+}
+:AdjacentTile (tile3 -> door1) {
+    direction = "South";
+}
+:AdjacentTile (door1 -> tile3) {
+    direction = "North";
+}
+:AdjacentTile (tile5 -> tile6) {
+    direction = "East";
+}
+:AdjacentTile (door2 -> tile5) {
+    direction = "North";
+}
+:AdjacentTile (tile4 -> door1) {
+    direction = "East";
+}
+level_place_link_level1:pn_of (level_place_state_level1 -> level_place_level1)
+link_inventory_place_state:pn_of (inventory_place_state -> inventory_place)
+level_place_link_level2:pn_of (level_place_state_level2 -> level_place_level2)
+:ConnectingDoor (door1 -> door2)
+:ConnectingDoor (door2 -> door1)
+:LevelTiles (level1 -> tile4)
+:LevelTiles (level2 -> door2)
+:LevelTiles (level1 -> door1)
+:LevelTiles (level1 -> tile1)
+:LevelTiles (level2 -> tile7)
+:LevelTiles (level2 -> tile5)
+:LevelTiles (level1 -> tile3)
+:LevelTiles (level1 -> tile2)
+:LevelTiles (level2 -> tile6)
+:CreatureState_ass (myHero -> myHeroState)
+:CreatureState_ass (monster -> monsterState)
+:StandardTileItem (tile3 -> key1)
+:StandardTileItem (tile1 -> obj1)
+:StandardTileItem (tile7 -> obj2)
