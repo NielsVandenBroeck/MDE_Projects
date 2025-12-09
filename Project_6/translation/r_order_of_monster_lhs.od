@@ -1,0 +1,11 @@
+monsterTransition:RAM_PNTransition {
+    condition = `"move_monster_" in get_name(this)`;
+}
+
+# Get the order places so we can add arcs in rhs
+monsterPlace:RAM_PNPlace {
+    condition = `get_name(this) == f"Monster_moved_place"`;
+}
+heroPlace:RAM_PNPlace {
+    condition = `get_name(this) == f"Hero_moved_place"`;
+}

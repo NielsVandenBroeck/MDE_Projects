@@ -1,19 +1,9 @@
 tile1:RAM_Tile
-tile2:RAM_Tile
 level:RAM_Level
 
-levelPlace:RAM_PNPlace {
-    condition = `get_name(this) == f"level_place_{get_name(matched('level'))}"`;
-}
-
 monsterTransition:RAM_PNTransition {
-    condition = `get_name(this) == f"move_monster_{get_name(matched('tile1'))}_to_{get_name(matched('tile2'))}"`;
+    condition = `f"move_monster_{get_name(matched('tile1'))}" in get_name(this)`;
 }
 
-# Arcs between level and neighbor transition for monster
-moveMonsterRequired1:RAM_arc (levelPlace -> monsterTransition) {
-    condition = `get_name(this) == f"monster_move_required_from_{get_name(matched('tile1'))}_to_{get_name(matched('tile2'))}_1"`;
-}
-moveMonsterRequired2:RAM_arc (monsterTransition -> levelPlace) {
-    condition = `get_name(this) == f"monster_move_required_from_{get_name(matched('tile1'))}_to_{get_name(matched('tile2'))}_2"`;
-}
+# Generic Link For NAC
+adjacencyMonsterAlreadyLevel:RAM_generic_link (level -> monsterTransition)

@@ -1,0 +1,54 @@
+# make place for order
+heroPlace:RAM_PNPlace {
+    name = `f"Hero_moved_place"`;
+}
+heroPlaceState:RAM_PNPlaceState {
+    name = `f"Hero_moved_place_state"`;
+    RAM_numTokens = `1`;
+}
+heroStateToHeroPlace:RAM_pn_of (heroPlaceState -> heroPlace) {
+    name = `f"link_hero_moved_place"`;
+}
+
+collectablePlace:RAM_PNPlace {
+    name = `f"Collected_place"`;
+}
+collectablePlaceState:RAM_PNPlaceState {
+    name = `f"Collected_place_state"`;
+    RAM_numTokens = `0`;
+}
+collectedStateToCollectedPlace:RAM_pn_of (collectablePlaceState -> collectablePlace) {
+    name = `f"link_collected_place"`;
+}
+
+monsterPlace:RAM_PNPlace {
+    name = `f"Monster_moved_place"`;
+}
+monsterPlaceState:RAM_PNPlaceState {
+    name = `f"Monster_moved_place_state"`;
+    RAM_numTokens = `0`;
+}
+monsterStateToMonsterPlace:RAM_pn_of (monsterPlaceState -> monsterPlace) {
+    name = `f"link_monster_moved_place"`;
+}
+
+# Transitions from collectable to monster and from monster to hero for when nothing is possible
+collectableContinueTransition:RAM_PNTransition {
+    name = `f"transition_collectable_continue"`;
+}
+collectableContinueTransition1:RAM_arc (collectablePlace -> collectableContinueTransition) {
+    name = `f"transition_collectable_continue_1"`;
+}
+collectableContinueTransition2:RAM_arc (collectableContinueTransition -> monsterPlace) {
+    name = `f"transition_collectable_continue_2"`;
+}
+
+monsterContinueTransition:RAM_PNTransition {
+    name = `f"transition_monster_continue"`;
+}
+monsterContinueTransition1:RAM_arc (monsterPlace -> monsterContinueTransition) {
+    name = `f"transition_monster_continue_1"`;
+}
+monsterContinueTransition2:RAM_arc (monsterContinueTransition -> heroPlace) {
+    name = `f"transition_monster_continue_2"`;
+}

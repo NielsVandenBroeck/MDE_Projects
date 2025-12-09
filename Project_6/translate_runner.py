@@ -29,12 +29,16 @@ rule_names = [
     "adjacency_tile",
     "hero_lives",
     "place_objective",
-    "place_hero",
     "connect_doors",
     "place_key",
     "connect_key_door",
+    "order_of_actions",
+    "order_of_hero",
+    "order_of_collectable",
+    "order_of_monster",
     "translate_trap",
     "monster_same_level_required",
+    "place_hero",
     "place_monster",
 ]
 

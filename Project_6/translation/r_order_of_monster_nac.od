@@ -1,0 +1,13 @@
+monsterTransition:RAM_PNTransition {
+    condition = `"move_monster_" in get_name(this)`;
+}
+
+# Get the order places so we can add arcs in rhs
+monsterPlace:RAM_PNPlace {
+    condition = `get_name(this) == f"Monster_moved_place"`;
+}
+
+# Add arcs
+monsterMovedTransition1:RAM_arc (monsterPlace -> monsterTransition) {
+    condition = `get_name(this) == f"transition_monster_moved_{get_name(matched('monsterTransition'))}_1"`;
+}

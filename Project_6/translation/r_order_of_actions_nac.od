@@ -1,0 +1,4 @@
+# Get order Places, only one is enough
+heroPlace:RAM_PNPlace {
+    condition = `get_name(this) == f"Hero_moved_place"`;
+}

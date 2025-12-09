@@ -1,0 +1,11 @@
+collectableTransition:RAM_PNTransition {
+    condition = `"pick_up_" in get_name(this)`;
+}
+
+# Get the order places so we can add arcs in rhs
+collectablePlace:RAM_PNPlace {
+    condition = `get_name(this) == f"Collected_place"`;
+}
+monsterMovedPlace:RAM_PNPlace {
+    condition = `get_name(this) == f"Monster_moved_place"`;
+}

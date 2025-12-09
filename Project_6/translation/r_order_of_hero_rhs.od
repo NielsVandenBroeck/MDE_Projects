@@ -1,0 +1,19 @@
+heroTransition:RAM_PNTransition {
+    condition = `"move_hero_" in get_name(this) or "use_door_" in get_name(this)`;
+}
+
+# Get the order places so we can add arcs in rhs
+heroPlace:RAM_PNPlace {
+    condition = `get_name(this) == f"Hero_moved_place"`;
+}
+collectablePlace:RAM_PNPlace {
+    condition = `get_name(this) == f"Collected_place"`;
+}
+
+# Add arcs
+heroMovedTransition1:RAM_arc (heroPlace -> heroTransition) {
+    name = `f"transition_hero_moved_{get_name(matched('heroTransition'))}_1"`;
+}
+heroMovedTransition2:RAM_arc (heroTransition -> collectablePlace) {
+    name = `f"transition_hero_moved_{get_name(matched('heroTransition'))}_2"`;
+}
